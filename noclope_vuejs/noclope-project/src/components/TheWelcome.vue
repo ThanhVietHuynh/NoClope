@@ -1,18 +1,56 @@
-<script setup>
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
-</script>
+<script setup></script>
 
 <template>
-  <WelcomeItem>
+  <h1>Formulaire d'inscription</h1>
+  <form class="formulaire" action="" method="post">
+    <p>
+      <label for="nom"
+        >Nom :
+        <input type="text" name="nom" id="nom" />
+      </label>
+    </p>
+    <p>
+      <label for="prenom"
+        >Prénom :
+        <input type="text" name="prenom" id="prenom" />
+      </label>
+    </p>
+    <p>
+      <label for="email"
+        >Email :
+        <input type="email" name="email" id="email" />
+      </label>
+    </p>
+    <p>
+      <label for="cardNumber"
+        >Numéro de carte bancaire :
+        <input type="text" name="cardNumber" id="cardNumber" />
+      </label>
+    </p>
+    <p>
+      <label for="expiry"
+        >Date d'expiration :
+        <input type="date" name="expiry" id="expiry" />
+      </label>
+    </p>
+    <p>
+      <label for="password"
+        >Mot de passe :
+        <input type="password" name="password" id="password" />
+      </label>
+    </p>
+    <p>
+      <label for="confirm"
+        >Confirmer votre mot de passe :
+        <input type="password" name="confirm" id="confirm" />
+      </label>
+    </p>
+  </form>
+  <!-- <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
     </template>
-    <template #heading>Documentation</template>
+    <template #heading>Mon titre</template>
 
     Vue’s
     <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
@@ -82,5 +120,19 @@ import SupportIcon from './icons/IconSupport.vue'
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  </WelcomeItem> -->
 </template>
+
+<style>
+h1 {
+  text-align: center;
+}
+.formulaire input {
+  margin: 20px;
+}
+
+form {
+  border: 2px solid black;
+  text-align: center;
+}
+</style>
