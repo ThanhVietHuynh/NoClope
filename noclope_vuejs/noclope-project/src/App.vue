@@ -8,7 +8,7 @@ export default{
     };
   },
 
-  method: {
+  methods: {
     async getContacts(){
       const response = await fetch("http://127.0.0.1:8000/api/contact", {
         method:"GET",
@@ -22,7 +22,7 @@ export default{
       this.contacts = data.contacts;
     },
   },
-  monted(){
+  mounted(){
     this.getContacts();
   }
 };
@@ -32,14 +32,15 @@ export default{
   <div>
     <h2>Listes des contacts</h2>
     <ul>
-      <li v-for="contact in contacts" :key="contact.id"></li>
-      <p>Prénom: {{contact.firstname}}</p>
-      <p>Nom: {{contact.lastname}}</p>
-      <p>Numéro carte CB: {{contact.number_phone}}</p>
+      <li v-for="contact in contacts" :key="contact.id">
+        <p>Prénom: {{contact.firstname}}</p>
+        <p>Nom: {{contact.lastname}}</p>
+        <p>Numéro carte CB: {{contact.number_phone}}</p>
+      </li>
     </ul>
   </div>
 
-  <button @click="getContats">Récupérer les contacts</button>
+  <button @click="getContacts">Récupérer les contacts</button>
 
 </template>
 
