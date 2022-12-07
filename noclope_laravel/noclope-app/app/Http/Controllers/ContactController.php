@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function index(){
+        $contacts = Contact::all();
+
+        return response()->json(['contacts' => $contacts]);
+    }
+
     public function store(Request $request) {
         $request->validate([
             'number_phone' => 'required|numeric',
@@ -13,12 +19,13 @@ class ContactController extends Controller
             'lastname' => 'required|string',
         ]);
 
-        Contact::create([
+        $contact = Contact::create([
             'number_phone' => $request->number_phone,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
+            'user_id' => $request->user_id,
         ]);
 
-        return response();
+        return response()->json(['message' => "Contact créer.",'contact' => $contact],201);
     }
 }

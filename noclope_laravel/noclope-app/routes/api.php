@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('api/contact',[ContactController::class,'store'])->name('contact.store');
+Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
+Route::get('/contact',[ContactController::class,'index'])->name('contact.index');

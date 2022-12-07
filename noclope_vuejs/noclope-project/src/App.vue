@@ -1,26 +1,46 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+<script>
+export default{
+  name:"App",
+  
+  data(){
+    return{
+      contacts:[],
+    };
+  },
+
+  method: {
+    async getContacts(){
+      const response = await fetch("http://127.0.0.1:8000/api/contact", {
+        method:"GET",
+        headers:{
+          "Accept":"application/json"
+        }
+      });
+
+      const data = await response.json();
+     
+      this.contacts = data.contacts;
+    },
+  },
+  monted(){
+    this.getContacts();
+  }
+};
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
+  <div>
+    <h2>Listes des contacts</h2>
+    <ul>
+      <li v-for="contact in contacts" :key="contact.id"></li>
+      <p>Prénom: {{contact.firstname}}</p>
+      <p>Nom: {{contact.lastname}}</p>
+      <p>Numéro carte CB: {{contact.number_phone}}</p>
+    </ul>
+  </div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <button @click="getContats">Récupérer les contacts</button>
 
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style scoped>
