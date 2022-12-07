@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,5 +12,13 @@ class ContactController extends Controller
             'firstname' => 'required|string',
             'lastname' => 'required|string',
         ]);
+
+        Contact::create([
+            'number_phone' => $request->number_phone,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+        ]);
+
+        return response();
     }
 }
