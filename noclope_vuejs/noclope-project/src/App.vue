@@ -25,5 +25,9 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style>
+nav{
+  display: flex;
+  justify-content: space-between;
+}
 
 </style>
