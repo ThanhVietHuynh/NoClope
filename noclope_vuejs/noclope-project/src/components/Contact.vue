@@ -4,6 +4,10 @@ export default{
   data(){
     return{
       contacts:[],
+      firstname:"",
+      lastname:"",
+      number_phone:"",
+      feedbackMessage:""
     };
   },
 
@@ -20,6 +24,28 @@ export default{
      
       this.contacts = data.contacts;
     },
+
+    async createContact(){
+        const body = {
+            number_phone: this.number_phone,    
+            firstname: this.firstname,
+            lastname: this.lastname,
+
+        }
+        const response = await fetch("http://127.0.0.1:8000/api/contact",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        const data = await response.json();
+
+        this.feedbackMessage = data.message;
+        this.getContacts();
+    }
   },
   mounted(){
     this.getContacts();
@@ -29,13 +55,15 @@ export default{
 
 <template>
     
-    <form class="form">
+    <form class="form" @submit.prevent="createContact">
         <h2>Ajouter un contact</h2>
-        <p class="pContact" type="Nom:"><input class="inputContact" placeholder="Entrer le nom du contact"></p>
-        <p class="pContact" type="Prénom:"><input class="inputContact"  placeholder="Entrer le prénom du contact"></p>
-        <p class="pContact" type="Numéro de téléphone:"><input class="inputContact"  placeholder="Entrer le numéro de téléphone du contact"></p>
-        <button class="btn">Valider</button>
+        <p class="pContact" type="Nom:"><input class="inputContact" v-model="lastname" placeholder="Entrer le nom du contact"></p>
+        <p class="pContact" type="Prénom:"><input class="inputContact" v-model="firstname"  placeholder="Entrer le prénom du contact"></p>
+        <p class="pContact" type="Numéro de téléphone:"><input class="inputContact" v-model="number_phone"  placeholder="Entrer le numéro de téléphone du contact"></p>
+        <button class="btn" type="submit">Valider</button>
     </form>
+
+    <p>{{feedbackMessage}}</p>
 
     <section>
         <div>
@@ -44,7 +72,7 @@ export default{
             <li v-for = "contact in contacts" :key="contact.id">
               <p>Prénom: {{contact.firstname}}</p>
               <p>Nom: {{contact.lastname}}</p>
-              <p>Numéro carte CB: {{contact.number_phone}}</p>
+              <p>Numéro de téléphone: {{contact.number_phone}}</p>
             </li>
           </ul>
         </div>

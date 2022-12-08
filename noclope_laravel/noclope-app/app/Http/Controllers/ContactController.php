@@ -23,7 +23,7 @@ class ContactController extends Controller
             'number_phone' => $request->number_phone,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
-            'user_id' => $request->user_id,
+            'user_id' => $request->user_id = 1,
         ]);
 
         return response()->json(['message' => "Contact créer.",'contact' => $contact],201);
