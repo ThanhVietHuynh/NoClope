@@ -44,7 +44,7 @@ export default{
             <li v-for = "contact in contacts" :key="contact.id">
               <p>Prénom: {{contact.firstname}}</p>
               <p>Nom: {{contact.lastname}}</p>
-              <p>Numéro carte CB: {{contact.number_phone}}</p>
+              <p>Numéro tel: {{contact.number_phone}}</p>
             </li>
           </ul>
         </div>
