@@ -31,15 +31,14 @@ export default{
   <div>
     <h2>Mon Projet</h2>
     <ul>
-      <li v-for ="project in projects" :key ="project.id"></li>
-      <p>Mon objectif : {{project.goal}}</p>
-      <p>Son prix : {{project.price_goal}}</p>
-      <p>Prix paquet cigarette : {{project.price_pack}}</p>
-      <p>Ma consommation : {{project.consumption}}</p>
+      <li v-for = "project in projects" :key="project.id">
+        <p>Mon objectif : {{project.goal}}</p>
+        <p>Son prix : {{project.price_goal}}</p>
+        <p>Prix paquet cigarette : {{project.price_pack}}</p>
+        <p>Ma consommation : {{project.consumption}}</p>
+      </li>
     </ul>
   </div>
-
-  <button @click="getProjects">Afficher le projet</button>
 
 </template>
 
