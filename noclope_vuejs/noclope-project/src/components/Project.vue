@@ -1,45 +1,91 @@
 <script>
-export default{
-  
-  data(){
-    return{
-        projects:[],
+export default {
+  data() {
+    return {
+      projects: [],
     };
   },
 
   methods: {
-    async getProjects(){
+    async getProjects() {
       const response = await fetch("http://127.0.0.1:8000/api/project", {
-        method:"GET",
-        headers:{
-          "Accept":"application/json"
-        }
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
       });
 
       const data = await response.json();
-     
+
       this.projects = data.projects;
     },
+    async createProject() {
+      const body = {
+        goal: this.goal,
+        price_goal: this.price_goal,
+        price_pack: this.price_pack,
+        consumption: this.consumption,
+        user_id:1
+      };
+      const response = await fetch("http://127.0.0.1:8000/api/project", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+
+      this.feedbackMessage = data.message;
+      this.getProjects();
+    },
   },
-  mounted(){
+
+  mounted() {
     this.getProjects();
-  }
+  },
 };
 </script>
 
 <template>
-  <div>
-    <h2>Mon Projet</h2>
-    <ul>
-      <li v-for = "project in projects" :key="project.id">
-        <p>Mon objectif : {{project.goal}}</p>
-        <p>Son prix : {{project.price_goal}}</p>
-        <p>Prix paquet cigarette : {{project.price_pack}}</p>
-        <p>Ma consommation : {{project.consumption}}</p>
-      </li>
-    </ul>
-  </div>
+  <section>
+    <form class="form" @submit.prevent="createProject">
+      <h2>Créer mon objectif</h2>
+      <p type="Mon objectif:">
+        <input v-model="goal" placeholder="Entrez votre objectif" />
+      </p>
+      <p type="Son prix:">
+        <input v-model="price_goal" placeholder="Entrez son prix" />
+      </p>
+      <p type="Prix paquet cigarette:">
+        <input v-model="price_pack" placeholder="Entrez le prix d'un paquet" />
+      </p>
+      <p type="Ma consommation:">
+        <input
+          v-model="consumption"
+          placeholder="Entrez votre consommation journalière"
+        />
+      </p>
+      <button class="btn" type="submit">Valider</button>
+    </form>
+    <p>{{ feedbackMessage }}</p>
+  </section>
 
+  <section>
+    <div>
+      <h2>Mon Projet</h2>
+      <ul>
+        <li v-for="project in projects" :key="project.id">
+          <p>Mon objectif : {{ project.goal }}</p>
+          <p>Son prix : {{ project.price_goal }}</p>
+          <p>Prix paquet cigarette : {{ project.price_pack }}</p>
+          <p>Ma consommation : {{ project.consumption }}</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <style scoped>

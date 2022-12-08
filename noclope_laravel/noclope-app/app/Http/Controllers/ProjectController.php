@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -14,8 +15,10 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return response()->json(['projects'=>$projects],200
-    );
+        return response()->json(
+            ['projects' => $projects],
+            200
+        );
     }
 
     /**
@@ -25,7 +28,6 @@ class ProjectController extends Controller
      */
     public function create()
     {
-       
     }
 
     /**
@@ -36,26 +38,26 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-    
-            $request->validate([
-                'goal' => 'required|string',
-                'price_goal' => 'required|numeric',
-                'price_pack' => 'required|numeric',
-                'consumption'=>'required|integer',
-            ]);
-    
-            $project= Project::create([
-                'goal' => $request->goal,
-                'price_goal' => $request->price_goal,
-                'price_pack' => $request->price_pack,
-                'consumption'=>$request->consumption,
-                // 'price_goal_now'=>$request->price_goal_now,
-                // 'user_id'=>$request->user_id,
-                // 'transaction_id'=>$request->transaction_id,
-                // 'cracking_id'=>$request->cracking_id,
-            ]);
-    
-            return response()->json(['message'=>'Votre projet a été créé','project'=>$project],201);
+
+        $request->validate([
+            'goal' => 'required|string',
+            'price_goal' => 'required|numeric',
+            'price_pack' => 'required|numeric',
+            'consumption' => 'required|integer',
+        ]);
+
+        $project = Project::create([
+            'goal' => $request->goal,
+            'price_goal' => $request->price_goal,
+            'price_pack' => $request->price_pack,
+            'consumption' => $request->consumption,
+            // 'price_goal_now'=>$request->price_goal_now,
+            'user_id' => $request->user_id = 1,
+            // 'transaction_id'=>$request->transaction_id,
+            // 'cracking_id'=>$request->cracking_id,
+        ]);
+
+        return response()->json(['message' => 'Votre projet a été créé', 'project' => $project], 201);
     }
 
     /**
