@@ -54,7 +54,7 @@ class ProjectController extends Controller
                 // 'cracking_id'=>$request->cracking_id,
             ]);
     
-            return response()->json(['message'=>'Votre projet a été créé','project'=>$project],200);
+            return response()->json(['message'=>'Votre projet a été créé','project'=>$project],201);
     }
 
     /**
