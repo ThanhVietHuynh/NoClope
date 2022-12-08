@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
+
+Route::post('/project',[ProjectController::class,'store'])->name('project.store');
+Route::get('/project',[ProjectController::class,'index'])->name('project.index');
