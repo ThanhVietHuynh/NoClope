@@ -14,4 +14,7 @@ use App\Http\Controllers\StripeController;
 |
 */
 Route::get('/stripe', [StripeController::class, 'index']) -> name('stripe.index');
+Route::get('/stripe/cancel', [StripeController::class, 'cancel']) -> name('stripe.cancel');
+Route::get('/stripe/success', [StripeController::class, 'success']) -> name('stripe.success');
 Route::post('/stripe/create', [StripeController::class, 'create']) -> name('stripe.create');
+Route::post('/stripe/setup', [StripeController::class, 'setup']) -> name('stripe.setup');
