@@ -7,13 +7,12 @@ import { RouterLink, RouterView } from "vue-router";
     <header>
       <img src="../src/assets/50472272840e49d3934e9094dbca76fd.png" alt="">
       <nav>
-        <div>
-          <RouterLink to="/" class="router">Accueil</RouterLink>
-          <RouterLink to="/project" class="router">Mon Projet</RouterLink>
-          <RouterLink to="/contact" class="router">Contact</RouterLink>
-          <RouterLink to="/register" class="router">S'enregistrer</RouterLink>
-          <RouterLink to="/login" class="router">Se connecter</RouterLink>
-        </div>
+        <RouterLink to="/" class="router">Accueil</RouterLink>
+        <RouterLink to="/project" class="router">Mon Projet</RouterLink>
+        <RouterLink to="/contact" class="router">Contact</RouterLink>
+        <RouterLink to="/register" class="router">S'enregistrer</RouterLink>
+        <RouterLink to="/login" class="router">Se connecter</RouterLink>
+        <RouterLink to="/cracking" class="router">J'ai craqué</RouterLink>
       </nav>
     </header>
     <RouterView v-slot="{ Component, route }">
