@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 export default{
   name:"App",
   
@@ -70,4 +70,4 @@ header {
     flex-wrap: wrap;
   }
 }
-</style>
+</style> -->

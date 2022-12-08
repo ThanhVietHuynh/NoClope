@@ -14,5 +14,8 @@
                 <input type="password" name="password" id="password">
             </label>
         </p>
+        <p>
+            <button type="submit">Se connecter</button>
+        </p>
     </form>
 </template>

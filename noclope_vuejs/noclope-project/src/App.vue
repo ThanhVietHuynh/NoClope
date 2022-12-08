@@ -12,6 +12,7 @@ import { RouterLink, RouterView } from "vue-router";
         <RouterLink to="/contact" class="router">Contact</RouterLink>
         <RouterLink to="/register" class="router">S'enregistrer</RouterLink>
         <RouterLink to="/login" class="router">Se connecter</RouterLink>
+        <RouterLink to="/cracking" class="router">J'ai craqué</RouterLink>
       </nav>
     </header>
     <RouterView v-slot="{ Component, route }">
