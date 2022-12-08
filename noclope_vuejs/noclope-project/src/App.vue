@@ -1,74 +1,26 @@
-<script>
-export default{
-  name:"App",
-  
-  data(){
-    return{
-      contacts:[],
-    };
-  },
-
-  methods: {
-    async getContacts(){
-      const response = await fetch("http://127.0.0.1:8000/api/contact", {
-        method:"GET",
-        headers:{
-          "Accept":"application/json"
-        }
-      });
-
-      const data = await response.json();
-     
-      this.contacts = data.contacts;
-    },
-  },
-  mounted(){
-    this.getContacts();
-  }
-};
+<script setup>
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <div>
-    <h2>Listes des contacts</h2>
-    <ul>
-      <li v-for="contact in contacts" :key="contact.id">
-        <p>Prénom: {{contact.firstname}}</p>
-        <p>Nom: {{contact.lastname}}</p>
-        <p>Numéro carte CB: {{contact.number_phone}}</p>
-      </li>
-    </ul>
-  </div>
-
-  <button @click="getContacts">Récupérer les contacts</button>
-
+    <section id="pageform">
+    <header>
+      <img src="../src/assets/50472272840e49d3934e9094dbca76fd.png" alt="">
+      <nav>
+        <RouterLink to="/" class="router">Accueil</RouterLink>
+        <RouterLink to="/contact" class="router">Contact</RouterLink>
+      </nav>
+    </header>
+    <RouterView v-slot="{ Component, route }">
+      <Transition name="fade" mode="out-in">
+        <div :key="route.name">
+          <component :is="Component" />
+        </div>
+      </Transition>
+    </RouterView>
+  </section>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
