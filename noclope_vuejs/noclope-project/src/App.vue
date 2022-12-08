@@ -22,6 +22,12 @@ import { RouterLink, RouterView } from "vue-router";
         </div>
       </Transition>
     </RouterView>
+
+    <footer>
+      <div class="container">
+          <p class="m-0 text-center text-white">December 2022 &copy; No Clope by Mathilde & Thanh & Marlee & Nabil</p>
+      </div>
+    </footer>
   </section>
 </template>
 
