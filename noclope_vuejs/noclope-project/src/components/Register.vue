@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 </script>
 
 <template>
@@ -7,43 +7,42 @@
     <p>
       <label for="nom"
         >Nom :
-        <input type="text" name="nom" id="nom" />
+        <input type="text" name="nom" id="nom" placeholder="Nom..." />
       </label>
     </p>
     <p>
       <label for="prenom"
         >Prénom :
-        <input type="text" name="prenom" id="prenom" />
+        <input type="text" name="prenom" id="prenom" placeholder="Prénom..." />
       </label>
     </p>
     <p>
       <label for="email"
         >Email :
-        <input type="email" name="email" id="email" />
+        <input type="email" name="email" id="email" placeholder="Email..." />
       </label>
     </p>
     <p>
       <label for="cardNumber"
         >Numéro de carte bancaire :
-        <input type="text" name="cardNumber" id="cardNumber" />
+        <input type="text" name="cardNumber" id="cardNumber" placeholder="Numéro de votre carte..." />
       </label>
     </p>
     <p>
       <label for="expiry"
         >Date d'expiration :
-        <input type="date" name="expiry" id="expiry" />
+        <input type="date" name="expiry" id="expiry" placeholder="Date d'expiration..." />
       </label>
     </p>
     <p>
       <label for="password"
         >Mot de passe :
-        <input type="password" name="password" id="password" />
+        <input type="password" name="password" id="password" placeholder="Mot de passe..." />
       </label>
     </p>
     <p>
-      <label for="confirm"
-        >Confirmer votre mot de passe :
-        <input type="password" name="confirm" id="confirm" />
+      <label for="confirm">Confirmer votre mot de passe :
+        <input type="password" name="confirm" id="confirm" placeholder="Confirmer votre mot de passe" />
       </label>
     </p>
   </form>
@@ -55,28 +54,16 @@ h1 {
 }
 .formulaire input {
   margin: 20px;
+  border-radius: 5px;
 }
 
 form {
-  border: 2px solid black;
+  
   text-align: center;
 }
-</style>
+</style> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<template></template>
 
 
 
