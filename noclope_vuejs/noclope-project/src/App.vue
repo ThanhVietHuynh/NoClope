@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from "vue-router";
       <img src="../src/assets/50472272840e49d3934e9094dbca76fd.png" alt="">
       <nav>
         <RouterLink to="/" class="router">Accueil</RouterLink>
+        <RouterLink to="/project" class="router">Mon Projet</RouterLink>
         <RouterLink to="/contact" class="router">Contact</RouterLink>
       </nav>
     </header>
