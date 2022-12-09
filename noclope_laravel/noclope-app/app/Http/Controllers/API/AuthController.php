@@ -12,11 +12,10 @@ class AuthController extends Controller
 {
     public function register(Request $request){
         $validator = Validator::make($request->all(),[
-            'nom' => 'required',
-            'prenom' => 'required',
+            'lastname' => 'required',
+            'firstname' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'confirm' => 'required|same:password'
         ]);
 
         if($validator->fails()){
@@ -28,6 +27,7 @@ class AuthController extends Controller
         }
 
         $input = $request->all();
+        dd($input);
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
 
@@ -45,6 +45,19 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        if(Auth::attempt(['email']));
+        if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
+            // $user = Auth::user();
+            $user = $request->user();
+            $success['token'] = $user->createToken('MyApp')->plainTextToken;
+        $success['name'] = $user->name;
+
+        $response = [
+            'success' => true,
+            'data'    => $success,
+            'message' => "Connexion réussie !!!"
+        ];
+
+        return response()->json($response, 200);
+        }
     }
 }
