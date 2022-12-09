@@ -49,6 +49,7 @@ export default {
 </script>
 
 <template>
+
   <section>
     <form class="form" @submit.prevent="createProject">
       <h2>Créer mon objectif</h2>
