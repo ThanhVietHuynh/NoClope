@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('crackings', function (Blueprint $table) {
+        Schema::table('projects', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('cracking_id')->references('id')->on('crackings')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('cracking_id');
         });
     }
 
@@ -28,10 +30,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('crackings', function (Blueprint $table) {
+        Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn('user_id');
-            $table->dropColumn('project_id');
-            
+            $table->dropColumn('transaction_id');
+            $table->dropColumn('cracking_id');
         });
     }
 };
+

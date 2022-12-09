@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /** 
      * Run the migrations.
      *
      * @return void
@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            
+
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->unsignedBigInteger('project_id');
         });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void
