@@ -52,7 +52,6 @@ class ProjectController extends Controller
             'price_pack' => $request->price_pack,
             'consumption' => $request->consumption,
             // 'price_goal_now'=>$request->price_goal_now,
-            'user_id' => $request->user_id = 1,
             // 'transaction_id'=>$request->transaction_id,
             // 'cracking_id'=>$request->cracking_id,
         ]);
