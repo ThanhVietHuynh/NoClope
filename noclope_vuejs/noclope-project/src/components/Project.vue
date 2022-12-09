@@ -25,7 +25,6 @@ export default {
         price_goal: this.price_goal,
         price_pack: this.price_pack,
         consumption: this.consumption,
-        user_id:1
       };
       const response = await fetch("http://127.0.0.1:8000/api/project", {
         method: "POST",
