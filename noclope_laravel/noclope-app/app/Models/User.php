@@ -24,7 +24,6 @@ class User extends Authenticatable
         'password',
         'number_cb',
         'date_expiry',
-        'type_user',
         'project_id',
     ];
 
