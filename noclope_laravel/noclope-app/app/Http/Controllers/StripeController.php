@@ -39,6 +39,13 @@ class StripeController extends Controller
                             'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',
                           ]);
                         // dd($session);
+
+                        $stripe = new \Stripe\StripeClient(
+                          env('STRIPE_API_KEY')
+                        );
+                        $stripe->setupIntents->create([
+                          'payment_method_types' => ['card'],
+                        ]);
                           return redirect($session['url']);
 
                   }catch(\Exception $error) {
