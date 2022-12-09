@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('price_goal');
             $table->float('price_pack');
             $table->integer('consumption');
-            $table->float('price_goal_now');
+            $table->float('price_goal_now')->nullable();
           
 
         });

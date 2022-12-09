@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('firstname');
             $table->string('email')->unique();
-            $table->string('number_cb');
-            $table->timestamp('date_expiry');
+            $table->string('stripe_id');
             $table->string('type_user');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
