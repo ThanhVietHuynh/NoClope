@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CrackingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact.index')
 
 Route::post('/project',[ProjectController::class,'store'])->name('project.store');
 Route::get('/project',[ProjectController::class,'index'])->name('project.index');
+
+Route::resource('/cracking', CrackingController::class);
