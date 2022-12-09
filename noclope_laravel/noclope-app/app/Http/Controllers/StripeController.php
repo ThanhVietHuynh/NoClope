@@ -25,27 +25,34 @@ class StripeController extends Controller
             );
 
             // $idconnecte=Auth::user()->id;
-            $idconnecte=1;
-            $user=User::where('user_id', $idconnecte)->get();
-            dd($user);
+            $idconnecte=3;
+            $userconnecte=User::FindOrFail($idconnecte);
+            
             $customer= $stripe->customers->create([
-              'email' => 'test2@test.com', //Ici il faudra mettre les input du formulaire d'inscription
-              'name' => 'test', //Ici il faudra mettre les input du formulaire d'inscription
-            ]);         
+              'email' => $userconnecte['email'], 
+              'name' => $userconnecte['lastname'], 
+            ]);  
+
+            //Met à jour la base de donnée avec l'identifiant stripe créé
+            $user = User::findOrFail($idconnecte);
+            $user->stripe_id =  $customer['id'] ;
+            $user->save();
+          
           
                   //Le try est si la requete a fonctionné pour la création d'une session stripe
                   try { 
                         // Création d'une session Stripe "Checkout"
                         \Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
-                        $session = \Stripe\Checkout\Session::create([
+                        $customer=$session = \Stripe\Checkout\Session::create([
                             'payment_method_types' => ['card'],
                             'mode' => 'setup',
-                            'customer' => $customer['id'], //mettre le $customer_id dans la base de donnée
+                            'customer' => $customer['id'], 
                            'success_url' => 'http://127.0.0.1:8000/stripe/success?{CHECKOUT_SESSION_ID}', //A voir si lurl est bonne
                             'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',
                           ]);
-                        // dd($session);
 
+                          
+                         
                         $stripe = new \Stripe\StripeClient(
                           env('STRIPE_API_KEY')
                         );
@@ -74,8 +81,14 @@ class StripeController extends Controller
         env('STRIPE_API_KEY')
       );
 
+      // $idconnecte=Auth::user()->id;
+      $idconnecte=3;
+      $userconnecte=User::FindOrFail($idconnecte);
+
+
+
       $customer=$stripe->customers->allPaymentMethods(
-        'cus_MwgK5Uz3isdG6k', //a mettre dans base de données
+        $userconnecte['stripe_id'], 
         ['type' => 'card']
       );
       
@@ -84,13 +97,13 @@ class StripeController extends Controller
       $customer['data'][0]['id'],
       []
     );
-    // dd($payment_method);
+
      
     $transac=$stripe->paymentIntents->create([
       'payment_method_types' => ['card'],
       'amount' => 8000,
       'currency' => 'eur',
-      'customer' => 'cus_MwgK5Uz3isdG6k', //a mettre dans base de données
+      'customer' => $userconnecte['stripe_id'], 
       'payment_method' => $payment_method,
     ]);
 

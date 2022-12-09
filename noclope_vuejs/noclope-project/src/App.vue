@@ -1,8 +1,10 @@
-<script setup>
+ <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import NavBar from "./components/NavBar.vue";
+
 </script>
 
-<template>
+<!-- <template>
     <section id="pageform">
     <header>
       <img src="../src/assets/50472272840e49d3934e9094dbca76fd.png" alt="">
@@ -29,12 +31,37 @@ import { RouterLink, RouterView } from "vue-router";
       </div>
     </footer>
   </section>
-</template>
+</template> -->
 
-<style>
+<!-- <style>
 nav{
   display: flex;
   justify-content: space-between;
 }
 
-</style>
+</style>  -->
+
+<template>
+ <header>
+    <NavBar/>
+ </header>
+
+  <body class="bg-blue-300">
+     <RouterView />
+  </body>
+</template>
+
+
+<script>
+import Navbar from "./components/NavBar.vue";
+export default{
+  name:"App",
+  components:{
+    Navbar,
+    RouterView,
+  },
+};
+</script>
+
+
+
