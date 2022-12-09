@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class StripeController extends Controller
 {
+   
+
     public function index() {
 
       
@@ -18,7 +20,7 @@ class StripeController extends Controller
 
             // // Création d'un customer Stripe
             $stripe = new \Stripe\StripeClient(
-              'sk_test_51MCOUbDVPOGZQeRSqmmdgj6vvRYzuvjdEOi217fKdoQpyyQ8gEiliadFmDzqKOd3gTa16iabmJrPP2enCEspcavq00OUiTCG1C'
+              env('STRIPE_API_KEY')
             );
             $customer= $stripe->customers->create([
               'email' => 'test2@test.com', //Ici il faudra mettre les input du formulaire d'inscription
@@ -28,7 +30,7 @@ class StripeController extends Controller
                   //Le try est si la requete a fonctionné pour la création d'une session stripe
                   try { 
                         // Création d'une session Stripe "Checkout"
-                        \Stripe\Stripe::setApiKey('sk_test_51MCOUbDVPOGZQeRSqmmdgj6vvRYzuvjdEOi217fKdoQpyyQ8gEiliadFmDzqKOd3gTa16iabmJrPP2enCEspcavq00OUiTCG1C');
+                        \Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
                         $session = \Stripe\Checkout\Session::create([
                             'payment_method_types' => ['card'],
                             'mode' => 'setup',
@@ -56,7 +58,7 @@ class StripeController extends Controller
     public function setup() {
 
       $stripe = new \Stripe\StripeClient(
-        'sk_test_51MCOUbDVPOGZQeRSqmmdgj6vvRYzuvjdEOi217fKdoQpyyQ8gEiliadFmDzqKOd3gTa16iabmJrPP2enCEspcavq00OUiTCG1C'
+        env('STRIPE_API_KEY')
       );
 
       $customer=$stripe->customers->allPaymentMethods(
