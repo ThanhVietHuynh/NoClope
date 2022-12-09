@@ -32,6 +32,18 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $infouser = [
+            'email' =>$request->email,
+            'password' =>$request->password,
+        ];
+
         
+
+        return response()->json(["token" => "test"]);
     }
 }
