@@ -78,6 +78,10 @@ class StripeController extends Controller
       'customer' => 'cus_MwgK5Uz3isdG6k', //a mettre dans base de données
       'payment_method' => $payment_method,
     ]);
+
+      //Demande la confirmation du paiment, à voir avec Timotée si la validation doit venir du client ou si automatique
+    $stripe->paymentIntents->confirm($transac->id, ['payment_method' => $payment_method]);
+
     return "transaction réussie";
 
   
