@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->foreign('cracking_id')->references('id')->on('crackings')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('transaction_id');
-            $table->unsignedBigInteger('cracking_id');
+            $table->unsignedBigInteger('transaction_id')->nullable();
+            $table->unsignedBigInteger('cracking_id')->nullable();
         });
     }
 
