@@ -32,12 +32,11 @@ class StripeController extends Controller
                         $session = \Stripe\Checkout\Session::create([
                             'payment_method_types' => ['card'],
                             'mode' => 'setup',
-                            'customer' => $customer['id'], 
-                            'success_url' => 'http://127.0.0.1:8000/stripe/success?{CHECKOUT_SESSION_ID}', //A voir si lurl est bonne
+                            'customer' => $customer['id'], //mettre le $customer_id dans la base de donnée
+                           'success_url' => 'http://127.0.0.1:8000/stripe/success?{CHECKOUT_SESSION_ID}', //A voir si lurl est bonne
                             'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',
                           ]);
-                        
-                          
+                        // dd($session);
                           return redirect($session['url']);
 
                   }catch(\Exception $error) {
@@ -59,14 +58,33 @@ class StripeController extends Controller
       $stripe = new \Stripe\StripeClient(
         'sk_test_51MCOUbDVPOGZQeRSqmmdgj6vvRYzuvjdEOi217fKdoQpyyQ8gEiliadFmDzqKOd3gTa16iabmJrPP2enCEspcavq00OUiTCG1C'
       );
-      $setup=$stripe->setupIntents->create([
-        'payment_method_types' => ['card'],
-        // 'customer' => $customer['id'],
-      ]);
 
-      // dd($setup);
-          return "couou";
+      $customer=$stripe->customers->allPaymentMethods(
+        'cus_MwgK5Uz3isdG6k', //a mettre dans base de données
+        ['type' => 'card']
+      );
+      
+
+    $payment_method=$stripe->paymentMethods->retrieve(
+      $customer['data'][0]['id'],
+      []
+    );
+    // dd($payment_method);
+     
+    $transac=$stripe->paymentIntents->create([
+      'payment_method_types' => ['card'],
+      'amount' => 8000,
+      'currency' => 'eur',
+      'customer' => 'cus_MwgK5Uz3isdG6k', //a mettre dans base de données
+      'payment_method' => $payment_method,
+    ]);
+    return "transaction réussie";
+
+  
     }
+
+
+
     public function success() {
 
       
