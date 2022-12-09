@@ -1,0 +1,1 @@
+La transaction n'a pas réussie

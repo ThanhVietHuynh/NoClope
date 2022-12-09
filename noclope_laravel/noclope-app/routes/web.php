@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,3 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/stripe', [StripeController::class, 'index']) -> name('stripe.index');
+Route::get('/stripe/cancel', [StripeController::class, 'cancel']) -> name('stripe.cancel');
+Route::get('/stripe/success', [StripeController::class, 'success']) -> name('stripe.success');
+Route::post('/stripe/create', [StripeController::class, 'create']) -> name('stripe.create');
+Route::post('/stripe/setup', [StripeController::class, 'setup']) -> name('stripe.setup');
