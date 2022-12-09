@@ -11,53 +11,27 @@ use App\Models\User;
 class AuthController extends Controller
 {
     public function register(Request $request){
-        $validator = Validator::make($request->all(),[
-            'lastname' => 'required',
-            'firstname' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+
+        $request->validate([
+                'lastname' => 'required',
+                'firstname' => 'required',
+                'email' => 'required|email',
+                'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
+                
         ]);
 
-        if($validator->fails()){
-            $response = [
-                "success" => false,
-                "message" => $validator->errors(),
-            ];
-            return response()->json($response, 400);
-        }
+        $user = User::create([
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
 
-        $input = $request->all();
-        dd($input);
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-
-        $success['token'] = $user->createToken('MyApp')->plainTextToken;
-        $success['name'] = $user->name;
-
-        $response = [
-            'success' => true,
-            'data'    => $success,
-            'message' => "Connexion réussie !!!"
-        ];
-
-        return response()->json($response, 200);
+        return response()->json(['message' => "Utilisateur créé.",'user' => $user],201);
 
     }
 
     public function login(Request $request){
-        if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
-            // $user = Auth::user();
-            $user = $request->user();
-            $success['token'] = $user->createToken('MyApp')->plainTextToken;
-        $success['name'] = $user->name;
-
-        $response = [
-            'success' => true,
-            'data'    => $success,
-            'message' => "Connexion réussie !!!"
-        ];
-
-        return response()->json($response, 200);
-        }
+        
     }
 }

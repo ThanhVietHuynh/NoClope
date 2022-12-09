@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('firstname');
             $table->string('email')->unique();
-            $table->string('stripe_id');
-            $table->string('type_user');
+            $table->string('stripe_id')->nullable();
+            $table->boolean('isadmin')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

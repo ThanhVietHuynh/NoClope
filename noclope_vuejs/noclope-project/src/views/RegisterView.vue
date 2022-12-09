@@ -22,6 +22,7 @@ import Register from '../components/Register.vue';
           email: this.email,
           password: this.password,
         }
+        
         const response = await fetch("http://127.0.0.1:8000/api/register",
         {
           method: "POST",
@@ -29,12 +30,16 @@ import Register from '../components/Register.vue';
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
+          
           body: JSON.stringify(body)
+         
         });
 
-        const data = await response.json();
+        console.log(response);
 
-        console.log(data);
+        const data = await response.json();
+        
+
         }
       }
 
