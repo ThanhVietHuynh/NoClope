@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StripeController extends Controller
@@ -22,6 +23,11 @@ class StripeController extends Controller
             $stripe = new \Stripe\StripeClient(
               env('STRIPE_API_KEY')
             );
+
+            // $idconnecte=Auth::user()->id;
+            $idconnecte=1;
+            $user=User::where('user_id', $idconnecte)->get();
+            dd($user);
             $customer= $stripe->customers->create([
               'email' => 'test2@test.com', //Ici il faudra mettre les input du formulaire d'inscription
               'name' => 'test', //Ici il faudra mettre les input du formulaire d'inscription
