@@ -33,6 +33,9 @@ class AuthController extends Controller
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
+
+        $user->remember_token = $token;
+        $user->save();
         
        
         return response()->json([
@@ -58,12 +61,15 @@ class AuthController extends Controller
         if(!Hash::check($request->password, $user['password'])===false){
             
             $token = $user->createToken('auth_token')->plainTextToken;
+
+            $user->remember_token = $token;
+            $user->save();
+
                
             return response()->json([
                 'message' => "Utilisateur créé.",
                 'user' => $user,
                 'access_token' => $token,
-                'token' => $token->plainTextToken,
                 'token_type' => 'Bearer',
             ],201);
            

@@ -33,7 +33,13 @@
         
 
         const data = await response.json();
-        
+        // console.log(data)
+
+      //   if (data.success == true) {
+      //       // Mise dans le local storage
+      //       localStorage.setItem("tokenUserLog", JSON.stringify(this.infoUser.token));
+ 
+      // }    
 
         }
       }
