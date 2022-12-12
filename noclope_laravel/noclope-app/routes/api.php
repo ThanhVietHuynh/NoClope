@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/{id}/profil', [AuthController::class, 'edit'])->name('profil.edit');
+Route::put('/{id}/profil', [AuthController::class, 'update'])->name('profil.update');
 
 Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');

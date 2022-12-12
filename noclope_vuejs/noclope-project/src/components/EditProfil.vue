@@ -1,19 +1,22 @@
 <script>
+
 export default{
   
   data(){
     return{
-      contacts:[],
-      firstname:"",
+      profil:[],
       lastname:"",
-      number_phone:"",
-      feedbackMessage:""
+      firstname:"",
+      email:"",
+      password:"",
+      feedbackMessage:"",
     };
   },
 
   methods: {
-    async getContacts(){
-      const response = await fetch("http://127.0.0.1:8000/api/contact", {
+    async getProfil(){
+      const id = 1;
+      const response = await fetch(`http://127.0.0.1:8000/api/${id}/profil`, {
         method:"GET",
         headers:{
           "Accept":"application/json"
@@ -22,18 +25,19 @@ export default{
 
       const data = await response.json();
      
-      this.contacts = data.contacts;
+      this.profil = data.profil;
     },
 
-    async createContact(){
-        const body = {
-            number_phone: this.number_phone,    
-            firstname: this.firstname,
+    async updateProfil(){
+        const body = {   
             lastname: this.lastname,
+            firstname: this.firstname,
+            email: this.email,
+            password: this.password,
 
         }
-        const response = await fetch("http://127.0.0.1:8000/api/contact",{
-            method: "POST",
+        const response = await fetch(`http://127.0.0.1:8000/api/${id}/profil`,{
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -44,11 +48,35 @@ export default{
         const data = await response.json();
 
         this.feedbackMessage = data.message;
-        this.getContacts();
+        this.getProfil();
     }
   },
   mounted(){
-    this.getContacts();
+    this.getProfil();
   }
 };
 </script>
+
+<template>
+    
+  <p>{{feedbackMessage}}</p>
+  
+  <section>
+    <div>
+      <h2>Mon Profil</h2>
+      <p>Nom: {{profil.lastname}}</p>
+      <p>Prénom: {{profil.firstname}}</p>
+      <p>Email: {{profil.email}}</p>
+    </div>
+  </section>
+  
+  <form class="form" @submit.prevent="updateProfil">
+      <h2>Modifier le profil</h2>
+      <p class="pContact" type="Nom:"><input type="text" class="inputContact" v-model="profil.lastname" placeholder="Nouveau nom"></p>
+      <p class="pContact" type="Prénom:"><input type="text" class="inputContact" v-model="profil.firstname"  placeholder="Nouveau prénom"></p>
+      <p class="pContact" type="Email:"><input type="email" class="inputContact" v-model="profil.email"  placeholder="Votre nouveau email"></p>
+      <p class="pContact" type="Mot de passe:"><input type="password" class="inputContact" v-model="profil.password"  placeholder="Nouveau Mot de passe"></p>
+      <button class="btn" type="submit">Valider</button>
+  </form>
+
+</template>
