@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Fortify;
+use Laravel\Sanctum\HasApiTokens;
 
 class AuthController extends Controller
 {
+    use HasApiTokens, Notifiable;
     public function register(Request $request){
 
         $request->validate([
@@ -24,26 +29,51 @@ class AuthController extends Controller
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => "Utilisateur créé.",'user' => $user],201);
+        $token = $user->createToken('auth_token')->plainTextToken;
+        
+       
+        return response()->json([
+            'message' => "Utilisateur créé.",
+            'user' => $user,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ],201);
 
     }
 
     public function login(Request $request){
-        $credentials = $request->validate([
-            'email' => 'required',
-            'password' => 'required'
-        ]);
 
-        $infouser = [
-            'email' =>$request->email,
-            'password' =>$request->password,
-        ];
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required', 
+            
+    ]);
 
-        
+       
+        $user = User::where('email', $request->email)->first();
+       
+        if(!Hash::check($request->password, $user['password'])===false){
+            
+            $token = $user->createToken('auth_token')->plainTextToken;
+               
+            return response()->json([
+                'message' => "Utilisateur créé.",
+                'user' => $user,
+                'access_token' => $token,
+                'token' => $token->plainTextToken,
+                'token_type' => 'Bearer',
+            ],201);
+           
 
-        return response()->json(["token" => "test"]);
+        } else {
+            return response()->json([
+                'message' => "Identifiant ou mot de passe incorect",
+                
+     ], 400);
+        }
+
     }
 }
