@@ -30,9 +30,9 @@
          
         });
 
-        
-
         const data = await response.json();
+
+        localStorage.setItem("token", data.access_token);
         // console.log(data)
 
       //   if (data.success == true) {
