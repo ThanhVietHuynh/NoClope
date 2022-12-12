@@ -27,6 +27,9 @@ import { RouterLink, RouterView } from "vue-router";
             <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/cracking" class=" text-xl hover:text-blue-300">J'ai craqué</RouterLink>
             </li>
+            <li class="md:mx-4 md:my-0 my-6">
+                <RouterLink to="/edit" class=" text-xl hover:text-blue-300">Mon Profil</RouterLink>
+            </li>
         </ul>
      </nav>
            

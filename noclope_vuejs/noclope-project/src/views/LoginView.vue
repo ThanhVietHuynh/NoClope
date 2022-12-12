@@ -22,17 +22,24 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
+          
           },
           
           body: JSON.stringify(body)
          
         });
 
-        console.log(response);
+        
 
         const data = await response.json();
-        
+        // console.log(data)
+
+      //   if (data.success == true) {
+      //       // Mise dans le local storage
+      //       localStorage.setItem("tokenUserLog", JSON.stringify(this.infoUser.token));
+ 
+      // }    
 
         }
       }
@@ -56,5 +63,6 @@
         <p>
             <button type="submit">Se connecter</button>
         </p>
+
     </form>
 </template>

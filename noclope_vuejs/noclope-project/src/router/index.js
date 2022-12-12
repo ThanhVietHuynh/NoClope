@@ -36,6 +36,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/CrackingView.vue"),
     },
+    {
+      path: "/edit",
+      name: "edit",
+      component: () => import("../views/EditProfilView.vue"),
+    },
     // {
     //   path: "/profil",
     //   name: "profil",

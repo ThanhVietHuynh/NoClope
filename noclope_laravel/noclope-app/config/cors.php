@@ -15,7 +15,15 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    // 'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => [
+        'api/*',
+        'graphql',
+        'login',
+        'logout',
+        '/sanctum/csrf-cookie',
+     
+    ],
 
     'allowed_methods' => ['*'],
 
@@ -30,5 +38,6 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => true,
+    'Access-Control-Allow-Origin' => ['*'],
 
 ];
