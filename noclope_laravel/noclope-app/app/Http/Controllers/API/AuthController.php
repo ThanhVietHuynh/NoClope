@@ -46,4 +46,34 @@ class AuthController extends Controller
 
         return response()->json(["token" => "test"]);
     }
+
+    public function edit($id)
+    {
+        $profil = User::findOrFail($id);
+
+        return response()->json(['profil' => $profil]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+        $request->validate([
+
+            'lastname' => 'required',
+            'firstname' => 'required',
+            'email' => 'required|email',
+            'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
+        ]);
+
+        $profil = User::findOrFail($id);
+        $profil->lastname = $request->get('lastname');
+        $profil->firstname = $request->get('firstname');
+        $profil->email = $request->get('email');
+        $profil->password = $request->get('password');
+        
+        $profil->save();
+
+        return response()->json(['message' => "Profil modifié.",'profil' => $profil],201);
+    }
+
 }
