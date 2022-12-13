@@ -1,45 +1,62 @@
 <script>
+import { locStub } from '@vue/compiler-core';
+
 export default {
   data() {
     return {
-      // projects: [],
-      goal: "",
-      price_goal: "",
-      price_pack: "",
-      consumption: "",
+      projects: [],
+      goal:"",
+      price_goal:"",
+      price_pack:"",
+      consumption:"",
       result: null,
       token: "",
     };
   },
 
   methods: {
-    async objectif() {
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          goal: this.goal,
-          price_goal: this.price_goal,
-          price_pack: this.price_pack,
-          consumption: this.consumption,
-        }),
-      };
+    // async objectif() {
+    //   const options = {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       goal: this.goal,
+    //       price_goal: this.price_goal,
+    //       price_pack: this.price_pack,
+    //       consumption: this.consumption,
+    //     }),
+    //   };
 
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/project",
-        options
-      );
+      // const response = await fetch(
+      //   "http://127.0.0.1:8000/api/project",
+      //   options
+      // );
 
-      const data = await response.json();
+      // const data = await response.json();
 
-      this.result = data.success;
-      if (data.success === true) {
-        this.token = data.token;
-        localStorage.setItem("token", data.token);
-        this.$router.push("/register");
-      }
+      // this.result = data.success;
+      // if (data.success === true) {
+      //   this.token = data.token;
+      //   localStorage.setItem("token", data.token);
+      //   this.$router.push("/register");
+      // }
+      getProjects: function(){
+       
+        
+           const infoproject = {
+             goal: this.goal,
+             price_goal: this.price_goal,
+             price_pack: this.price_pack,
+             consumption: this.consumption,
+           }
+           
+           //Mettre des confitions, pas denégatif, et goal en chaine de caractére
+          
+           console.log(infoproject);
+           localStorage.setItem('infoproject', JSON.stringify(infoproject));
+          }
     },
     //   async getProjects() {
     //     const response = await fetch("http://127.0.0.1:8000/api/project", {
@@ -74,17 +91,17 @@ export default {
     //   //   this.feedbackMessage = data.message;
     //   //   this.getProjects();
     //   // },
-  },
+  }
 
   // mounted() {
   //   this.getProjects();
   // },
-};
+
 </script>
 
 <template>
   <section>
-    <form class="form" @submit.prevent="objectif">
+    <form class="form" @submit.prevent="getProjects()">
       <h2>Créer mon objectif</h2>
       <p type="Mon objectif:">
         <input required v-model="goal" placeholder="Entrez votre objectif" />
@@ -103,12 +120,12 @@ export default {
         />
       </p>
 
-      <RouterLink to="/register">
+      <!-- <RouterLink to="/register">
         <p v-if="result === true"></p>
         <p v-else-if="result === false" class="error">
           Votre projet est invalide
         </p>
-      </RouterLink>
+      </RouterLink> -->
 
       <button type="submit" @click="$router.push('/register')" class="input-submit" value="Créer mon objectif">Créer mon objectif</button>
     </form>
