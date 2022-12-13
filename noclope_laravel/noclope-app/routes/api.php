@@ -25,12 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/{id}/profil', [AuthController::class, 'edit'])->name('profil.edit')->middleware("auth:sanctum");
-Route::put('/{id}/profil', [AuthController::class, 'update'])->name('profil.update')->middleware("auth:sanctum");
+Route::get('/profil', [AuthController::class, 'edit'])->name('profil.edit')->middleware("auth:sanctum");
+Route::put('/profil', [AuthController::class, 'update'])->name('profil.update')->middleware("auth:sanctum");
 
 
-Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
-Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
+Route::post('/contact',[ContactController::class,'store'])->name('contact.store')->middleware("auth:sanctum");;
+Route::get('/contact',[ContactController::class,'index'])->name('contact.index')->middleware("auth:sanctum");;
 
 Route::post('/project',[ProjectController::class,'store'])->name('project.store');
 Route::get('/project',[ProjectController::class,'index'])->name('project.index');
