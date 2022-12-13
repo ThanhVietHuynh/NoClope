@@ -75,10 +75,10 @@ export default{
   
   <form class="form" @submit.prevent="updateProfil">
       <h2>Modifier le profil</h2>
-      <p class="pContact" type="Nom:"><input type="text" class="inputContact" v-model="profil.lastname" placeholder="Nouveau nom"></p>
-      <p class="pContact" type="Prénom:"><input type="text" class="inputContact" v-model="profil.firstname"  placeholder="Nouveau prénom"></p>
-      <p class="pContact" type="Email:"><input type="email" class="inputContact" v-model="profil.email"  placeholder="Votre nouveau email"></p>
-      <p class="pContact" type="Mot de passe:"><input type="password" class="inputContact" v-model="profil.password"  placeholder="Nouveau Mot de passe"></p>
+      <p class="pContact" type="Nom:"><input type="text" class="inputContact" v-model="lastname" placeholder="Nouveau nom"></p>
+      <p class="pContact" type="Prénom:"><input type="text" class="inputContact" v-model="firstname"  placeholder="Nouveau prénom"></p>
+      <p class="pContact" type="Email:"><input type="email" class="inputContact" v-model="email"  placeholder="Votre nouveau email"></p>
+      <p class="pContact" type="Mot de passe:"><input type="password" class="inputContact" v-model="password"  placeholder="Nouveau Mot de passe"></p>
       <button class="btn" type="submit">Valider</button>
   </form>
 
