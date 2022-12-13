@@ -36,14 +36,74 @@ class AuthController extends Controller
 
         $user->remember_token = $token;
         $user->save();
+        $idconnecte=$user['id'];
+
+        try {
+            //Le try est si la requete à fonctionné pour la création d'un customer stripe
+    
+                // // Création d'un customer Stripe
+                $stripe = new \Stripe\StripeClient(
+                  env('STRIPE_API_KEY')
+                );
+    
+                // $idconnecte=Auth::user()->id;
+                // $idconnecte=3;
+                $userconnecte=User::FindOrFail($idconnecte);
+                
+                $customer= $stripe->customers->create([
+                  'email' => $userconnecte['email'], 
+                  'name' => $userconnecte['lastname'], 
+                ]);  
+    
+                //Met à jour la base de donnée avec l'identifiant stripe créé
+                $user = User::findOrFail($idconnecte);
+                $user->stripe_id =  $customer['id'] ;
+                $user->save();
+              
+              
+                      //Le try est si la requete a fonctionné pour la création d'une session stripe
+                      try { 
+                            // Création d'une session Stripe "Checkout"
+                            \Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
+                            $customer=$session = \Stripe\Checkout\Session::create([
+                                'payment_method_types' => ['card'],
+                                'mode' => 'setup',
+                                'customer' => $customer['id'], 
+                               'success_url' => 'http://127.0.0.1:5173/', 
+                                'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',//A voir si lurl est bonne
+                              ]);
+    
+                              
+                             
+                            $stripe = new \Stripe\StripeClient(
+                              env('STRIPE_API_KEY')
+                            );
+                            $stripe->setupIntents->create([
+                              'payment_method_types' => ['card'],
+                            ]);
+                              return response()->json(['url'=>$session['url']]);
+    
+                      }catch(\Exception $error) {
+                        //Pour envoyer un message d'erreur si la requete a échouée lors créaton d'une session stripe
+                        return response("La création a échouée2", 404);
+                    }
+    
+              
+          }catch(\Exception $error) {
+              //Pour envoyer un message d'erreur si la requete a échouée lors créaton d'un customer stripe
+              return response("La création a échouée1", 404);
+          }
+      
         
        
-        return response()->json([
-            'message' => "Utilisateur créé.",
-            'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ],201);
+        // return response()->json([
+        //     'message' => "Utilisateur créé.",
+        //     'user' => $user,
+        //     'access_token' => $token,
+        //     'token_type' => 'Bearer',
+  
+            
+        // ],201);
 
     }
 

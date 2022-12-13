@@ -5,99 +5,96 @@ import Register from '../components/Register.vue';
 </script>
 
 <script>
-  export default {
-    data(){
-      return{
-        infoproject:{},
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-      };
+export default {
+  data() {
+    return {
+      infoproject: {},
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    getProject() {
+      console.log("coucou")
+      const infoproject = JSON.parse(localStorage.getItem('infoproject'));
+      console.log(infoproject);
+      this.infoproject = infoproject;
+      console.log(this.infoproject);
+
     },
-    methods: {
-      getProject(){
-        console.log("coucou")
-        const infoproject=JSON.parse(localStorage.getItem('infoproject'));
-        console.log(infoproject);
-        this.infoproject=infoproject;
-        console.log(this.infoproject);
 
-      },
+    async createUser() {
+      const body = {
+        lastname: this.lastname,
+        firstname: this.firstname,
+        email: this.email,
+        password: this.password,
+      }
 
-      async createUser(){
-        const body = {
-          lastname: this.lastname,
-          firstname: this.firstname,
-          email: this.email,
-          password: this.password,
-        }
-        
-        
-        const response = await fetch("http://127.0.0.1:8000/api/register",
+
+      const response = await fetch("http://127.0.0.1:8000/api/register",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
-          
+
           body: JSON.stringify(body)
-         
         });
 
-        console.log(response);
+      
 
-        const data = await response.json();
-        
+      const data = await response.json();
+      console.log(data.url);
+      window.location.assign(data.url);
 
-        }
-      },
 
-      mounted() {
+    }
+  },
+
+  mounted() {
     this.getProject();
   },
-          }
+}
 </script>
 
 <template>
   <h1>Récapitulatif du projet</h1>
   <ul>
-      <!-- <li v-for = "item in infoproject" > -->
-          <p>Objectif: {{infoproject.goal}} pour un montant de {{infoproject.price_goal}}€</p>
-          <p>Informations saisies :</p>
-          <p>Consommation journalière: {{infoproject.consumption}}cigarettes/jour</p>
-          <p>Prix d'un paquet de cigarette: {{infoproject.price_pack}}€</p>
-          <!-- <p>Nom: {{contact.lastname}}</p>
+    <!-- <li v-for = "item in infoproject" > -->
+    <p>Objectif: {{ infoproject.goal }} pour un montant de {{ infoproject.price_goal }}€</p>
+    <p>Informations saisies :</p>
+    <p>Consommation journalière: {{ infoproject.consumption }}cigarettes/jour</p>
+    <p>Prix d'un paquet de cigarette: {{ infoproject.price_pack }}€</p>
+    <!-- <p>Nom: {{contact.lastname}}</p>
           <p>Numéro de téléphone: {{contact.number_phone}}</p> -->
-      <!-- </li> -->
-    </ul>
+    <!-- </li> -->
+  </ul>
 
   <h1>Formulaire d'inscription</h1>
-  
+
 
   <form class="formulaire" action="" method="" @submit.prevent="createUser">
     <p>
-      <label for="nom"
-        >Nom :
-        <input type="text" name="nom" id="nom" placeholder="Nom..." v-model="lastname"/>
+      <label for="nom">Nom :
+        <input type="text" name="nom" id="nom" placeholder="Nom..." v-model="lastname" />
       </label>
     </p>
     <p>
-      <label for="prenom"
-        >Prénom :
+      <label for="prenom">Prénom :
         <input type="text" name="prenom" id="prenom" placeholder="Prénom..." v-model="firstname" />
       </label>
     </p>
     <p>
-      <label for="email"
-        >Email :
+      <label for="email">Email :
         <input type="email" name="email" id="email" placeholder="Email..." v-model="email" />
       </label>
     </p>
     <p>
-      <label for="password"
-        >Mot de passe :
+      <label for="password">Mot de passe :
         <input type="password" name="password" id="password" placeholder="Mot de passe..." v-model="password" />
       </label>
     </p>
@@ -116,6 +113,7 @@ h1 {
   text-align: center;
   border-bottom: 4px solid gray;
 }
+
 .formulaire input {
   margin: 20px;
 }
@@ -125,19 +123,19 @@ form {
   border-radius: 15px;
 }
 
-button{
-    border: none;
-    font-size: large;
-    background-color: rgb(88, 87, 87);
-    color: white;
-    border-radius: 10px;
-    padding: 5px;
+button {
+  border: none;
+  font-size: large;
+  background-color: rgb(88, 87, 87);
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
 
 }
 
-button:hover{
-    background-color: gray;
-    transition: 200ms;
-    cursor: pointer;
+button:hover {
+  background-color: gray;
+  transition: 200ms;
+  cursor: pointer;
 }
 </style>
