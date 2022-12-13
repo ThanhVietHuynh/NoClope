@@ -115,32 +115,44 @@ class AuthController extends Controller
             
     ]);
 
+    $user = User::findOrFail(Auth::user()->id);
+    
+    if($user->isadmin == 1)
+    {
+
+        return response()->json([
+            'message' => "Vous êtes connecté Admin.",
+        ],201);
        
-        $user = User::where('email', $request->email)->first();
-       
-        if(!Hash::check($request->password, $user['password'])===false){
-            
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            $user->remember_token = $token;
-            $user->save();
-
-               
-            return response()->json([
-                'message' => "Vous êtes connecté.",
-                'user' => $user,
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ],201);
-           
-
-        } else {
-            return response()->json([
-                'message' => "Identifiant ou mot de passe incorect",
+    }else{
+        
+         $user = User::where('email', $request->email)->first();
+        
+         if(!Hash::check($request->password, $user['password'])===false){
+             
+             $token = $user->createToken('auth_token')->plainTextToken;
+    
+             $user->remember_token = $token;
+             $user->save();
+    
                 
-     ], 400);
-        }
+             return response()->json([
+                 'message' => "Vous êtes connecté.",
+                 'user' => $user,
+                 'access_token' => $token,
+                 'token_type' => 'Bearer',
+             ],201);
+            
+    
+         } else {
+             return response()->json([
+                 'message' => "Identifiant ou mot de passe incorect",
+                 
+      ], 400);
+         }
 
+    }
+    
     }
 
     public function edit()
