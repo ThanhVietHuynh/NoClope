@@ -63,7 +63,7 @@ export default {
       </p>
       
       <button v-if="showButton()" type="submit" class="input-submit" @click="$router.push('/register')" value="Créer mon objectif">
-        Créer mon objectif</button>
+        Se Lancer</button>
         
     </form>
   </section>
@@ -74,10 +74,33 @@ export default {
 header {
   line-height: 1.5;
 }
+
+h2{
+  margin-top: 10px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input{
+  margin: 5px;
+  border-radius: 5px;
+}
 .error {
   margin-top: 20px;
   padding: 10px;
   color: #b42f26;
+}
+.input-submit{
+  margin: 10px;
+cursor: pointer;
+background-color: aliceblue;
+border-radius: 5px;
+width: 90px;
+height: 30px;
 }
 @media (min-width: 1024px) {
   header {
@@ -86,4 +109,5 @@ header {
     padding-right: calc(var(--section-gap) / 2);
   }
 }
+
 </style>
