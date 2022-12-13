@@ -41,6 +41,15 @@ const router = createRouter({
       name: "edit",
       component: () => import("../views/EditProfilView.vue"),
     },
+
+    // router.beforeEach((to, from, next) => {
+    //   const user = useUserStore();
+    //   if(to.meta.requiresGuest && user.loggedIn){
+    //     next({name: 'home'})
+    //   } else{
+    //     next()
+    //   }
+    // })
     // {
     //   path: "/profil",
     //   name: "profil",
