@@ -44,7 +44,7 @@ export default {
       // }
       getProjects: function(){
        
-        console.log('Coucou');
+        
            const infoproject = {
              goal: this.goal,
              price_goal: this.price_goal,
@@ -52,7 +52,10 @@ export default {
              consumption: this.consumption,
            }
            
+           //Mettre des confitions, pas denégatif, et goal en chaine de caractére
+          
            console.log(infoproject);
+           localStorage.setItem('infoproject', JSON.stringify(infoproject));
           }
     },
     //   async getProjects() {
@@ -101,18 +104,18 @@ export default {
     <form class="form" @submit.prevent="getProjects()">
       <h2>Créer mon objectif</h2>
       <p type="Mon objectif:">
-        <input required v-model="infoproject.goal" placeholder="Entrez votre objectif" />
+        <input required v-model="goal" placeholder="Entrez votre objectif" />
       </p>
       <p type="Son prix:">
-        <input required v-model="infoproject.price_goal" placeholder="Entrez son prix" />
+        <input required v-model="price_goal" placeholder="Entrez son prix" />
       </p>
       <p type="Prix paquet cigarette:">
-        <input v-model="infoproject.price_pack" placeholder="Entrez le prix d'un paquet" />
+        <input v-model="price_pack" placeholder="Entrez le prix d'un paquet" />
       </p>
       <p type="Ma consommation:">
         <input
           required
-          v-model="infoproject.consumption"
+          v-model="consumption"
           placeholder="Entrez votre consommation journalière"
         />
       </p>
@@ -124,7 +127,7 @@ export default {
         </p>
       </RouterLink> -->
 
-      <button type="submit"  class="input-submit" value="Créer mon objectif">Créer mon objectif</button>
+      <button type="submit" @click="$router.push('/register')" class="input-submit" value="Créer mon objectif">Créer mon objectif</button>
     </form>
   </section>
 
