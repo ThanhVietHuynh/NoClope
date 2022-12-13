@@ -15,11 +15,12 @@ export default{
 
   methods: {
     async getProfil(){
-      const id = 1;
-      const response = await fetch(`http://127.0.0.1:8000/api/${id}/profil`, {
+      let tokens = localStorage.getItem("token");
+      const response = await fetch(`http://127.0.0.1:8000/api/profil`, {
         method:"GET",
         headers:{
-          "Accept":"application/json"
+          "Accept":"application/json",
+          Authorization: `Bearer ${tokens}`,
         }
       });
 
@@ -36,11 +37,13 @@ export default{
             password: this.password,
 
         }
-        const response = await fetch(`http://127.0.0.1:8000/api/${id}/profil`,{
+        let tokens = localStorage.getItem("token");
+        const response = await fetch(`http://127.0.0.1:8000/api/profil`,{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: `Bearer ${tokens}`,
             },
             body: JSON.stringify(body)
         });
@@ -72,10 +75,10 @@ export default{
   
   <form class="form" @submit.prevent="updateProfil">
       <h2>Modifier le profil</h2>
-      <p class="pContact" type="Nom:"><input type="text" class="inputContact" v-model="profil.lastname" placeholder="Nouveau nom"></p>
-      <p class="pContact" type="Prénom:"><input type="text" class="inputContact" v-model="profil.firstname"  placeholder="Nouveau prénom"></p>
-      <p class="pContact" type="Email:"><input type="email" class="inputContact" v-model="profil.email"  placeholder="Votre nouveau email"></p>
-      <p class="pContact" type="Mot de passe:"><input type="password" class="inputContact" v-model="profil.password"  placeholder="Nouveau Mot de passe"></p>
+      <p class="pContact" type="Nom:"><input type="text" class="inputContact" v-model="lastname" placeholder="Nouveau nom"></p>
+      <p class="pContact" type="Prénom:"><input type="text" class="inputContact" v-model="firstname"  placeholder="Nouveau prénom"></p>
+      <p class="pContact" type="Email:"><input type="email" class="inputContact" v-model="email"  placeholder="Votre nouveau email"></p>
+      <p class="pContact" type="Mot de passe:"><input type="password" class="inputContact" v-model="password"  placeholder="Nouveau Mot de passe"></p>
       <button class="btn" type="submit">Valider</button>
   </form>
 

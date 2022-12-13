@@ -8,6 +8,7 @@ import Register from '../components/Register.vue';
   export default {
     data(){
       return{
+        infoproject:{},
         firstname: "",
         lastname: "",
         email: "",
@@ -15,6 +16,15 @@ import Register from '../components/Register.vue';
       };
     },
     methods: {
+      getProject(){
+        console.log("coucou")
+        const infoproject=JSON.parse(localStorage.getItem('infoproject'));
+        console.log(infoproject);
+        this.infoproject=infoproject;
+        console.log(this.infoproject);
+
+      },
+
       async createUser(){
         const body = {
           lastname: this.lastname,
@@ -42,13 +52,30 @@ import Register from '../components/Register.vue';
         
 
         }
-      }
+      },
 
-    }
+      mounted() {
+    this.getProject();
+  },
+          }
 </script>
 
 <template>
+  <h1>Récapitulatif du projet</h1>
+  <ul>
+      <!-- <li v-for = "item in infoproject" > -->
+          <p>Objectif: {{infoproject.goal}} pour un montant de {{infoproject.price_goal}}€</p>
+          <p>Informations saisies :</p>
+          <p>Consommation journalière: {{infoproject.consumption}}cigarettes/jour</p>
+          <p>Prix d'un paquet de cigarette: {{infoproject.price_pack}}€</p>
+          <!-- <p>Nom: {{contact.lastname}}</p>
+          <p>Numéro de téléphone: {{contact.number_phone}}</p> -->
+      <!-- </li> -->
+    </ul>
+
   <h1>Formulaire d'inscription</h1>
+  
+
   <form class="formulaire" action="" method="" @submit.prevent="createUser">
     <p>
       <label for="nom"
