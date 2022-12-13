@@ -27,12 +27,14 @@
           },
           
           body: JSON.stringify(body)
+          
          
-        });
+        })
 
         const data = await response.json();
 
-        localStorage.setItem("token", data.access_token);
+        // localStorage.setItem("token", data.access_token);
+
         // console.log(data)
 
       //   if (data.success == true) {
@@ -40,7 +42,12 @@
       //       localStorage.setItem("tokenUserLog", JSON.stringify(this.infoUser.token));
  
       // }    
-
+      if(response.status === 201){
+        localStorage.setItem("token", data.access_token)
+          return this.$router.push("/edit");
+        }else if(response.status === 400){
+          console.log(response, 'Mot de passe ou email incorrect');
+        }
         }
       }
 
