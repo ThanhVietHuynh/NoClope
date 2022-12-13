@@ -13,6 +13,7 @@ import Register from '../components/Register.vue';
         lastname: "",
         email: "",
         password: "",
+        feedbackMessage:"",
       };
     },
     methods: {
@@ -49,6 +50,8 @@ import Register from '../components/Register.vue';
         console.log(response);
 
         const data = await response.json();
+
+        this.feedbackMessage = data.message;
         
 
         }
@@ -61,6 +64,8 @@ import Register from '../components/Register.vue';
 </script>
 
 <template>
+  <p>{{feedbackMessage}}</p>
+
   <h1>Récapitulatif du projet</h1>
   <ul>
       <!-- <li v-for = "item in infoproject" > -->
