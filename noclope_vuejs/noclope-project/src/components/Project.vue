@@ -1,45 +1,59 @@
 <script>
+import { locStub } from '@vue/compiler-core';
+
 export default {
   data() {
     return {
-      // projects: [],
-      goal: "",
-      price_goal: "",
-      price_pack: "",
-      consumption: "",
+      projects: [],
+      goal:"",
+      price_goal:"",
+      price_pack:"",
+      consumption:"",
       result: null,
       token: "",
     };
   },
 
   methods: {
-    async objectif() {
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          goal: this.goal,
-          price_goal: this.price_goal,
-          price_pack: this.price_pack,
-          consumption: this.consumption,
-        }),
-      };
+    // async objectif() {
+    //   const options = {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       goal: this.goal,
+    //       price_goal: this.price_goal,
+    //       price_pack: this.price_pack,
+    //       consumption: this.consumption,
+    //     }),
+    //   };
 
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/project",
-        options
-      );
+      // const response = await fetch(
+      //   "http://127.0.0.1:8000/api/project",
+      //   options
+      // );
 
-      const data = await response.json();
+      // const data = await response.json();
 
-      this.result = data.success;
-      if (data.success === true) {
-        this.token = data.token;
-        localStorage.setItem("token", data.token);
-        this.$router.push("/register");
-      }
+      // this.result = data.success;
+      // if (data.success === true) {
+      //   this.token = data.token;
+      //   localStorage.setItem("token", data.token);
+      //   this.$router.push("/register");
+      // }
+      getProjects: function(){
+       
+        console.log('Coucou');
+           const infoproject = {
+             goal: this.goal,
+             price_goal: this.price_goal,
+             price_pack: this.price_pack,
+             consumption: this.consumption,
+           }
+           
+           console.log(infoproject);
+          }
     },
     //   async getProjects() {
     //     const response = await fetch("http://127.0.0.1:8000/api/project", {
@@ -74,43 +88,43 @@ export default {
     //   //   this.feedbackMessage = data.message;
     //   //   this.getProjects();
     //   // },
-  },
+  }
 
   // mounted() {
   //   this.getProjects();
   // },
-};
+
 </script>
 
 <template>
   <section>
-    <form class="form" @submit.prevent="objectif">
+    <form class="form" @submit.prevent="getProjects()">
       <h2>Créer mon objectif</h2>
       <p type="Mon objectif:">
-        <input required v-model="goal" placeholder="Entrez votre objectif" />
+        <input required v-model="infoproject.goal" placeholder="Entrez votre objectif" />
       </p>
       <p type="Son prix:">
-        <input required v-model="price_goal" placeholder="Entrez son prix" />
+        <input required v-model="infoproject.price_goal" placeholder="Entrez son prix" />
       </p>
       <p type="Prix paquet cigarette:">
-        <input v-model="price_pack" placeholder="Entrez le prix d'un paquet" />
+        <input v-model="infoproject.price_pack" placeholder="Entrez le prix d'un paquet" />
       </p>
       <p type="Ma consommation:">
         <input
           required
-          v-model="consumption"
+          v-model="infoproject.consumption"
           placeholder="Entrez votre consommation journalière"
         />
       </p>
 
-      <RouterLink to="/register">
+      <!-- <RouterLink to="/register">
         <p v-if="result === true"></p>
         <p v-else-if="result === false" class="error">
           Votre projet est invalide
         </p>
-      </RouterLink>
+      </RouterLink> -->
 
-      <button type="submit" @click="$router.push('/register')" class="input-submit" value="Créer mon objectif">Créer mon objectif</button>
+      <button type="submit"  class="input-submit" value="Créer mon objectif">Créer mon objectif</button>
     </form>
   </section>
 
