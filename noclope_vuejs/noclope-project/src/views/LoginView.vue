@@ -7,6 +7,7 @@
       return{
         email: "",
         password: "",
+        feedbackMessage:"",
       };
     },
     methods: {
@@ -25,14 +26,22 @@
             "Accept": "application/json",
           
           },
+
           
           body: JSON.stringify(body)
+          
          
-        });
+        })
 
         const data = await response.json();
 
+        window.location.assign('home')
+
+        // localStorage.setItem("token", data.access_token);
+        this.feedbackMessage = data.message;
+
         localStorage.setItem("token", data.access_token);
+
         // console.log(data)
 
       //   if (data.success == true) {
@@ -40,7 +49,12 @@
       //       localStorage.setItem("tokenUserLog", JSON.stringify(this.infoUser.token));
  
       // }    
-
+      if(response.status === 201){
+        localStorage.setItem("token", data.access_token)
+          return this.$router.push("/edit");
+        }else if(response.status === 400){
+          console.log(response, 'Mot de passe ou email incorrect');
+        }
         }
       }
 
@@ -48,6 +62,8 @@
 </script>
 
 <template>
+    <p>{{feedbackMessage}}</p>
+
     <h1>Se connecter</h1>
     <form action="" method="" @submit.prevent="loginUser">
         <p>

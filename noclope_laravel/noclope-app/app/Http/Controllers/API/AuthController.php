@@ -36,14 +36,74 @@ class AuthController extends Controller
 
         $user->remember_token = $token;
         $user->save();
+        $idconnecte=$user['id'];
+
+        try {
+            //Le try est si la requete à fonctionné pour la création d'un customer stripe
+    
+                // // Création d'un customer Stripe
+                $stripe = new \Stripe\StripeClient(
+                  env('STRIPE_API_KEY')
+                );
+    
+                // $idconnecte=Auth::user()->id;
+                // $idconnecte=3;
+                $userconnecte=User::FindOrFail($idconnecte);
+                
+                $customer= $stripe->customers->create([
+                  'email' => $userconnecte['email'], 
+                  'name' => $userconnecte['lastname'], 
+                ]);  
+    
+                //Met à jour la base de donnée avec l'identifiant stripe créé
+                $user = User::findOrFail($idconnecte);
+                $user->stripe_id =  $customer['id'] ;
+                $user->save();
+              
+              
+                      //Le try est si la requete a fonctionné pour la création d'une session stripe
+                      try { 
+                            // Création d'une session Stripe "Checkout"
+                            \Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
+                            $customer=$session = \Stripe\Checkout\Session::create([
+                                'payment_method_types' => ['card'],
+                                'mode' => 'setup',
+                                'customer' => $customer['id'], 
+                               'success_url' => 'http://127.0.0.1:5173/', 
+                                'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',//A voir si lurl est bonne
+                              ]);
+    
+                              
+                             
+                            $stripe = new \Stripe\StripeClient(
+                              env('STRIPE_API_KEY')
+                            );
+                            $stripe->setupIntents->create([
+                              'payment_method_types' => ['card'],
+                            ]);
+                              return response()->json(['url'=>$session['url']]);
+    
+                      }catch(\Exception $error) {
+                        //Pour envoyer un message d'erreur si la requete a échouée lors créaton d'une session stripe
+                        return response("La création a échouée2", 404);
+                    }
+    
+              
+          }catch(\Exception $error) {
+              //Pour envoyer un message d'erreur si la requete a échouée lors créaton d'un customer stripe
+              return response("La création a échouée1", 404);
+          }
+      
         
        
-        return response()->json([
-            'message' => "Utilisateur créé.",
-            'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ],201);
+        // return response()->json([
+        //     'message' => "Utilisateur créé.",
+        //     'user' => $user,
+        //     'access_token' => $token,
+        //     'token_type' => 'Bearer',
+  
+            
+        // ],201);
 
     }
 
@@ -67,7 +127,7 @@ class AuthController extends Controller
 
                
             return response()->json([
-                'message' => "Utilisateur créé.",
+                'message' => "Vous êtes connecté.",
                 'user' => $user,
                 'access_token' => $token,
                 'token_type' => 'Bearer',
@@ -83,29 +143,29 @@ class AuthController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $profil = User::findOrFail($id);
+        $profil = User::findOrFail(Auth::user()->id);
 
         return response()->json(['profil' => $profil]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         
         $request->validate([
 
-            'lastname' => 'required',
-            'firstname' => 'required',
+            'lastname' => 'required|string',
+            'firstname' => 'required|string',
             'email' => 'required|email',
             'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
         ]);
 
-        $profil = User::findOrFail($id);
-        $profil->lastname = $request->get('lastname');
-        $profil->firstname = $request->get('firstname');
-        $profil->email = $request->get('email');
-        $profil->password = $request->get('password');
+        $profil = User::findOrFail(Auth::user()->id);
+        $profil->lastname = $request->lastname;
+        $profil->firstname = $request->firstname;
+        $profil->email = $request->email;
+        $profil->password = $request->password;
         
         $profil->save();
 
