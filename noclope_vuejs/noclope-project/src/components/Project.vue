@@ -3,98 +3,40 @@
 export default {
   data() {
     return {
-      projects: [],
-      goal:"",
-      price_goal:"",
-      price_pack:"",
-      consumption:"",
+      goal: "",
+      price_goal: "",
+      price_pack: "",
+      consumption: "",
       result: null,
       token: "",
     };
   },
 
   methods: {
-    // async objectif() {
-    //   const options = {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       goal: this.goal,
-    //       price_goal: this.price_goal,
-    //       price_pack: this.price_pack,
-    //       consumption: this.consumption,
-    //     }),
-    //   };
+   
+    getProjects: function () {
+      const infoproject = {
+        goal: this.goal,
+        price_goal: this.price_goal,
+        price_pack: this.price_pack,
+        consumption: this.consumption,
+      };
 
-      // const response = await fetch(
-      //   "http://127.0.0.1:8000/api/project",
-      //   options
-      // );
-
-      // const data = await response.json();
-
-      // this.result = data.success;
-      // if (data.success === true) {
-      //   this.token = data.token;
-      //   localStorage.setItem("token", data.token);
-      //   this.$router.push("/register");
-      // }
-      getProjects: function(){
-       
+      // Condition regex string pour goal
+      console.log(infoproject);
+      localStorage.setItem("infoproject", JSON.stringify(infoproject));
+  },
+  showButton: function () {
         
-           const infoproject = {
-             goal: this.goal,
-             price_goal: this.price_goal,
-             price_pack: this.price_pack,
-             consumption: this.consumption,
-           }
-           
-           //Mettre des confitions, pas denégatif, et goal en chaine de caractére
-          
-           console.log(infoproject);
-           localStorage.setItem('infoproject', JSON.stringify(infoproject));
-          }
-    },
-    //   async getProjects() {
-    //     const response = await fetch("http://127.0.0.1:8000/api/project", {
-    //       method: "GET",
-    //       headers: {
-    //         Accept: "application/json",
-    //       },
-    //     });
+        if(this.goal==""|this.goal==null|this.price_goal==""|this.price_goal==null|this.price_pack==""|this.price_pack==null|this.consumption==""|this.consumption==null){
+          return false
+        }else{
+          return true;
+        }
+      },
 
-    //     const data = await response.json();
-
-    //     this.projects = data.projects;
-    //   },
-    //   // async createProject() {
-    //   //   const body = {
-    //   //     goal: this.goal,
-    //   //     price_goal: this.price_goal,
-    //   //     price_pack: this.price_pack,
-    //   //     consumption: this.consumption,
-    //   //   };
-    //   //   const response = await fetch("http://127.0.0.1:8000/api/project", {
-    //   //     method: "POST",
-    //   //     headers: {
-    //   //       "Content-Type": "application/json",
-    //   //       "Accept": "application/json",
-    //   //     },
-    //   //     body: JSON.stringify(body),
-    //   //   });
-
-    //   //   const data = await response.json();
-
-    //   //   this.feedbackMessage = data.message;
-    //   //   this.getProjects();
-    //   // },
-  }
-
-  // mounted() {
-  //   this.getProjects();
-  // },
+}
+}
 
 </script>
 
@@ -103,56 +45,62 @@ export default {
     <form class="form" @submit.prevent="getProjects()">
       <h2>Créer mon objectif</h2>
       <p type="Mon objectif:">
-        <input required v-model="goal" placeholder="Entrez votre objectif" />
+        <input type="text" required v-model="goal" placeholder="Entrez votre objectif" />
       </p>
       <p type="Son prix:">
-        <input required v-model="price_goal" placeholder="Entrez son prix" />
+        <input min="50" type="number" required v-model="price_goal" placeholder="Entrez son prix" />
       </p>
       <p type="Prix paquet cigarette:">
-        <input v-model="price_pack" placeholder="Entrez le prix d'un paquet" />
+        <input min="2" type="number" required v-model="price_pack" placeholder="Entrez le prix d'un paquet" />
       </p>
       <p type="Ma consommation:">
-        <input
+        <input type="number"
+          min="1"
           required
           v-model="consumption"
           placeholder="Entrez votre consommation journalière"
         />
       </p>
-
-      <!-- <RouterLink to="/register">
-        <p v-if="result === true"></p>
-        <p v-else-if="result === false" class="error">
-          Votre projet est invalide
-        </p>
-      </RouterLink> -->
-
-      <button type="submit" @click="$router.push('/register')" class="input-submit" value="Créer mon objectif">Créer mon objectif</button>
+      
+      <button v-if="showButton()" type="submit" class="input-submit" @click="$router.push('/register')" value="Créer mon objectif">
+        Se Lancer</button>
+        
     </form>
   </section>
 
-  <!-- <section>
-    <div>
-      <h2>Mon Projet</h2>
-      <ul>
-        <li v-for="project in projects" :key="project.id">
-          <p>Mon objectif : {{ project.goal }}</p>
-          <p>Son prix : {{ project.price_goal }}</p>
-          <p>Prix paquet cigarette : {{ project.price_pack }}</p>
-          <p>Ma consommation : {{ project.consumption }}</p>
-        </li>
-      </ul>
-    </div>
-  </section> -->
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
 }
+
+h2{
+  margin-top: 10px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input{
+  margin: 5px;
+  border-radius: 5px;
+}
 .error {
   margin-top: 20px;
   padding: 10px;
   color: #b42f26;
+}
+.input-submit{
+  margin: 10px;
+cursor: pointer;
+background-color: aliceblue;
+border-radius: 5px;
+width: 90px;
+height: 30px;
 }
 @media (min-width: 1024px) {
   header {
@@ -161,4 +109,5 @@ header {
     padding-right: calc(var(--section-gap) / 2);
   }
 }
+
 </style>

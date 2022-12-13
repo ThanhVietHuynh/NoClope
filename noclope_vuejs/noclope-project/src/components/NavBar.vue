@@ -35,9 +35,6 @@ import { RouterLink, RouterView } from "vue-router";
                 <RouterLink to="/" class="text-xl hover:text-blue-300">Dashboard</RouterLink>
             </li>
             <li class="md:mx-4 md:my-0 my-6">
-                <RouterLink to="/project" class=" text-xl hover:text-blue-300">Mon Projet</RouterLink>
-            </li>
-            <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/contact" class=" text-xl hover:text-blue-300">Mes Contacts</RouterLink>
             </li>
             <li class="md:mx-4 md:my-0 my-6">
@@ -57,6 +54,9 @@ import { RouterLink, RouterView } from "vue-router";
             <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/" class="text-xl hover:text-blue-300">Accueil</RouterLink>
             </li>
+            <li class="md:mx-4 md:my-0 my-6">
+                <RouterLink to="/project" class=" text-xl hover:text-blue-300">Créer mon objectif</RouterLink>
+            </li>
             <!-- <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/project" class=" text-xl hover:text-blue-300">Mon Projet</RouterLink>
             </li>
@@ -64,7 +64,7 @@ import { RouterLink, RouterView } from "vue-router";
                 <RouterLink to="/contact" class=" text-xl hover:text-blue-300">Contact</RouterLink>
             </li> -->
             <li class="md:mx-4 md:my-0 my-6">
-                <RouterLink to="/register" class=" text-xl hover:text-blue-300">S'enregistrer</RouterLink>
+                <RouterLink to="/register" class=" text-xl hover:text-blue-300">S'inscrire</RouterLink>
             </li>
             <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/login" class=" text-xl hover:text-blue-300">Se connecter</RouterLink>
