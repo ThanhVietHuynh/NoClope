@@ -25,6 +25,7 @@
             "Accept": "application/json",
           
           },
+
           
           body: JSON.stringify(body)
           
@@ -32,6 +33,8 @@
         })
 
         const data = await response.json();
+
+        window.location.assign('home')
 
         // localStorage.setItem("token", data.access_token);
 

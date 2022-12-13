@@ -16,6 +16,7 @@ import { RouterLink, RouterView } from "vue-router";
                 },
                 clearToken(){
                     localStorage.removeItem('token')
+                    window.location.assign('home')
                 }
             }
         }
