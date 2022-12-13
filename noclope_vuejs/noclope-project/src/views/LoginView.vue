@@ -7,6 +7,7 @@
       return{
         email: "",
         password: "",
+        feedbackMessage:"",
       };
     },
     methods: {
@@ -37,6 +38,9 @@
         window.location.assign('home')
 
         // localStorage.setItem("token", data.access_token);
+        this.feedbackMessage = data.message;
+
+        localStorage.setItem("token", data.access_token);
 
         // console.log(data)
 
@@ -58,6 +62,8 @@
 </script>
 
 <template>
+    <p>{{feedbackMessage}}</p>
+
     <h1>Se connecter</h1>
     <form action="" method="" @submit.prevent="loginUser">
         <p>

@@ -7,7 +7,7 @@ export default{
       firstname:"",
       lastname:"",
       number_phone:"",
-      feedbackMessage:""
+      feedbackMessage:"",
     };
   },
 

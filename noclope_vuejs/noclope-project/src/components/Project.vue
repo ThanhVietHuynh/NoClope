@@ -1,5 +1,4 @@
 <script>
-import { locStub } from '@vue/compiler-core';
 
 export default {
   data() {
