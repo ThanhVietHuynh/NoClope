@@ -13,10 +13,12 @@ export default{
 
   methods: {
     async getContacts(){
+      let tokens = localStorage.getItem("token");
       const response = await fetch("http://127.0.0.1:8000/api/contact", {
         method:"GET",
         headers:{
-          "Accept":"application/json"
+          "Accept":"application/json",
+          Authorization: `Bearer ${tokens}`,
         }
       });
 
@@ -30,13 +32,14 @@ export default{
             number_phone: this.number_phone,    
             firstname: this.firstname,
             lastname: this.lastname,
-
         }
+        let tokens = localStorage.getItem("token");
         const response = await fetch("http://127.0.0.1:8000/api/contact",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: `Bearer ${tokens}`,
             },
             body: JSON.stringify(body)
         });
@@ -69,7 +72,7 @@ export default{
         <div>
           <h2>Listes des contacts</h2>
           <ul>
-            <li v-for = "contact in contacts" :key="contact.id">
+            <li v-for = "contact in contacts" :key="contacts.user_id">
               <p>Prénom: {{contact.firstname}}</p>
               <p>Nom: {{contact.lastname}}</p>
               <p>Numéro de téléphone: {{contact.number_phone}}</p>

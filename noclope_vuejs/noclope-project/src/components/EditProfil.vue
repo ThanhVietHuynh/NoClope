@@ -15,11 +15,12 @@ export default{
 
   methods: {
     async getProfil(){
-      const id = 1;
-      const response = await fetch(`http://127.0.0.1:8000/api/${id}/profil`, {
+      let tokens = localStorage.getItem("token");
+      const response = await fetch(`http://127.0.0.1:8000/api/profil`, {
         method:"GET",
         headers:{
-          "Accept":"application/json"
+          "Accept":"application/json",
+          Authorization: `Bearer ${tokens}`,
         }
       });
 
@@ -36,11 +37,13 @@ export default{
             password: this.password,
 
         }
-        const response = await fetch(`http://127.0.0.1:8000/api/${id}/profil`,{
+        let tokens = localStorage.getItem("token");
+        const response = await fetch(`http://127.0.0.1:8000/api/profil`,{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: `Bearer ${tokens}`,
             },
             body: JSON.stringify(body)
         });
