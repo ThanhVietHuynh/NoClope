@@ -32,7 +32,7 @@ import { RouterLink, RouterView } from "vue-router";
      <nav v-if="isConnected()">
          <ul class="md-flex md:items-center md:px-0 px-3 md:pb-0 pb-10 md:static absolute bg-gray-900 md:w-auto w-full top-14 duration-700 ease-in flex flex">
             <li class="md:mx-4 md:my-0 my-6">
-                <RouterLink to="/" class="text-xl hover:text-blue-300">Dashboard</RouterLink>
+                <RouterLink to="/dashboard" class="text-xl hover:text-blue-300">Dashboard</RouterLink>
             </li>
             <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/project" class=" text-xl hover:text-blue-300">Mon Projet</RouterLink>
