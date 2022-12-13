@@ -115,16 +115,16 @@ class AuthController extends Controller
             
     ]);
 
-    $user = User::findOrFail(Auth::user()->id);
+    // $user = User::findOrFail(Auth::user()->id);
     
-    if($user->isadmin == 1)
-    {
+    // if($user->isadmin == 1)
+    // {
 
-        return response()->json([
-            'message' => "Vous êtes connecté Admin.",
-        ],201);
+    //     return response()->json([
+    //         'message' => "Vous êtes connecté Admin.",
+    //     ],201);
        
-    }else{
+    // }else{
         
          $user = User::where('email', $request->email)->first();
         
@@ -151,7 +151,7 @@ class AuthController extends Controller
       ], 400);
          }
 
-    }
+    // }
     
     }
 
@@ -177,7 +177,7 @@ class AuthController extends Controller
         $profil->lastname = $request->lastname;
         $profil->firstname = $request->firstname;
         $profil->email = $request->email;
-        $profil->password = $request->password;
+        $profil->password = Hash::make($request->password);
         
         $profil->save();
 
