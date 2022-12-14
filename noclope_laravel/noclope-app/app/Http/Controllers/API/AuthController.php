@@ -18,7 +18,7 @@ class AuthController extends Controller
     use HasApiTokens, Notifiable;
 
 
-
+    
     public function register(Request $request){
 
         $request->validate([
@@ -48,7 +48,7 @@ class AuthController extends Controller
           'consumption'=>$request->consumption,
           'user_id'=> $idconnecte,
         ]);
-
+        
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $user->remember_token = $token;
