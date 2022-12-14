@@ -10,20 +10,22 @@ export default{
   },
 
   methods: {
-    async getCracking(){
-      const response = await fetch("http://127.0.0.1:8000/api/cracking", {
-        method:"GET",
-        headers:{
-          "Accept":"application/json"
-        }
-      });
+    // async getCracking(){
+    //   const response = await fetch("http://127.0.0.1:8000/api/cracking", {
+    //     method:"GET",
+    //     headers:{
+    //       "Accept":"application/json"
+    //     }
+    //   });
 
-      const data = await response.json();
+    //   const data = await response.json();
      
-      this.cracking = data.cracking;
-    },
+    //   this.cracking = data.cracking;
+    // },
 
     async createCracking(){
+      let tokens = localStorage.getItem('token');
+
         const body = {
             number_smoked_cigarette: this.number_smoked_cigarette,    
             date_cracking: this.date_cracking,
@@ -33,7 +35,8 @@ export default{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": `Bearer ${tokens}`
             },
             body: JSON.stringify(body)
         });
@@ -41,21 +44,18 @@ export default{
         const data = await response.json();
 
         this.feedbackMessage = data.message;
-        this.getCracking();
     }
   },
-  mounted(){
-    this.getCracking();
-  }
+ 
 };
 </script>
 
 <template>
     
     <form class="form" @submit.prevent="createCracking">
-        <h2>Ajouter un contact</h2>
-        <p class="pContact" type="Nom:"><input class="inputContact" v-model="number_smoked_cigarette" placeholder="Nombre de cigarette"></p>
-        <p class="pContact" type="Prénom:"><input type="date" class="inputContact" v-model="date_cracking"  placeholder="Date du craquage"></p>
+        <h2>Vous allez craquer ?</h2>
+        <p class="pContact" type="Combien de cigarettes :"><input class="inputContact" v-model="number_smoked_cigarette" placeholder="Nombre de cigarette"></p>
+        <p class="pContact" type="Quand cela s'est produit :"><input type="date" class="inputContact" v-model="date_cracking"  placeholder="Date du craquage"></p>
         <button class="btn" type="submit">Valider</button>
     </form>
 

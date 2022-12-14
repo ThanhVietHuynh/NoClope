@@ -32,4 +32,5 @@ class Project extends Model
     { 
         return $this->belongsTo(Cracking::class,'cracking_id','id'); 
     }
+
 }
