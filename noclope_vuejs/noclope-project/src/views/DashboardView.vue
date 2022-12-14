@@ -13,6 +13,8 @@ export default {
             project: {},
             finished_at:"",
             progression:"",
+            number_day_end:"",
+            savings:0,
 
         };
     },
@@ -24,8 +26,9 @@ export default {
         const response = await fetch("http://127.0.0.1:8000/api/project", {
           method: "GET",
           headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${tokens}`,
+            "Accept": "application/json",
+            "Authorization": `Bearer ${tokens}`,
+            
           },
         });
         const data = await response.json();
@@ -50,13 +53,22 @@ export default {
         this.finished_at=dayjs(this.finished_at).locale('fr').format('DD/MM/YYYY') // '25/01/2019'
         
         //Calcul de la progression
-        var currentDate = new Date();
-            console.log(currentDate);
-
+        var currentDate = new Date();      
         var number_day_now = (currentDate-dateTime)/(60*60*24*1000)
         var progression_percent=number_day_now/number_day*100
         this.progression=progression_percent.toFixed(2)
-        console.log(this.progression)
+        
+        //Permet de ne pas avoir un objectif négatif
+        if(this.progression<0){ 
+            this.progression=0;
+        }
+
+        //Nombre de jours restants
+        this.number_day_end=(number_day-number_day_now).toFixed(0); 
+
+        //Economies réalisées
+        this.savings=(number_day_now*price_cigarette*this.project.consumption).toFixed(0);
+     
     },
     
   
@@ -80,6 +92,13 @@ export default {
     <div class="progression"><div  class="progression2"  :style="'width: ' + progression +'%'" >{{progression}}%</div>
 
         </div>
+    <div>Nombre de jours restants: {{number_day_end}}</div>
+
+    <h1>Economies réalisées depuis le début: {{savings}}€</h1>
+    <h1>Objectif journalier:</h1>
+    <h2>Nombre de cigarette fumées: </h2> 
+    <h2>Nombre de cigarette NON fumées: </h2> 
+    <h2>Economie aujourd'hui: </h2> 
 
 </template>
 
