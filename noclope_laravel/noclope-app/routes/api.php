@@ -33,8 +33,8 @@ Route::put('/profil', [AuthController::class, 'update'])->name('profil.update')-
 Route::post('/contact',[ContactController::class,'store'])->name('contact.store')->middleware("auth:sanctum");;
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index')->middleware("auth:sanctum");;
 
-Route::post('/project',[ProjectController::class,'store'])->name('project.store');
-Route::get('/project',[ProjectController::class,'index'])->name('project.index');
+Route::post('/project',[ProjectController::class,'store'])->name('project.store')->middleware("auth:sanctum");
+Route::get('/project',[ProjectController::class,'index'])->name('project.index')->middleware("auth:sanctum");
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });

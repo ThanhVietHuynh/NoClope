@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Fortify;
+use Laravel\Sanctum\HasApiTokens;
 
 class ProjectController extends Controller
 {
@@ -14,7 +22,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        
+        $projects = Project::where('user_id',Auth::user()->id)->get();
         return response()->json(
             ['projects' => $projects],
             200

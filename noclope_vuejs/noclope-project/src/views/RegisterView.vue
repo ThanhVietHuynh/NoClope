@@ -32,6 +32,10 @@ import Register from '../components/Register.vue';
         firstname: this.firstname,
         email: this.email,
         password: this.password,
+        goal: this.infoproject.goal,
+        price_goal: this.infoproject.price_goal,
+        price_pack: this.infoproject.price_pack,
+        consumption: this.infoproject.consumption
       }
 
 

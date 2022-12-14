@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +26,10 @@ class AuthController extends Controller
                 'firstname' => 'required',
                 'email' => 'required|email',
                 'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
-                
+                'goal'=>'required',
+                'price_goal'=>'required',
+                'price_pack'=>'required',
+                'consumption'=>'required',
         ]);
 
         $user = User::create([
@@ -33,9 +37,18 @@ class AuthController extends Controller
             'firstname' => $request->firstname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+          ]);
+
+          $idconnecte=$user['id'];
+
+        $project= Project:: create( [
+          'goal'=> $request->goal,
+          'price_goal'=>$request->price_goal,
+          'price_pack'=>$request->price_pack,
+          'consumption'=>$request->consumption,
+          'user_id'=> $idconnecte,
         ]);
 
-        $idconnecte=$user['id'];
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $user->remember_token = $token;
@@ -76,17 +89,18 @@ class AuthController extends Controller
                                 'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',//A voir si lurl est bonne
                               ]);
     
-                              
-                             
                             $stripe = new \Stripe\StripeClient(
                               env('STRIPE_API_KEY')
                             );
                             $stripe->setupIntents->create([
                               'payment_method_types' => ['card'],
                             ]);
-                              return response()->json(['url'=>$session['url'],
-                              'access_token' => $token,]);
+                        
     
+
+                              return response()->json(['url'=>$session['url'],
+                              'access_token' => $token,'project'=>$project]);
+                            
                       }catch(\Exception $error) {
                         //Pour envoyer un message d'erreur si la requete a échouée lors créaton d'une session stripe
                         return response("La création a échouée2", 404);
