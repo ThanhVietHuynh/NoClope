@@ -68,6 +68,8 @@ export default {
 
         //Economies réalisées
         this.savings=(number_day_now*price_cigarette*this.project.consumption).toFixed(0);
+
+        //Objectif journalier
      
     },
     
