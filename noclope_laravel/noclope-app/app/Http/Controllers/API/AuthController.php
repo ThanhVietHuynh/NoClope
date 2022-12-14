@@ -26,7 +26,10 @@ class AuthController extends Controller
                 'firstname' => 'required',
                 'email' => 'required|email',
                 'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
-                
+                'goal'=>'required',
+                'price_goal'=>'required',
+                'price_pack'=>'required',
+                'consumption'=>'required',
         ]);
 
         $user = User::create([
