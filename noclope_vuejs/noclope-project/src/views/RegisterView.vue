@@ -51,6 +51,7 @@ import Register from '../components/Register.vue';
       const data = await response.json();
       console.log(data.url);
       window.location.assign(data.url);
+      localStorage.setItem("token", data.access_token);
 
         
 

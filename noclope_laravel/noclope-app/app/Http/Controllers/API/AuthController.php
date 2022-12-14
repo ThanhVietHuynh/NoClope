@@ -15,6 +15,9 @@ use Laravel\Sanctum\HasApiTokens;
 class AuthController extends Controller
 {
     use HasApiTokens, Notifiable;
+
+
+
     public function register(Request $request){
 
         $request->validate([
@@ -32,11 +35,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $idconnecte=$user['id'];
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $user->remember_token = $token;
         $user->save();
-        $idconnecte=$user['id'];
 
         try {
             //Le try est si la requete à fonctionné pour la création d'un customer stripe
@@ -81,7 +84,8 @@ class AuthController extends Controller
                             $stripe->setupIntents->create([
                               'payment_method_types' => ['card'],
                             ]);
-                              return response()->json(['url'=>$session['url']]);
+                              return response()->json(['url'=>$session['url'],
+                              'access_token' => $token,]);
     
                       }catch(\Exception $error) {
                         //Pour envoyer un message d'erreur si la requete a échouée lors créaton d'une session stripe
