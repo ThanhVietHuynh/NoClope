@@ -15,6 +15,9 @@ export default {
             progression:"",
             number_day_end:"",
             savings:0,
+            number_cig_smoked:3,
+            number_cig_non_smoked:10,
+            saving_now:0,
 
         };
     },
@@ -70,6 +73,11 @@ export default {
         this.savings=(number_day_now*price_cigarette*this.project.consumption).toFixed(0);
 
         //Objectif journalier
+        
+        this.number_cig_non_smoked=this.project.consumption-this.number_cig_smoked;
+        this.saving_now=this.number_cig_non_smoked*price_cigarette;
+        console.log(this.project.consumption)
+
      
     },
     
@@ -98,9 +106,9 @@ export default {
 
     <h1>Economies réalisées depuis le début: {{savings}}€</h1>
     <h1>Objectif journalier:</h1>
-    <h2>Nombre de cigarette fumées: </h2> 
-    <h2>Nombre de cigarette NON fumées: </h2> 
-    <h2>Economie aujourd'hui: </h2> 
+    <h2>Nombre de cigarette fumées: {{number_cig_smoked}}</h2> 
+    <h2>Nombre de cigarette NON fumées: {{number_cig_non_smoked}}</h2> 
+    <h2>Economie aujourd'hui: {{saving_now}}€</h2> 
 
 </template>
 
