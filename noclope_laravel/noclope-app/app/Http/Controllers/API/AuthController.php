@@ -48,7 +48,7 @@ class AuthController extends Controller
           'consumption'=>$request->consumption,
           'user_id'=> $idconnecte,
         ]);
-        $project->tokens()->delete();
+        
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $user->remember_token = $token;

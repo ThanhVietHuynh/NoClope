@@ -74,6 +74,7 @@ import Register from '../components/Register.vue';
 <template>
   <p>{{feedbackMessage}}</p>
 
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
   <h1>Récapitulatif du projet</h1>
   <ul>
     <!-- <li v-for = "item in infoproject" > -->
@@ -85,39 +86,102 @@ import Register from '../components/Register.vue';
           <p>Numéro de téléphone: {{contact.number_phone}}</p> -->
     <!-- </li> -->
   </ul>
+</div>
 
-  <h1>Formulaire d'inscription</h1>
-
-
-  <form class="formulaire" action="" method="" @submit.prevent="createUser">
-    <p>
-      <label for="nom">Nom :
-        <input type="text" name="nom" id="nom" placeholder="Nom..." v-model="lastname" />
-      </label>
-    </p>
-    <p>
-      <label for="prenom">Prénom :
-        <input type="text" name="prenom" id="prenom" placeholder="Prénom..." v-model="firstname" />
-      </label>
-    </p>
-    <p>
-      <label for="email">Email :
-        <input type="email" name="email" id="email" placeholder="Email..." v-model="email" />
-      </label>
-    </p>
-    <p>
-      <label for="password">Mot de passe :
-        <input type="password" name="password" id="password" placeholder="Mot de passe..." v-model="password" />
-      </label>
-    </p>
-    <!-- <p>
-      <label for="confirm"
-        >Confirmer votre mot de passe :
-        <input type="password" name="confirm" id="confirm" placeholder="Confirmer mot de passe..." />
-      </label>
-    </p> -->
-    <button type="submit">S'enregistrer</button>
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  <form @submit.prevent="createUser">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="form-group mb-6">
+        <input v-model="lastname" type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          aria-describedby="emailHelp123" name="nom" placeholder="Nom">
+      </div>
+      <div class="form-group mb-6">
+        <input v-model="firstname" type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+          aria-describedby="emailHelp124" name="prenom" placeholder="Prénom">
+      </div>
+    </div>
+    <div class="form-group mb-6">
+      <input type="email" v-model="email" name="email" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput125"
+        placeholder="Adresse mail">
+    </div>
+    <div class="form-group mb-6">
+      <input v-model="password" name="password" type="password" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput126"
+        placeholder="Mot de passe">
+    </div>
+    <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Créer un compte</button>
   </form>
+</div>
 </template>
 
 <style scoped>
@@ -126,28 +190,4 @@ h1 {
   border-bottom: 4px solid gray;
 }
 
-.formulaire input {
-  margin: 20px;
-}
-
-form {
-  text-align: center;
-  border-radius: 15px;
-}
-
-button {
-  border: none;
-  font-size: large;
-  background-color: rgb(88, 87, 87);
-  color: white;
-  border-radius: 10px;
-  padding: 5px;
-
-}
-
-button:hover {
-  background-color: gray;
-  transition: 200ms;
-  cursor: pointer;
-}
 </style>
