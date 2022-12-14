@@ -35,7 +35,19 @@ export default {
         }
       },
 
+},
+mounted(){
+// const project = localStorage.getItem("infoproject")
+// if(project){
+//   const parsed = JSON.parse(project)
+//   this.goal= parsed.goal;
+//   this.price_goal= parsed.price_goal;
+//   this.price_pack= parsed.price_pack;
+//   this.consumption= parsed.consumption;
+// }else{}
+
 }
+
 }
 
 </script>
