@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cracking;
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CrackingController extends Controller
 {
@@ -14,7 +16,7 @@ class CrackingController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -39,15 +41,18 @@ class CrackingController extends Controller
             'number_smoked_cigarette' => 'required|numeric',
             'date_cracking' => 'required|string',
         ]);
+        $getproject = Project::where('user_id', Auth::user()->id)->first();
+        $idproject = $getproject['id'];
 
         $cracking = Cracking::create([
+            'user_id'=>Auth::user()->id,
             'number_smoked_cigarette' => $request->number_smoked_cigarette,
             'date_cracking' => $request->date_cracking,
-            'user_id' => $request->user_id = 1,
-            'project_id' => $request->project_id,
+            'project_id' => $idproject
+        
         ]);
 
-        return response()->json(['message' => "Contact créer.",'contact' => $cracking],201);
+        return response()->json(['message' => "Contact créer.",'PROJET' => $getproject],201);
     }
 
     /**

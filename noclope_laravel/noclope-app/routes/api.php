@@ -36,6 +36,10 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact.index')
 Route::post('/project',[ProjectController::class,'store'])->name('project.store');
 Route::get('/project',[ProjectController::class,'index'])->name('project.index');
 
-Route::resource('/cracking', CrackingController::class);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+});
+
+Route::resource('/cracking', CrackingController::class)->middleware("auth:sanctum");
+
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
