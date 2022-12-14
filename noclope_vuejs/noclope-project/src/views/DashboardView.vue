@@ -73,7 +73,6 @@ export default {
         this.savings=(number_day_now*price_cigarette*this.project.consumption).toFixed(0);
 
         //Objectif journalier
-        
         this.number_cig_non_smoked=this.project.consumption-this.number_cig_smoked;
         this.saving_now=this.number_cig_non_smoked*price_cigarette;
         console.log(this.project.consumption)
