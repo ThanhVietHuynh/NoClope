@@ -180,25 +180,24 @@ export default {
     </div>
   </section>
 
-  <section class="flex align-center justify-center">
+  <div class="flex align-center justify-center justify-around">
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
       <div>
-        Nombre de cigarettes fumées depuis le début du projet:
+        Nombre de cigarettes fumées depuis le début du projet :
         {{ number_cig_smoked }}
       </div>
-      <div>Nombre de jours restants: {{ number_day_end }}</div>
+      <div>Nombre de jours restants : {{ number_day_end }}</div>
     </div>
-  </section>
-
-  <section class="flex align-center justify-center">
+ 
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
-      <h1>Economies réalisées depuis le début: {{ savings }}€</h1>
-      <h1>Objectif journalier:</h1>
-      <h2>Nombre de cigarette fumées: {{ number_cig_smoked_today }}</h2>
-      <h2>Nombre de cigarette non-fumées: {{ number_cig_non_smoked }}</h2>
-      <h2>Economie aujourd'hui: {{ saving_now }}€</h2>
+      <h1>Economies réalisées : {{ savings }}€</h1>
+      <h1>Objectif journalier :</h1>
+      <h2>Nombre de cigarette fumées : {{ number_cig_smoked_today }}</h2>
+      <h2>Nombre de cigarette non-fumées : {{ number_cig_non_smoked }}</h2>
+      <h2>Economie aujourd'hui : {{ saving_now }}€</h2>
     </div>
-  </section>
+</div>
+
 </template>
 
 <style scoped>
