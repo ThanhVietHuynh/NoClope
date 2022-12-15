@@ -16,7 +16,7 @@
   
 
   mounted() {
-    this.getProject();
+   
   },
 }
 </script>
