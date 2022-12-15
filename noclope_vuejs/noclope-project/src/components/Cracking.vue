@@ -6,6 +6,7 @@ export default{
       cracking:[],
       number_smoked_cigarette:"",
       date_cracking:"",
+      feedbackMessage:""
     };
   },
 

@@ -61,7 +61,7 @@ class CrackingController extends Controller
         
         ]);
 
-        return response()->json(['message' => "Contact créer.",'PROJET' => $getproject],201);
+        return response()->json(['message' => "Formulaire valider.",'PROJET' => $getproject],201);
     }
 
     /**
