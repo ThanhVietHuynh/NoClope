@@ -59,6 +59,7 @@ export default {
         this.number_cig_smoked=data.number_cig_smoked //donne le nombre total de cigarette fumées depuis le début du projet
          
         await this.getProject();
+        console.log(this.project.consumption)
 
         
 //Calcul de la date de fin 
@@ -67,8 +68,7 @@ export default {
         var price_daily=this.price_cigarette*this.project.consumption;
         // var number_day=this.project.price_goal/price_daily
         var number_day=(this.project.price_goal+this.number_cig_smoked*this.price_cigarette)/price_daily
-        console.log(number_day)
-        
+               
         var date = new Date(this.project.created_at);
         var dateTime = date.getTime();
         // 60 secondes * 60 minutes * 24 heures
@@ -100,19 +100,38 @@ export default {
         this.number_day_end=(number_day-number_day_now).toFixed(0); 
 
         //Economies réalisées
-        this.savings=(number_day_now*this.price_cigarette*this.project.consumption).toFixed(0);
+        // Foreach qui met les cigarettes fumées égal à la consommation pour ne pas que le calcul d'économie passe négatif
+        this.cracking.forEach(element => {
+            if(element['number_smoked_cigarette']>=this.project.consumption){
+                element['number_smoked_cigarette']=this.project.consumption
+            }
+        })
+        //Met dans un tableau le nombre de cigarettes fummées qui correspondent à la date d'aujourd'hui
+        var j=[]
+        this.cracking.forEach(element => {
+                     j.push(element['number_smoked_cigarette'])        
+        });
+
+        //Additionne les valeurs du tableau
+            const initialValuej = 0;
+            this.number_cig_smoked2 = j.reduce( (accumulator, currentValue) => accumulator + currentValue,
+            initialValuej );
+            console.log(this.consumption)
+           
+            this.savings=((number_day_now*this.project.consumption-this.number_cig_smoked2)*this.price_cigarette).toFixed(0)
+            
+        
 
 //Calcul pour savoir si aujourd'hui il y a eu un crakage => OBJECTIF JOURNALIER
         var date_today=dayjs(new Date()).locale('fr').format('DD/MM/YYYY') //date d'aujourd'hui au format DD/MM/YYYY
         
-        //Met dans un tableau le nombre de cigarettes fummées qui correspondent à la date d'ajourd'hui
+        //Met dans un tableau le nombre de cigarettes fummées qui correspondent à la date d'aujourd'hui
         var i=[]
         this.cracking.forEach(element => {
             var date_cracking=dayjs(element['date_cracking']).locale('fr').format('DD/MM/YYYY')
             if(date_cracking==date_today){
-                 i.push(element['number_smoked_cigarette'])   
+                     i.push(element['number_smoked_cigarette'])        
             } 
-            
         });
 
         //Additionne les valeurs du tableau
@@ -121,7 +140,7 @@ export default {
             initialValue );
             
          //Objectif journalier
-        this.number_cig_non_smoked=this.project.consumption-this.number_cig_smoked;
+        this.number_cig_non_smoked=this.project.consumption-this.number_cig_smoked_today;
         this.saving_now=this.number_cig_non_smoked*this.price_cigarette;
         
         
