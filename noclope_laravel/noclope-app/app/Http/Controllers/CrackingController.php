@@ -16,6 +16,15 @@ class CrackingController extends Controller
      */
     public function index()
     {
+        $cracking = Cracking::where('user_id',Auth::user()->id)->get();
+
+        $number_cig_smoked=Cracking::where('user_id',Auth::user()->id)->sum('number_smoked_cigarette');
+        return response()->json(
+            ['cracking' => $cracking,
+            'number_cig_smoked' => $number_cig_smoked,
+        ],
+            200
+        );
         
     }
 
