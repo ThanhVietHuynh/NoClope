@@ -56,7 +56,7 @@ export default {
 </script>
 
 <template>
- 
+ <section class="flex items-center justify-center" >
   <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
   <form @submit.prevent="getProjects()">
     <div class="form-group mb-6">
@@ -154,6 +154,7 @@ export default {
     
   </form>
 </div>
+ </section>
 
 </template>
 

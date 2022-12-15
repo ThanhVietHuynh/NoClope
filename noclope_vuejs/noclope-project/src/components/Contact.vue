@@ -58,15 +58,8 @@ export default{
 
 <template>
     
-    <!-- <form class="form" @submit.prevent="createContact">
-        <h2>Ajouter un contact</h2>
-        <p class="pContact" type="Nom:"><input class="inputContact" v-model="lastname" placeholder="Entrer le nom du contact"></p>
-        <p class="pContact" type="Prénom:"><input class="inputContact" v-model="firstname"  placeholder="Entrer le prénom du contact"></p>
-        <p class="pContact" type="Numéro de téléphone:"><input class="inputContact" v-model="number_phone"  placeholder="Entrer le numéro de téléphone du contact"></p>
-        <button class="btn" type="submit">Valider</button>
-    </form> -->
-
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <section class="flex items-center justify-center" >
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 ">
   <form @submit.prevent="createContact">
     <h2>Ajouter un contact</h2>
     <div class="form-group mb-6">
@@ -146,11 +139,12 @@ export default{
     
   </form>
 </div>
+    </section>
 
     <p>{{feedbackMessage}}</p>
 
-    <section>
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+    <section class="flex items-center justify-center" >
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
           <h2>Listes des contacts</h2>
           <ul>
             <li v-for = "contact in contacts" :key="contacts.user_id">
