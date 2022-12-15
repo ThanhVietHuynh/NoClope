@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password as RulesPassword;
 use Laravel\Fortify\Fortify;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -18,14 +20,14 @@ class AuthController extends Controller
     use HasApiTokens, Notifiable;
 
 
-
+    
     public function register(Request $request){
 
         $request->validate([
                 'lastname' => 'required',
                 'firstname' => 'required',
                 'email' => 'required|email',
-                'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
+                'password' => ['required','string','max:255', RulesPassword::min(8)->numbers(), RulesPassword::min(8)->mixedCase(),RulesPassword::min(8)->letters()], //Password::min(8)->symbols(),
                 'goal'=>'required',
                 'price_goal'=>'required',
                 'price_pack'=>'required',
@@ -48,7 +50,7 @@ class AuthController extends Controller
           'consumption'=>$request->consumption,
           'user_id'=> $idconnecte,
         ]);
-
+        
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $user->remember_token = $token;
@@ -129,7 +131,7 @@ class AuthController extends Controller
 
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required', 
+            'password' => 'required|same:password', 
             
     ]);
 
