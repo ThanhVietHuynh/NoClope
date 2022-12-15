@@ -52,12 +52,68 @@ export default{
 
 <template>
     
-    <form class="form" @submit.prevent="createCracking">
-        <h2>Vous allez craquer ?</h2>
-        <p class="pContact" type="Combien de cigarettes :"><input class="inputContact" v-model="number_smoked_cigarette" placeholder="Nombre de cigarette"></p>
-        <p class="pContact" type="Quand cela s'est produit :"><input type="date" class="inputContact" v-model="date_cracking"  placeholder="Date du craquage"></p>
-        <button class="btn" type="submit">Valider</button>
-    </form>
+
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+  <form @submit.prevent="createCracking">
+    <h2>Vous allez craquer ?</h2>
+    <div class="form-group mb-6">
+      <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Combien de cigarettes ?</label>
+      <input v-model="number_smoked_cigarette" type="number" class="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputEmail2"
+        aria-describedby="emailHelp" min="1" placeholder="Nombre de cigarettes fumées">
+    </div>
+    <div class="form-group mb-6">
+      <label for="exampleInputPassword2" class="form-label inline-block mb-2 text-gray-700">Quand est-ce arrivé ?</label>
+      <input v-model="date_cracking" type="date" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
+        placeholder="Son prix">
+    </div>
+    <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Valider</button>
+    
+  </form>
+</div>
 
     <p>{{feedbackMessage}}</p>
     
@@ -68,11 +124,6 @@ header {
   line-height: 1.5;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -80,64 +131,16 @@ header {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
 
   body{background:#59ABE3;margin:0}
-.form{
-    width:340px;
-    height:440px;
-    background:#e6e6e6;
-    border-radius:8px;
-    box-shadow:0 0 40px -10px #000;margin:calc(50vh - 220px) auto;
-    padding:20px 30px;
-    max-width:calc(100vw - 40px);
-    box-sizing:border-box;
-    font-family:'Montserrat',sans-serif;
-    position:relative
-}
+
 h2{
     margin:10px 0;
     padding-bottom:10px;
     width:180px;
     color:#78788c;border-bottom:3px solid #78788c
 }
-.inputContact{
-    width:100%;
-    padding:10px;
-    box-sizing:border-box;background:none;
-    outline:none;resize:none;border:0;
-    font-family:'Montserrat',sans-serif;
-    transition:all .3s;
-    border-bottom:2px solid #bebed2
-}
-.inputContact:focus{
-    border-bottom:2px solid #78788c
-}
-.pContact:before{
-    content:attr(type);
-    display:block;margin:28px 0 0;
-    font-size:14px;
-    color:#5a5a5a
-}
-.btn{
-    float:right;padding:8px 12px;
-    margin:8px 0 0;font-family:'Montserrat',sans-serif;
-    border:2px solid #78788c;background:0;
-    color:#5a5a6e;cursor:pointer;
-    transition:all .3s
-}
-.btn:hover{
-    background:#78788c;color:#fff
-}
+
 
 section{
     margin: 1em;
