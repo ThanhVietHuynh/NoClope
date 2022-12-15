@@ -57,7 +57,7 @@ export default{
 
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
       <form @submit.prevent="createCracking">
-    <h2>Vous allez craquer ?</h2>
+    <h2>Vous avez craqué ?</h2>
     <div class="form-group mb-6">
       <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Combien de cigarettes ?</label>
       <input v-model="number_smoked_cigarette" type="number" class="form-control
