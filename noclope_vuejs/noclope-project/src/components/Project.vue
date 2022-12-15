@@ -57,7 +57,7 @@ export default {
 
 <template>
  <section class="flex items-center justify-center" >
-  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm my-8">
   <form @submit.prevent="getProjects()">
     <div class="form-group mb-6">
       <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Quel est votre objectif ?</label>

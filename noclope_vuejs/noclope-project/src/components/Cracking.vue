@@ -55,7 +55,7 @@ export default{
     
   <section class="flex align-center justify-center">
 
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
       <form @submit.prevent="createCracking">
     <h2>Vous avez craqué ?</h2>
     <div class="form-group mb-6">
@@ -145,9 +145,7 @@ h2{
 }
 
 
-section{
-    margin: 1em;
-}
+
 
 }
 </style>

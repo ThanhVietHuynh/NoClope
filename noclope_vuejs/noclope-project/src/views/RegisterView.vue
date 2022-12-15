@@ -75,7 +75,7 @@ import Register from '../components/Register.vue';
   <section class="flex items-center justify-center" >
   <p>{{feedbackMessage}}</p>
 
-  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md my-8">
   <h1>Récapitulatif du projet</h1>
   <ul>
     <!-- <li v-for = "item in infoproject" > -->

@@ -181,7 +181,7 @@ export default {
   </section>
 
   <div class="flex align-center justify-center justify-around">
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
       <div>
         Nombre de cigarettes fumées depuis le début du projet :
         {{ number_cig_smoked }}
@@ -189,7 +189,7 @@ export default {
       <div>Nombre de jours restants : {{ number_day_end }}</div>
     </div>
  
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
       <h1>Economies réalisées : {{ savings }}€</h1>
       <h1>Objectif journalier :</h1>
       <h2>Nombre de cigarette fumées : {{ number_cig_smoked_today }}</h2>
