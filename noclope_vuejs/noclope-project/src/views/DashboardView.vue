@@ -204,12 +204,12 @@ export default {
 .progression {
   border: 1px solid grey;
   width: 400px;
-  height: 40px;
+  height: 30px;
   border-radius: 5px;
 }
 .progression2 {
   background-color: blue;
-  height: 40px;
+  height: 30px;
   border-radius: 5px;
 }
 </style>
