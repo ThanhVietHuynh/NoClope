@@ -165,7 +165,9 @@ export default {
     <div class="block p-6 rounded-lg shadow-lg bg-white w-2/4 w-full">
       <div class="flex flex align-center justify-center">
         <div class="flex-col">
-          <h2 class="text-center" >Je veux {{ project.goal }} pour {{ project.price_goal }}€</h2>
+          <h2 class="text-center text-blue-300 text-xl">
+            Je veux {{ project.goal }} pour {{ project.price_goal }}€
+          </h2>
           <div class="progression">
             <div class="progression2" :style="'width: ' + progression + '%'">
               {{ progression }}%
@@ -180,26 +182,56 @@ export default {
     </div>
   </section>
 
-  <div class="flex align-center justify-center justify-around">
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
+  <section class="flex justify-around flex-wrap">
+  <div class="flex align-center justify-center justify-around w-fit">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm  my-8">
       <div>
-        Nombre de cigarettes fumées depuis le début du projet :
-        {{ number_cig_smoked }}
+        <h2 class="text-blue-300 text-2xl">Mon parcours</h2>
       </div>
-      <div>Nombre de jours restants : {{ number_day_end }}</div>
-      <h1>Economies réalisées : {{ savings }}€</h1>
-    </div>
- 
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
-      <div>
-        <h1>Objectif journalier</h1>
+      <div class="flex justify-around mt-2.5">
+        <div class="bg-blue-300 shadow-lg text-center w-24 rounded-lg m-1">
+          <p class="text-xl">{{ number_cig_smoked }}</p>
+          <p>Craquage</p>
+        </div>
+        <div class="bg-blue-300 shadow-lg text-center w-24 rounded-lg m-1">
+          <p class="text-xl">
+            {{ number_day_end }}
+          </p>
+          <p>Jours restants</p>
+        </div>
+        <div class="bg-blue-300 shadow-lg text-center w-24 rounded-lg m-1">
+          <p class="text-xl">{{ savings }} €</p>
+          <p>Economisés</p>
+        </div>
       </div>
-      <h2>Nombre de cigarette fumées : {{ number_cig_smoked_today }}</h2>
-      <h2>Nombre de cigarette non-fumées : {{ number_cig_non_smoked }}</h2>
-      <h2>Economie aujourd'hui : {{ saving_now }}€</h2>
     </div>
-</div>
+  </div>
 
+    <div class="flex align-center justify-center justify-around w-fit">
+      <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-fit my-8">
+        <div>
+          <h2 class="text-blue-300 text-2xl">Objectif journalier</h2>
+        </div>
+        <div class="flex justify-around mt-2.5">
+          <div class="bg-blue-300 shadow-lg text-center w-24 rounded-lg m-1">
+            <p class="text-xl">{{ number_cig_smoked_today }}</p>
+            <p>Craquage</p>
+          </div>
+          <div class="bg-blue-300 shadow-lg text-center w-24 rounded-lg m-1">
+            <p class="text-xl">
+              {{ number_cig_non_smoked }}
+            </p>
+            <p>cigarette non-fumées</p>
+          </div>
+          <div class="bg-blue-300 shadow-lg text-center w-24 rounded-lg m-1">
+            <p class="text-xl">{{ saving_now }} €</p>
+            <p>Economisés</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 </template>
 
 <style scoped>

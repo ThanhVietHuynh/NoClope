@@ -67,6 +67,24 @@ export default{
       <h2 class="text-center">Mon Profil</h2>
       <p>{{profil.lastname}} {{profil.firstname}}</p>
       <p>Email: {{profil.email}}</p>
+      <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Modifier mon profil</button>
     </div>
   </section>
 
