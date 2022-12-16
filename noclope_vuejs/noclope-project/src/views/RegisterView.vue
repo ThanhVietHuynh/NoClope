@@ -53,14 +53,15 @@ import Register from '../components/Register.vue';
       
 
       const data = await response.json();
+ 
+      if(response.status !== 200 || !data.url) {
+        this.feedbackMessage = data.message;
+        return;
+      }
+
       console.log(data.url);
       window.location.assign(data.url);
       localStorage.setItem("token", data.access_token);
-
-        
-
-        this.feedbackMessage = data.message;
-        
 
     }
   },
