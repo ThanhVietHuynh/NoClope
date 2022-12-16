@@ -187,11 +187,13 @@ export default {
         {{ number_cig_smoked }}
       </div>
       <div>Nombre de jours restants : {{ number_day_end }}</div>
+      <h1>Economies réalisées : {{ savings }}€</h1>
     </div>
  
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
-      <h1>Economies réalisées : {{ savings }}€</h1>
-      <h1>Objectif journalier :</h1>
+      <div>
+        <h1>Objectif journalier</h1>
+      </div>
       <h2>Nombre de cigarette fumées : {{ number_cig_smoked_today }}</h2>
       <h2>Nombre de cigarette non-fumées : {{ number_cig_non_smoked }}</h2>
       <h2>Economie aujourd'hui : {{ saving_now }}€</h2>
