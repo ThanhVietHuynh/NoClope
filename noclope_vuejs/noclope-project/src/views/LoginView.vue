@@ -1,64 +1,53 @@
-<script setup>
 
-</script>
 <script>
-  export default {
-    data(){
-      return{
-        email: "",
-        password: "",
-        feedbackMessage:"",
+export default {
+  inject: ["loginUser"],
+
+  data() {
+    return {
+      email: "",
+      password: "",
+      feedbackMessage:"",
+    };
+  },
+
+  methods: {
+    async loginUser() {
+      // Requête
+      const token = localStorage.getItem("token");
+      const body = {
+        email: this.email,
+        password: this.password,
       };
-    },
-    methods: {
-      async loginUser(){
-        const body = {
-          email: this.email,
-          password: this.password,
-        }
-        console.log(body);
-        
-        const response = await fetch("http://127.0.0.1:8000/api/login",
+      const response = await fetch("http://127.0.0.1:8000/api/login",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-          
           },
 
-          
           body: JSON.stringify(body)
-          
-         
+                  
         })
 
         const data = await response.json();
 
-        window.location.assign('home')
 
-        // localStorage.setItem("token", data.access_token);
         this.feedbackMessage = data.message;
 
-        localStorage.setItem("token", data.access_token);
-
-        // console.log(data)
-
-      //   if (data.success == true) {
-      //       // Mise dans le local storage
-      //       localStorage.setItem("tokenUserLog", JSON.stringify(this.infoUser.token));
- 
-      // }    
-      if(response.status === 201){
+        if(response.status === 201){
         localStorage.setItem("token", data.access_token)
-          return this.$router.push("/edit");
+          this.feedbackMessage = data.message;
+          return  window.location.assign('/')
         }else if(response.status === 400){
-          console.log(response, 'Mot de passe ou email incorrect');
+          this.feedbackMessage = data.message;
         }
-        }
-      }
 
-    }
+      this.loginUser(token, user);
+    },
+  },
+};
 </script>
 
 <template>
@@ -131,7 +120,7 @@
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out">Se connecter</button>
+      ease-in-out" @click.prevent="loginUser">Se connecter</button>
     <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="#!"
         class="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">S'inscrire</a>
     </p>
