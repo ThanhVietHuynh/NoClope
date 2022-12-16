@@ -61,27 +61,32 @@ export default{
 </script>
 
 <template>
-    
-  <p>{{feedbackMessage}}</p>
   
-  <section>
+  <section class="flex items-center justify-center">
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
-      <h2>Mon Profil</h2>
+      <h2 class="text-center">Mon Profil</h2>
       <p>{{profil.lastname}} {{profil.firstname}}</p>
       <p>Email: {{profil.email}}</p>
+      <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Modifier mon profil</button>
     </div>
   </section>
-  
-  <!-- <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
-    <form class="form" @submit.prevent="updateProfil">
-      <h2>Modifier le profil</h2>
-      <p class="pContact" type="Nom:"><input type="text" class="inputContact" v-model="lastname" placeholder="Nouveau nom"></p>
-      <p class="pContact" type="Prénom:"><input type="text" class="inputContact" v-model="firstname"  placeholder="Nouveau prénom"></p>
-      <p class="pContact" type="Email:"><input type="email" class="inputContact" v-model="email"  placeholder="Votre nouveau email"></p>
-      <p class="pContact" type="Mot de passe:"><input type="password" class="inputContact" v-model="password"  placeholder="Nouveau Mot de passe"></p>
-      <button class="btn" type="submit">Valider</button>
-    </form>
-  </div> -->
 
   <section class="flex items-center justify-center" >
   <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
