@@ -9,6 +9,7 @@ import Footer from "./components/Footer.vue";
 <template>
  <header>
     <NavBar/>
+   
  </header>
 
   <body class="bg-blue-300">
