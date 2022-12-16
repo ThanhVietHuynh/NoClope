@@ -61,12 +61,10 @@ export default{
 </script>
 
 <template>
-    
-  <p>{{feedbackMessage}}</p>
   
-  <section>
+  <section class="flex items-center justify-center">
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4">
-      <h2>Mon Profil</h2>
+      <h2 class="text-center">Mon Profil</h2>
       <p>{{profil.lastname}} {{profil.firstname}}</p>
       <p>Email: {{profil.email}}</p>
     </div>
