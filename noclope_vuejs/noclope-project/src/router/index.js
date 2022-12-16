@@ -51,6 +51,11 @@ const router = createRouter({
       name: "edit",
       component: () => import("../views/EditProfilView.vue"),
     },
+    {
+      path: "/admin",
+      name: "admin",
+      component: () => import("../views/AdminView.vue"),
+    },
 
     // router.beforeEach((to, from, next) => {
     //   const user = useUserStore();
