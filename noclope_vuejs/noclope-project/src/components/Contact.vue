@@ -58,15 +58,8 @@ export default{
 
 <template>
     
-    <!-- <form class="form" @submit.prevent="createContact">
-        <h2>Ajouter un contact</h2>
-        <p class="pContact" type="Nom:"><input class="inputContact" v-model="lastname" placeholder="Entrer le nom du contact"></p>
-        <p class="pContact" type="Prénom:"><input class="inputContact" v-model="firstname"  placeholder="Entrer le prénom du contact"></p>
-        <p class="pContact" type="Numéro de téléphone:"><input class="inputContact" v-model="number_phone"  placeholder="Entrer le numéro de téléphone du contact"></p>
-        <button class="btn" type="submit">Valider</button>
-    </form> -->
-
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <section class="flex items-center justify-center" >
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
   <form @submit.prevent="createContact">
     <h2>Ajouter un contact</h2>
     <div class="form-group mb-6">
@@ -146,11 +139,12 @@ export default{
     
   </form>
 </div>
+    </section>
 
     <p>{{feedbackMessage}}</p>
 
-    <section>
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+    <section class="flex items-center justify-center" >
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
           <h2>Listes des contacts</h2>
           <ul>
             <li v-for = "contact in contacts" :key="contacts.user_id">
@@ -171,11 +165,6 @@ header {
   line-height: 1.5;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -183,67 +172,14 @@ header {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
 
   body{background:#59ABE3;margin:0}
-.form{
-    width:340px;
-    height:440px;
-    background:#e6e6e6;
-    border-radius:8px;
-    box-shadow:0 0 40px -10px #000;margin:calc(50vh - 220px) auto;
-    padding:20px 30px;
-    max-width:calc(100vw - 40px);
-    box-sizing:border-box;
-    font-family:'Montserrat',sans-serif;
-    position:relative
-}
+
 h2{
     margin:10px 0;
     padding-bottom:10px;
     width:180px;
     color:#78788c;border-bottom:3px solid #78788c
-}
-.inputContact{
-    width:100%;
-    padding:10px;
-    box-sizing:border-box;background:none;
-    outline:none;resize:none;border:0;
-    font-family:'Montserrat',sans-serif;
-    transition:all .3s;
-    border-bottom:2px solid #bebed2
-}
-.inputContact:focus{
-    border-bottom:2px solid #78788c
-}
-.pContact:before{
-    content:attr(type);
-    display:block;margin:28px 0 0;
-    font-size:14px;
-    color:#5a5a5a
-}
-.btn{
-    float:right;padding:8px 12px;
-    margin:8px 0 0;font-family:'Montserrat',sans-serif;
-    border:2px solid #78788c;background:0;
-    color:#5a5a6e;cursor:pointer;
-    transition:all .3s
-}
-.btn:hover{
-    background:#78788c;color:#fff
-}
-
-section{
-    margin: 1em;
 }
 
 }

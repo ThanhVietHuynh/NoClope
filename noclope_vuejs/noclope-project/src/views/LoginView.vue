@@ -64,7 +64,8 @@
 <template>
     <p>{{feedbackMessage}}</p>
 
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <section class="flex items-center justify-center" >
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
   <form @submit.prevent="loginUser">
     <div class="form-group mb-6">
       <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Adresse mail</label>
@@ -136,4 +137,5 @@
     </p>
   </form>
 </div>
+    </section>
 </template>

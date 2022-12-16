@@ -73,9 +73,10 @@ import Register from '../components/Register.vue';
 </script>
 
 <template>
+  <section class="flex items-center justify-center" >
   <p>{{feedbackMessage}}</p>
 
-  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md my-8">
   <h1>Récapitulatif du projet</h1>
   <ul>
     <!-- <li v-for = "item in infoproject" > -->
@@ -88,7 +89,9 @@ import Register from '../components/Register.vue';
     <!-- </li> -->
   </ul>
 </div>
+  </section>
 
+<section class="flex items-center justify-center" >
   <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
   <form @submit.prevent="createUser">
     <div class="grid grid-cols-2 gap-4">
@@ -183,6 +186,7 @@ import Register from '../components/Register.vue';
       ease-in-out">Créer un compte</button>
   </form>
 </div>
+</section>
 </template>
 
 <style scoped>

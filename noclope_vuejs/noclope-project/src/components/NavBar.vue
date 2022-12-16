@@ -35,6 +35,9 @@ import { RouterLink, RouterView } from "vue-router";
                 <RouterLink to="/dashboard" class="text-xl hover:text-blue-300">Dashboard</RouterLink>
             </li>
             <li class="md:mx-4 md:my-0 my-6">
+                <RouterLink to="/transactions" class="text-xl hover:text-blue-300">Mes économies</RouterLink>
+            </li>
+            <li class="md:mx-4 md:my-0 my-6">
                 <RouterLink to="/contact" class=" text-xl hover:text-blue-300">Mes Contacts</RouterLink>
             </li>
             <li class="md:mx-4 md:my-0 my-6">

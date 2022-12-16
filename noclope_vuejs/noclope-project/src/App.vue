@@ -20,14 +20,20 @@ import Footer from "./components/Footer.vue";
 
 <script>
 import Navbar from "./components/NavBar.vue";
+
 export default{
   name:"App",
   components:{
     Navbar,
     RouterView,
+  
   },
 };
 </script>
+
+<style>
+
+</style>
 
 
 
