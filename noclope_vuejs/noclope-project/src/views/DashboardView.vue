@@ -43,6 +43,7 @@ export default {
        
     },
     
+
     //Requete pour avoir les informations de crackings
     async getCrakings() {
         let tokens = localStorage.getItem("token");
@@ -59,7 +60,7 @@ export default {
         this.number_cig_smoked=data.number_cig_smoked //donne le nombre total de cigarette fumées depuis le début du projet
          
         await this.getProject();
-        console.log(this.project.consumption)
+        
 
         
 //Calcul de la date de fin 
@@ -116,8 +117,7 @@ export default {
             const initialValuej = 0;
             this.number_cig_smoked2 = j.reduce( (accumulator, currentValue) => accumulator + currentValue,
             initialValuej );
-            console.log(this.consumption)
-           
+                      
             this.savings=((number_day_now*this.project.consumption-this.number_cig_smoked2)*this.price_cigarette).toFixed(0)
             
         
@@ -142,21 +142,27 @@ export default {
          //Objectif journalier
         this.number_cig_non_smoked=this.project.consumption-this.number_cig_smoked_today;
         this.saving_now=this.number_cig_non_smoked*this.price_cigarette;
-        
-        
+    },
 
+    //Requete pour effectuer les paiements
+    async getPaiement(){
+        await this.getCrakings();
 
+        //Date de début
+        console.log('date', this.project.created_at)
+
+        //Date +7jours
+        console.log('date+7', this.project.created_at+7)
 
 
     }
-     
 
     },
 
     mounted() {
-        
             this.getProject();
             this.getCrakings();
+            this.getPaiement();
         },
 }
 </script>

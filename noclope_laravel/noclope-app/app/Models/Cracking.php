@@ -11,6 +11,7 @@ class Cracking extends Model
 
     protected $fillable = [
         'number_smoked_cigarette',
+        'number_smoked_cigarette_max',
         'date_cracking',
         'user_id',
         'project_id',

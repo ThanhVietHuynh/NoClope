@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('number_smoked_cigarette');
+            $table->integer('number_smoked_cigarette_max');
             $table->timestamp('date_cracking');
             
         });
