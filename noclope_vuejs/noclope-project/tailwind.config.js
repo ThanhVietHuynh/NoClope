@@ -6,7 +6,11 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+    colors:{
+      'vert-sombre':'#6CD1BC',
+    }
+    },
   },
   variants:{
     extend:{}

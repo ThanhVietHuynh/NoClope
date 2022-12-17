@@ -1,5 +1,5 @@
 <template>
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <footer class="text-center text-white hidden md:block items-center space-x-1" style="background-color: #f1f1f1;">
   <div class="container pt-9">
     <div class="flex justify-center mb-9">
       <a href="#!" class="mr-9 text-gray-800">

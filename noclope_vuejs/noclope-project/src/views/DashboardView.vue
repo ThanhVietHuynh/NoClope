@@ -166,8 +166,12 @@ export default {
       <div class="flex flex align-center justify-center">
         <div class="flex-col">
           <h2 class="text-center text-blue-300 text-xl">
-            Je veux {{ project.goal }} pour {{ project.price_goal }}€
+            {{ project.goal }} 
           </h2>
+          <div class="flex justify-between">
+            <div class="justify-start"> {{ savings }}€</div>
+            <div class="justify-end">{{ project.price_goal }}€</div>
+          </div>
           <div class="progression">
             <div class="progression2" :style="'width: ' + progression + '%'">
               {{ progression }}%
