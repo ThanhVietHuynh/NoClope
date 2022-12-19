@@ -121,7 +121,7 @@ export default {
       active:bg-teal-600 active:shadow-lg
       transition
       duration-150
-      ease-in-out" @click.prevent="loginUser">Se connecter</button>
+      ease-in-out" @click.prevent="login">Se connecter</button>
     <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="#!"
         class="text-teal-600 hover:text-teal-700 focus:text-teal-700 transition duration-200 ease-in-out">S'inscrire</a>
     </p>
