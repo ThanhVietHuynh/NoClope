@@ -55,6 +55,13 @@
                     >J'ai craqué</RouterLink
                   >
                 </li>
+                <li v-if="isLoggedIn()" class="py-5 px-2">
+                  <RouterLink
+                    to="/admin"
+                    class="text-slate-100 text-xl hover:text-teal-300"
+                    >ADMIN</RouterLink
+                  >
+                </li>
               </ul>
             </div>
             <!-- login -->

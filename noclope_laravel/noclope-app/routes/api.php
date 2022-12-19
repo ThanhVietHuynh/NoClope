@@ -24,9 +24,10 @@ use Illuminate\Support\Facades\Broadcast;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('getRole', [AuthController::class, 'getRole'])->name('getRole.index')->middleware('auth:santum');
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/admin', [AuthController::class, 'login'])->name('admin.index')->middleware('auth:santum');
 Route::get('/profil', [AuthController::class, 'edit'])->name('profil.edit')->middleware("auth:sanctum");
 Route::put('/profil', [AuthController::class, 'update'])->name('profil.update')->middleware("auth:sanctum");
 
@@ -41,6 +42,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/cracking', CrackingController::class)->middleware("auth:sanctum");
+Route::resource('/admin', UserController::class)->middleware("auth:sanctum");
 Route::resource('/transaction', TransactionController::class)->middleware("auth:sanctum");
 
 
