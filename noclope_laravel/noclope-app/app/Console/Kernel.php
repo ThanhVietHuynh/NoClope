@@ -26,21 +26,21 @@ class Kernel extends ConsoleKernel
         //  Commands\TransacWeek::class,
     ];
 
-
-
-
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
             // try { //Création de la transaction dans la base de données
 
+                //Fréquence de prélèvement en jour 
+                $number_day_transac=7;
+
                 //Reccupere les crackings du lundi au lundi
                 $date_day=now();
-                $date_week = now()->subDay(7); //date de 7 jours avant
+                $date_week = now()->subDay($number_day_transac); //date de 7 jours avant
 
                 //Boucle pour effectuer le prélèvement sur l'ensemble des utilisateurs
                 $users = User::all();
-                foreach ($users->key as $item) {
+                foreach ($users as $item) {
                     
                
 
@@ -53,7 +53,9 @@ class Kernel extends ConsoleKernel
                 $transaction = Transaction::where('user_id', $iduser)->get();
                 $project = Project::where('user_id', $iduser)->first();
 
-                $amount = $number_cig_smoked * ($project['price_pack'] / 20); //20 est le nombre de cigarette par paquet
+
+
+                $amount = ($number_day_transac*$project['consumption']*$project['price_pack'])/20 -$number_cig_smoked * ($project['price_pack'] / 20); //20 est le nombre de cigarette par paquet
 
                 $transaction = [
                     'date_transaction' => $date_day, 
@@ -120,7 +122,7 @@ class Kernel extends ConsoleKernel
             //         'error' => "Erreur lors de la création de la transaction"
             //     ], 404);
             // }
-        })->everyMinute();
+        })->weekly();
         // })->daily();
 
     }
