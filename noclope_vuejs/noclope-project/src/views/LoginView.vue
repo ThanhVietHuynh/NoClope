@@ -12,6 +12,9 @@ export default {
   },
 
   methods: {
+    
+
+
     async loginUser() {
       // Requête
       const token = localStorage.getItem("token");
@@ -100,7 +103,7 @@ export default {
           id="exampleCheck2">
         <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">Se souvenir de moi</label>
       </div>
-      <a href="#!"
+      <a href="/reset"
         class="text-teal-600 hover:text-teal-700 focus:text-teal-700 transition duration-200 ease-in-out">Mot de passe oublié ?</a>
     </div>
     <button type="submit" class="
@@ -121,7 +124,7 @@ export default {
       transition
       duration-150
       ease-in-out" @click.prevent="loginUser">Se connecter</button>
-    <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="#!"
+    <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte ? <a href="/register"
         class="text-teal-600 hover:text-teal-700 focus:text-teal-700 transition duration-200 ease-in-out">S'inscrire</a>
     </p>
   </form>

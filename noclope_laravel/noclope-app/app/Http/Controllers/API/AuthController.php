@@ -8,12 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password as RulesPassword;
 use Laravel\Fortify\Fortify;
 use Laravel\Sanctum\HasApiTokens;
+use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 
 class AuthController extends Controller
 {
@@ -203,5 +206,7 @@ class AuthController extends Controller
 
         return response()->json(['message' => "Profil modifié.",'profil' => $profil],201);
     }
+
+    
 
 }
