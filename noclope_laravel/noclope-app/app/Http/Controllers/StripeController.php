@@ -77,40 +77,40 @@ class StripeController extends Controller
 
     public function setup() {
 
-      $stripe = new \Stripe\StripeClient(
-        env('STRIPE_API_KEY')
-      );
+    //   $stripe = new \Stripe\StripeClient(
+    //     env('STRIPE_API_KEY')
+    //   );
 
-      // $idconnecte=Auth::user()->id;
-      $idconnecte=3;
-      $userconnecte=User::FindOrFail($idconnecte);
+    //   // $idconnecte=Auth::user()->id;
+    //   $idconnecte=3;
+    //   $userconnecte=User::FindOrFail($idconnecte);
 
 
 
-      $customer=$stripe->customers->allPaymentMethods(
-        $userconnecte['stripe_id'], 
-        ['type' => 'card']
-      );
+    //   $customer=$stripe->customers->allPaymentMethods(
+    //     $userconnecte['stripe_id'], 
+    //     ['type' => 'card']
+    //   );
       
 
-    $payment_method=$stripe->paymentMethods->retrieve(
-      $customer['data'][0]['id'],
-      []
-    );
+    // $payment_method=$stripe->paymentMethods->retrieve(
+    //   $customer['data'][0]['id'],
+    //   []
+    // );
 
      
-    $transac=$stripe->paymentIntents->create([
-      'payment_method_types' => ['card'],
-      'amount' => 8000,
-      'currency' => 'eur',
-      'customer' => $userconnecte['stripe_id'], 
-      'payment_method' => $payment_method,
-    ]);
+    // $transac=$stripe->paymentIntents->create([
+    //   'payment_method_types' => ['card'],
+    //   'amount' => 8000,
+    //   'currency' => 'eur',
+    //   'customer' => $userconnecte['stripe_id'], 
+    //   'payment_method' => $payment_method,
+    // ]);
 
-      //Demande la confirmation du paiment, à voir avec Timotée si la validation doit venir du client ou si automatique
-    $stripe->paymentIntents->confirm($transac->id, ['payment_method' => $payment_method]);
+    //   //Demande la confirmation du paiment, à voir avec Timotée si la validation doit venir du client ou si automatique
+    // $stripe->paymentIntents->confirm($transac->id, ['payment_method' => $payment_method]);
 
-    return "transaction réussie";
+    // return "transaction réussie";
 
   
     }
