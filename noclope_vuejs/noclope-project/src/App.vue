@@ -13,7 +13,7 @@ import ToolBar from "./components/ToolBar.vue"
    
  </header>
 
-  <body class="bg-blue-300">
+  <body class="bg-white pb-20">
      <RouterView />
      <ToolBar/>
      <Footer/>
@@ -73,7 +73,9 @@ export default {
 </script>
 
 <style>
-
+.main {
+  margin-bottom: 30px; 
+}
 </style>
 
 

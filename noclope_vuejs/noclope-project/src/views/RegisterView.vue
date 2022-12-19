@@ -110,7 +110,7 @@ import Register from '../components/Register.vue';
           transition
           ease-in-out
           m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInput123"
           aria-describedby="emailHelp123" name="nom" placeholder="Nom">
       </div>
       <div class="form-group mb-6">
@@ -128,7 +128,7 @@ import Register from '../components/Register.vue';
           transition
           ease-in-out
           m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+          focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInput124"
           aria-describedby="emailHelp124" name="prenom" placeholder="Prénom">
       </div>
     </div>
@@ -146,7 +146,7 @@ import Register from '../components/Register.vue';
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput125"
+        focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInput125"
         placeholder="Adresse mail">
     </div>
     <div class="form-group mb-6">
@@ -163,14 +163,14 @@ import Register from '../components/Register.vue';
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput126"
+        focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInput126"
         placeholder="Mot de passe">
     </div>
     <button type="submit" class="
       w-full
       px-6
       py-2.5
-      bg-blue-600
+      bg-teal-500
       text-white
       font-medium
       text-xs
@@ -178,9 +178,9 @@ import Register from '../components/Register.vue';
       uppercase
       rounded
       shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
+      hover:bg-teal-400 hover:shadow-lg
+      focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-teteal00 active:shadow-lg
       transition
       duration-150
       ease-in-out">Créer un compte</button>
