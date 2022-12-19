@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Password;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,25 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/admin', [AuthController::class, 'login'])->name('admin.index')->middleware('auth:santum');
 Route::get('/profil', [AuthController::class, 'edit'])->name('profil.edit')->middleware("auth:sanctum");
 Route::put('/profil', [AuthController::class, 'update'])->name('profil.update')->middleware("auth:sanctum");
+
+
+
+
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+
+
 
 
 Route::post('/contact',[ContactController::class,'store'])->name('contact.store')->middleware("auth:sanctum");;
