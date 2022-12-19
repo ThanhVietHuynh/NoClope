@@ -54,7 +54,7 @@
                     >J'ai craqué</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/admin"
                     class="text-slate-100 text-xl hover:text-teal-300"
@@ -203,7 +203,7 @@
   <script>
   export default {
     name: "Navbar",
-    inject: ["isLoggedIn", "getUser", "logoutUser"],
+    inject: ["isLoggedIn", "getUser", "logoutUser","isAdmin"],
   };
   </script>
   

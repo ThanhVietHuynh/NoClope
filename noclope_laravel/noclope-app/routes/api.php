@@ -38,9 +38,6 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact.index')
 Route::post('/project',[ProjectController::class,'store'])->name('project.store')->middleware("auth:sanctum");
 Route::get('/project',[ProjectController::class,'index'])->name('project.index')->middleware("auth:sanctum");
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-});
-
 Route::resource('/cracking', CrackingController::class)->middleware("auth:sanctum");
 Route::resource('/admin', UserController::class)->middleware("auth:sanctum");
 Route::resource('/transaction', TransactionController::class)->middleware("auth:sanctum");

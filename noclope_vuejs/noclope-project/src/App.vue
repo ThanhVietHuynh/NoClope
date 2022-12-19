@@ -35,13 +35,27 @@ export default {
     return {
       isLoggedIn: false,
       user: null,
+      isAdmin: false,
     };
   },
 
   methods: {
-    checkToken() {
+    async checkToken() {
       const token = localStorage.getItem("token");
+      console.log('token',token);
       if (token) {
+        const response = await fetch("http://127.0.0.1:8000/api/user",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+                  
+        })
+        const user = await response.json();
+        this.user = user;
+        this.isAdmin = user.is_admin;
         this.isLoggedIn = true;
       }
     },
@@ -49,6 +63,7 @@ export default {
       localStorage.setItem("token", token);
       this.isLoggedIn = true;
       this.user = user;
+      this.isAdmin = user.is_admin == 1;
     },
     logout() {
       localStorage.removeItem("token");
@@ -64,6 +79,7 @@ export default {
   provide() {
     return {
       isLoggedIn: () => this.isLoggedIn,
+      isAdmin: () => this.isAdmin,
       getUser: () => this.user,
       loginUser: this.login,
       logoutUser:  this.logout,
