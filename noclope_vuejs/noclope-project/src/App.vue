@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 import loginUser from "./views/LoginView.vue";
 import NavBar from "./components/NavBar.vue";
 import Footer from "./components/Footer.vue";
+import ToolBar from "./components/ToolBar.vue"
 
 </script>
 
@@ -12,8 +13,9 @@ import Footer from "./components/Footer.vue";
    
  </header>
 
-  <body class="bg-blue-300">
+  <body class="bg-white pb-20">
      <RouterView />
+     <ToolBar/>
      <Footer/>
  
   </body>
@@ -71,7 +73,9 @@ export default {
 </script>
 
 <style>
-
+.main {
+  margin-bottom: 30px; 
+}
 </style>
 
 
