@@ -6,6 +6,7 @@ use App\Http\Controllers\CrackingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Broadcast;
 
@@ -42,6 +43,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/cracking', CrackingController::class)->middleware("auth:sanctum");
 Route::resource('/admin', UserController::class)->middleware("auth:sanctum");
+Route::resource('/transaction', TransactionController::class)->middleware("auth:sanctum");
 
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);

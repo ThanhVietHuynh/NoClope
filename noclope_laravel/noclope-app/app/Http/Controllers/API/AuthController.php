@@ -61,7 +61,7 @@ class AuthController extends Controller
     
                 // // Création d'un customer Stripe
                 $stripe = new \Stripe\StripeClient(
-                  env('STRIPE_API_KEY')
+                  env('STRIPE_SECRET')
                 );
     
                 // $idconnecte=Auth::user()->id;
@@ -82,7 +82,7 @@ class AuthController extends Controller
                       //Le try est si la requete a fonctionné pour la création d'une session stripe
                       try { 
                             // Création d'une session Stripe "Checkout"
-                            \Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
+                            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                             $customer=$session = \Stripe\Checkout\Session::create([
                                 'payment_method_types' => ['card'],
                                 'mode' => 'setup',
@@ -92,7 +92,7 @@ class AuthController extends Controller
                               ]);
     
                             $stripe = new \Stripe\StripeClient(
-                              env('STRIPE_API_KEY')
+                              env('STRIPE_SECRET')
                             );
                             $stripe->setupIntents->create([
                               'payment_method_types' => ['card'],
