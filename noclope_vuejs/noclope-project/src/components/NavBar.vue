@@ -8,6 +8,7 @@
             <div class="flex space-x-4">
               <!-- logo -->
               <a href="/" class="flex items-center space-x-2 py-5 px-2">
+                <img src="@/assets/Logosansfond.png" class="w-16 h-15" alt="">
                 <img src="@/assets/logoNoclope.png" class="logoNoclope" alt="" />
               </a>
               <!-- menu -->
