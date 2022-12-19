@@ -56,6 +56,11 @@ const router = createRouter({
       name: "admin",
       component: () => import("../views/AdminView.vue"),
     },
+    {
+      path: "/reset",
+      name: "reset",
+      component: () => import("../views/PasswordResetView.vue"),
+    },
 
     // router.beforeEach((to, from, next) => {
     //   const user = useUserStore();
