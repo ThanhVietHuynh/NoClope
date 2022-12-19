@@ -39,10 +39,13 @@ class Kernel extends ConsoleKernel
                 $date_week = now()->subDay(7); //date de 7 jours avant
 
                 //Boucle pour effectuer le prélèvement sur l'ensemble des utilisateurs
-                // foreach;
+                $users = User::all();
+                foreach ($users->key as $item) {
+                    
+               
 
                 //permet d'avoir la somme des cigarrettes fumées des 7derniers jours
-                $iduser=1;
+                $iduser=$item['id'];
                 $number_cig_smoked = Cracking::where('user_id', $iduser)
                     ->where('created_at', '>', $date_week)
                     ->sum('number_smoked_cigarette_max');
@@ -96,7 +99,7 @@ class Kernel extends ConsoleKernel
                     //Demande la confirmation du paiment, à voir avec Timotée si la validation doit venir du client ou si automatique
                     $stripe->paymentIntents->confirm($transac->id, ['payment_method' => $payment_method]);
 
-
+                }
 
 
                 //     return response()->json([
