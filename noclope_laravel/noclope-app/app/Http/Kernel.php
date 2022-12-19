@@ -2,8 +2,10 @@
 
 namespace App\Http;
 
+use App\Models\Contact;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\Auth;
 
 class Kernel extends HttpKernel
 {
@@ -70,10 +72,6 @@ class Kernel extends HttpKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            
-
-
-        })->daily();
+       
     }
 }

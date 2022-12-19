@@ -45,7 +45,7 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
 
-      try { //Création de la transaction dans la base de données
+      // try { //Création de la transaction dans la base de données
 
             //Reccupere les crackings du lundi au lundi
             $date_week = now()->subDay(7); //date de 7 jours avant
@@ -69,7 +69,7 @@ class TransactionController extends Controller
 
             $debit=  Transaction::create($transaction);
        
-            try { //Si transaction stripe marche 
+            // try { //Si transaction stripe marche 
 
               $stripe = new \Stripe\StripeClient(
                 env('STRIPE_API_KEY')
@@ -101,32 +101,32 @@ class TransactionController extends Controller
               'payment_method' => $payment_method,
             ]);
         
-              //Demande la confirmation du paiment, à voir avec Timotée si la validation doit venir du client ou si automatique
+             
             $stripe->paymentIntents->confirm($transac->id, ['payment_method' => $payment_method]);
         
       
               
               
-              return response()->json(['debit' => $debit,  
-                                       'message' => 'Transaction stripe réalisée avec succes'
-            ],200);
+          //    
+//  return response()->json(['debit' => $debit,  
+          //                              'message' => 'Transaction stripe réalisée avec succes'
+          //   ],200);
               
-          }
-            //Si transaction stripe ne marche pas
-            catch (\Exception $e) { 
-                 return response()->json(['error' => "Erreur lors de la transaction stripe"                       
-            ],404);
-              }
-
+          // }
+          //   //Si transaction stripe ne marche pas
+          //   catch (\Exception $e) { 
+          //        return response()->json(['error' => "Erreur lors de la transaction stripe"                       
+          //   ],404);
+          //     }
 
             
         
-        }
-        //Si création de la transaction ne marche pas dans la base de données
-        catch (\Exception $e) {
-          return response()->json(['error' => "Erreur lors de la création de la transaction"                      
-        ],404);
-        }
+        // }
+        // //Si création de la transaction ne marche pas dans la base de données
+        // catch (\Exception $e) {
+        //   return response()->json(['error' => "Erreur lors de la création de la transaction"                      
+        // ],404);
+        // }
        
 
 
