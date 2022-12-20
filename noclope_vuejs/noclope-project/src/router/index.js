@@ -61,6 +61,11 @@ const router = createRouter({
       name: "reset",
       component: () => import("../views/PasswordResetView.vue"),
     },
+    {
+      path: "/confirm",
+      name: "confirm",
+      component: () => import("../views/ConfirmPasswordView.vue"),
+    },
 
     // router.beforeEach((to, from, next) => {
     //   const user = useUserStore();
