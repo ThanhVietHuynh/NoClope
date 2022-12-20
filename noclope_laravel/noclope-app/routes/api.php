@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,6 +43,11 @@ Route::post('/forgot-password', function (Request $request) {
     $status = Password::sendResetLink(
         $request->only('email')
     );
+    $mailData = [
+        "nom" => "nabilou",
+        "prenom" => "nabil"
+    ];
+    Mail::to($request->only('email'))->send(new OrderShipped($mailData));
  
     // return $status === Password::RESET_LINK_SENT
                 return response()->json(['message'=>$status]);
