@@ -162,8 +162,8 @@ export default {
 
 <template>
   <section class="flex align-center justify-center">
-    <div class="block p-6 rounded-lg shadow-lg bg-white w-2/4 w-full">
-      <div class="flex flex align-center justify-center">
+    <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
+      <div class="flex align-center justify-center">
         <div class="flex-col">
           <h2 class="text-center text-sky-900 text-xl">
             {{ project.goal }} 
@@ -187,10 +187,10 @@ export default {
   </section>
 
   <section class="flex justify-around flex-wrap">
-  <div class="flex align-center justify-center justify-around w-fit">
+  <div class="flex align-center justify-center w-fit">
     <div class="block p-6 rounded-lg shadow-lg bg-teal-400 max-w-sm  my-8">
       <div>
-        <h2 class="text-sky-900 text-2xl">Mon parcours</h2>
+        <h2 class="text-sky-900 text-2xl font-semibold">Mon parcours</h2>
       </div>
       <div class="flex justify-around mt-2.5">
         <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
@@ -211,10 +211,10 @@ export default {
     </div>
   </div>
 
-    <div class="flex align-center justify-center justify-around w-fit ">
+    <div class="flex align-center justify-center w-fit ">
       <div class="block p-6 rounded-lg shadow-lg bg-teal-400 max-w-sm w-fit my-8">
         <div>
-          <h2 class="text-sky-900 text-2xl">Objectif journalier</h2>
+          <h2 class="text-sky-900 text-2xl font-semibold font-sans">Objectif journalier</h2>
         </div>
         <div class="flex justify-around mt-2.5">
           <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
