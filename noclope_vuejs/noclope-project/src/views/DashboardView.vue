@@ -183,7 +183,6 @@ export default {
           </div>
           <div class="progression bg-stone-100 h-2.5 w-96 rounded-lg">
             <div class="progression2 text-transparent bg-teal-400 h-2.5 rounded-lg" :style="'width: ' + progression + '%'">
-              .
             </div>
           </div>
           <!-- <div class="flex justify-between">

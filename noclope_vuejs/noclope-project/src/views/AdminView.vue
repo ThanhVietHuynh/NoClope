@@ -81,7 +81,7 @@ export default{
                 {{dayjs(user.created_at).locale("fr").format("DD/MM/YYYY")}}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                {{user.goal}}
+                {{user.goal}} à {{user.price_goal}} €
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 <div class="flex justify-between">
@@ -105,9 +105,5 @@ export default{
 </template>
 
 <style>
-caption {
-  display: table-caption;
-  text-align: center;
-  text-align:right
-}
+
 </style>
