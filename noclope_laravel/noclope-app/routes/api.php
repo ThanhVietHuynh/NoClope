@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password as RulesPassword;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -65,8 +67,8 @@ Route::post('/forgot-password', function (Request $request) {
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
-        'password' => 'required|same:password_confirmation|between:8,255',
-        'password_confirmation' => 'required|between:8,255',
+        'password' => ['required','string','max:255', RulesPassword::min(8)->numbers(), RulesPassword::min(8)->mixedCase(),RulesPassword::min(8)->letters()], //Password::min(8)->symbols(),
+        'password_confirmation' => ['required','string','max:255', RulesPassword::min(8)->numbers(), RulesPassword::min(8)->mixedCase(),RulesPassword::min(8)->letters()], //Password::min(8)->symbols(),
         'token' => 'required',
     ]);
  
