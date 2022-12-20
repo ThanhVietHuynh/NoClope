@@ -24,6 +24,7 @@ export default{
 
       const data = await response.json();   
       this.users = data.users;
+      console.log(data);
      
     },
     },
@@ -58,6 +59,9 @@ export default{
                 Date d’inscription
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Objectif
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Avancement de l’objectif
               </th>
             </tr>
@@ -77,7 +81,18 @@ export default{
                 {{dayjs(user.created_at).locale("fr").format("DD/MM/YYYY")}}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
+                {{user.goal}}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <div class="flex justify-between">
+                    <div class="justify-start"> €</div>
+                    <div class="justify-end">€</div>
+                </div>
+                <div class="progression bg-stone-100 h-30 w-96 rounded-lg">
+                    <div class="progression2 bg-teal-200 h-30 rounded-lg" :style="'width: ' + + '%'">
+                    %
+                    </div>
+                </div>
               </td>
             </tr>
           </tbody>
