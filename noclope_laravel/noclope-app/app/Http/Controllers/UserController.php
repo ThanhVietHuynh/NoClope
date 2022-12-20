@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,9 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $project = User::where('project_id')->get();
-        return response()->json(['users' => $users,'project' => $project]);
+        $users = DB::table('users')
+            ->join('projects','users.id','=','projects.user_id')
+            ->select('users.*','projects.*')
+            ->get();
+        
+        return response()->json(['users' => $users]);
     }
 
     /**
@@ -36,7 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
