@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     $this->registerPolicies();
  
     ResetPassword::createUrlUsing(function ($user, string $token) {
-        return 'http://127.0.0.1:5173/confirm'.$token;
+        return 'http://127.0.0.1:5173/confirm';
     });
 }
 }

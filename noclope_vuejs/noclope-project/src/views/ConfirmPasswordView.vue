@@ -5,7 +5,25 @@
                 password: "",
                 confirm_password: ""
             }
+        },
+        methods:{
+            async resetPassword(){
+                const body = {
+                    password: this.password,
+                    confirm_password: this.confirm_password
+                }
+                const response = await fetch('http://127.0.0.1:8000/api/reset-password',{
+                    method: 'POST',
+                    headers: {
+                        Accept: "application/json",
+                        Authorization: `Bearer`
+                    }
+                }
+                )
+            }
         }
+
+        
     }
 </script>
 
