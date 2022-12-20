@@ -77,7 +77,7 @@ export default{
                 {{dayjs(user.created_at).locale("fr").format("DD/MM/YYYY")}}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                {{project_id.goal}}
+                
               </td>
             </tr>
           </tbody>

@@ -60,8 +60,8 @@ import Register from '../components/Register.vue';
       }
 
       console.log(data.url);
-      window.location.assign(data.url);
       localStorage.setItem("token", data.access_token);
+      window.location.assign(data.url);
 
     }
   },

@@ -1,5 +1,7 @@
 
 <script>
+import { routerKey } from 'vue-router';
+
 export default {
   inject: ["loginUser"],
 
@@ -12,10 +14,7 @@ export default {
   },
 
   methods: {
-    
-
-
-    async loginUser() {
+    async login() {
       // Requête
       const token = localStorage.getItem("token");
       const body = {
@@ -40,14 +39,13 @@ export default {
         this.feedbackMessage = data.message;
 
         if(response.status === 201){
-        localStorage.setItem("token", data.access_token)
           this.feedbackMessage = data.message;
-          return  window.location.assign('/')
+          console.log('data value', data);
+          this.loginUser(data.access_token,data.user);
+          return  this.$router.push('/');
         }else if(response.status === 400){
           this.feedbackMessage = data.message;
         }
-
-      this.loginUser(token, user);
     },
   },
 };
@@ -123,8 +121,8 @@ export default {
       active:bg-teal-600 active:shadow-lg
       transition
       duration-150
-      ease-in-out" @click.prevent="loginUser">Se connecter</button>
-    <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte ? <a href="/register"
+      ease-in-out" @click.prevent="login">Se connecter</button>
+    <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="#!"
         class="text-teal-600 hover:text-teal-700 focus:text-teal-700 transition duration-200 ease-in-out">S'inscrire</a>
     </p>
   </form>
