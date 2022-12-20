@@ -163,23 +163,29 @@ export default {
 <template>
   <section class="flex align-center justify-center">
     <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-      <div class="flex align-center justify-center">
+      <div class="flex align-center justify-center ">
         <div class="flex-col">
-          <h2 class="text-center text-sky-900 text-xl">
+          <h2 class="text-center text-sky-900 text-xl font-semibold uppercase ">
             {{ project.goal }} 
           </h2>
           <div class="flex justify-between">
-            <div class="justify-start"> {{ savings }}€</div>
-            <div class="justify-end">{{ project.price_goal }}€</div>
+            <div class="justify-start"> 
+             <p class="text-teal-400 text-xl font-semibold ml-2.5">{{ savings }}€</p>
+             <p class="text-teal-400 text-lg ml-2.5">cagnotté</p>
+            </div>
+            <div class="justify-end mr-2.5">
+              <p class="text-xl font-semibold text-right  text-sky-900">{{ project.price_goal }}€</p>
+              <p class="text-lg text-sky-900">montant final</p>
+            </div>
           </div>
-          <div class="progression bg-stone-100 h-30 w-96 rounded-lg">
-            <div class="progression2 bg-teal-200 h-30 rounded-lg" :style="'width: ' + progression + '%'">
-              {{ progression }}%
+          <div class="progression bg-stone-100 h-2.5 w-96 rounded-lg">
+            <div class="progression2 text-transparent bg-teal-400 h-2.5 rounded-lg" :style="'width: ' + progression + '%'">
+              .
             </div>
           </div>
           <div class="flex justify-between">
-            <div class="justify-start">{{ project.created_at }}</div>
-            <div class="justify-end">{{ finished_at }}</div>
+            <div class="justify-start ml-2.5">{{ project.created_at }}</div>
+            <div class="justify-end mr-2.5">{{ finished_at }}</div>
           </div>
         </div>
       </div>
@@ -193,17 +199,17 @@ export default {
         <h2 class="text-sky-900 text-2xl font-semibold">Mon parcours</h2>
       </div>
       <div class="flex justify-around mt-2.5">
-        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
-          <p class="text-xl text-sky-900">{{ number_cig_smoked }}</p>
+        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
+          <p class="text-xl text-sky-900 ">{{ number_cig_smoked }}</p>
           <p class="text-sky-900">Craquage</p>
         </div>
-        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
+        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
           <p class="text-xl text-sky-900">
             {{ number_day_end }}
           </p>
           <p class="text-sky-900">Jours restants</p>
         </div>
-        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
+        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
           <p class="text-xl text-sky-900">{{ savings }} €</p>
           <p class="text-sky-900">Economisés</p>
         </div>
@@ -217,17 +223,17 @@ export default {
           <h2 class="text-sky-900 text-2xl font-semibold font-sans">Objectif journalier</h2>
         </div>
         <div class="flex justify-around mt-2.5">
-          <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
+          <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
             <p class="text-xl text-sky-900">{{ number_cig_smoked_today }}</p>
             <p  class="text-sky-900">Craquage</p>
           </div>
-          <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
+          <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
             <p class="text-xl text-sky-900">
               {{ number_cig_non_smoked }}
             </p>
             <p class="text-sky-900">cigarette non-fumées</p>
           </div>
-          <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1">
+          <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
             <p class="text-xl text-sky-900">{{ saving_now }} €</p>
             <p class="text-sky-900">Economisés</p>
           </div>
@@ -237,4 +243,10 @@ export default {
   </section>
   
 </template>
+
+<style>
+*{
+  box-sizing: border-box;
+}
+</style>
 
