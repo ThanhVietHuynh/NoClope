@@ -186,10 +186,10 @@ export default {
               .
             </div>
           </div>
-          <div class="flex justify-between">
+          <!-- <div class="flex justify-between">
             <div class="justify-start ml-2.5">{{ project.created_at }}</div>
             <div class="justify-end mr-2.5">{{ finished_at }}</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
