@@ -55,7 +55,7 @@ export default {
         })
         const user = await response.json();
         this.user = user;
-        this.isAdmin = user.is_admin;
+        this.isAdmin = user.isadmin;
         this.isLoggedIn = true;
       }
     },
@@ -63,7 +63,7 @@ export default {
       localStorage.setItem("token", token);
       this.isLoggedIn = true;
       this.user = user;
-      this.isAdmin = user.is_admin = true;
+      this.isAdmin = user.isadmin == 1;
     },
     logout() {
       localStorage.removeItem("token");
