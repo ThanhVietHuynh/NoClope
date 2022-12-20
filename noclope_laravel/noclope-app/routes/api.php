@@ -47,7 +47,7 @@ Route::post('/forgot-password', function (Request $request) {
         "nom" => "nabilou",
         "prenom" => "nabil"
     ];
-    Mail::to('nabil-13130@hotmail.fr')->send(new OrderShipped($mailData));
+    Mail::to($request->only('email'))->send(new OrderShipped($mailData));
  
     // return $status === Password::RESET_LINK_SENT
                 return response()->json(['message'=>$status]);
