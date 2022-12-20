@@ -111,7 +111,7 @@
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="h-8 w-8 hover:text-teal-300 text-slate-100 w-6 h-6"
+                  class="h-8 w-8 hover:text-teal-300 text-slate-100"
                 >
                   <path
                     stroke-linecap="round"
