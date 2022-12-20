@@ -63,7 +63,7 @@ export default {
       localStorage.setItem("token", token);
       this.isLoggedIn = true;
       this.user = user;
-      this.isAdmin = user.is_admin = true;
+      this.isAdmin = user.isadmin == 1;
     },
     logout() {
       localStorage.removeItem("token");
