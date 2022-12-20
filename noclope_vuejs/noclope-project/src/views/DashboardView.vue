@@ -168,6 +168,9 @@ export default {
           <h2 class="text-center text-sky-900 text-xl font-semibold uppercase ">
             {{ project.goal }} 
           </h2>
+          <p class=" text-center text-xl text-teal-400 font-semibold">
+            J-{{ number_day_end }}
+          </p>
           <div class="flex justify-between">
             <div class="justify-start"> 
              <p class="text-teal-400 text-xl font-semibold ml-2.5">{{ savings }}€</p>
@@ -183,10 +186,10 @@ export default {
               .
             </div>
           </div>
-          <div class="flex justify-between">
+          <!-- <div class="flex justify-between">
             <div class="justify-start ml-2.5">{{ project.created_at }}</div>
             <div class="justify-end mr-2.5">{{ finished_at }}</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
