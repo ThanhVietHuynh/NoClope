@@ -55,7 +55,7 @@ export default {
         })
         const user = await response.json();
         this.user = user;
-        this.isAdmin = user.is_admin;
+        this.isAdmin = user.isadmin;
         this.isLoggedIn = true;
       }
     },
