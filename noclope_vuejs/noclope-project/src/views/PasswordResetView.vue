@@ -38,7 +38,7 @@
 					<!-- Col -->
 					<div
 						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
-						style="background-image: url('https://images.bfmtv.com/VJxcvJthYDvJs0d7UMoVTjI1eEQ=/0x131:2048x1283/images/Cristiano-Ronaldo-1535553.jpg')"
+						style="background-image: url('https://lecrabeinfo.net/app/uploads/2018/06/mot-de-passe-incorrect-meme-5b2fa191adaae.jpg')"
 					></div>
 					<!-- Col -->
 					<div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
