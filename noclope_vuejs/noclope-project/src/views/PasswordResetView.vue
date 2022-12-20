@@ -12,7 +12,7 @@
                     email: this.email
                 };
 
-                const response = await fetch("http://127.0.0.1:8000/api/reset",
+                const response = await fetch("http://127.0.0.1:8000/api/forgot-password",
                 {
                     method: 'POST',
                     headers: {
@@ -21,7 +21,8 @@
                     },
 
                     body: JSON.stringify(body)
-                })
+                });
+                const data = await response.json();
             }
         }
     }
@@ -37,7 +38,7 @@
 					<!-- Col -->
 					<div
 						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
-						style="background-image: url('http://source.unsplash.com/oWTW-jNGl9I/600x800')"
+						style="background-image: url('https://source.unsplash.com/oWTW-jNGl9I/600x800')"
 					></div>
 					<!-- Col -->
 					<div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
@@ -47,7 +48,7 @@
 								Ne vous inquietez pas ! Entrez votre adresse email et vous recevrez par mail un lien permettant de reinitialiser votre mot de passe !
 							</p>
 						</div>
-						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded" @submit.prevent="reset">
 							<div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
 									Email :
@@ -57,13 +58,14 @@
 									id="email"
 									type="email"
 									placeholder="Entrez votre adresse email..."
+                                    v-model="email"
 								/>
 							</div>
 							<div class="mb-6 text-center">
 								<button
 									class="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
-									type="button"
-								@click="reset">
+									type="submit"
+								>
 									Reinitialiser votre mot de passe
 								</button>
 							</div>

@@ -43,10 +43,9 @@ Route::post('/forgot-password', function (Request $request) {
         $request->only('email')
     );
  
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
+    // return $status === Password::RESET_LINK_SENT
+                return response()->json(['message'=>$status]);
+})->name('password.email');
 
 
 
