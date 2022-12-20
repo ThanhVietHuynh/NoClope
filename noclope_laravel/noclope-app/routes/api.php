@@ -9,9 +9,13 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Mail\OrderShipped;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +38,10 @@ Route::get('/profil', [AuthController::class, 'edit'])->name('profil.edit')->mid
 Route::put('/profil', [AuthController::class, 'update'])->name('profil.update')->middleware("auth:sanctum");
 
 
+Route::get('/confirm', function($token){
+    return response()->json(['url'=>'http://127.0.0.1:5173/confirm']);
+});
+
 
 
 
@@ -43,15 +51,42 @@ Route::post('/forgot-password', function (Request $request) {
     $status = Password::sendResetLink(
         $request->only('email')
     );
-    $mailData = [
-        "nom" => "nabilou",
-        "prenom" => "nabil"
-    ];
-    Mail::to($request->only('email'))->send(new OrderShipped($mailData));
+    // $mailData = [
+    //     "nom" => "nabilou",
+    //     "prenom" => "nabil"
+    // ];
+    Mail::to($request->only('email'));
  
     // return $status === Password::RESET_LINK_SENT
                 return response()->json(['message'=>$status]);
 })->name('password.email');
+
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+        'confirm_password' => 'required|min:8|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+ 
+            $user->save();
+ 
+            event(new PasswordReset($user));
+        }
+    );
+ 
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
 
 
 
