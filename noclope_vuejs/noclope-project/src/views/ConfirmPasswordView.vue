@@ -2,21 +2,26 @@
     export default{
         data(){
             return{
+                email: "",
                 password: "",
-                confirm_password: ""
+                confirm_password: "",
             }
+        },
+        mounted(){
+            this.token = this.$route.params.token
         },
         methods:{
             async resetPassword(){
                 const body = {
+                    email: this.email,
                     password: this.password,
                     confirm_password: this.confirm_password
                 }
                 const response = await fetch('http://127.0.0.1:8000/api/reset-password',{
                     method: 'POST',
                     headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer`
+                        "Content-Type" : "application/json",
+                        "Accept": "application/json",
                     }
                 }
                 )
@@ -28,8 +33,15 @@
 </script>
 
 <template>
+    <p> Token : {{ token }}</p>
     <div class="w-full max-w-xs">
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        Email :
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Votre email">
+    </div>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
         Nouveau mot de passe

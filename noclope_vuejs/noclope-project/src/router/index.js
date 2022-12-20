@@ -62,7 +62,7 @@ const router = createRouter({
       component: () => import("../views/PasswordResetView.vue"),
     },
     {
-      path: "/confirm",
+      path: "/confirm/:token",
       name: "confirm",
       component: () => import("../views/ConfirmPasswordView.vue"),
     },
