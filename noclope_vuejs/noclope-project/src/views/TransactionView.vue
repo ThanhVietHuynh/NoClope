@@ -62,9 +62,7 @@ export default {
 </script>
 
 <template>
-    <form @submit.prevent="createTransactions()">
-        <button type="submit">GET PAIMENT</button>
-    </form>
+    
 
     <div>
 
