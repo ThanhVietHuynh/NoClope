@@ -6,8 +6,8 @@ import "dayjs/locale/fr";
 export default {
   data() {
     return {
-      users: [],
-      pourcentage: 0,
+      users: {},
+      
     };
   },
 
@@ -27,6 +27,7 @@ export default {
       this.pourcentage = data.pourcentage;
       console.log(data);
     },
+    
   },
   mounted() {
     this.getUsers();
@@ -114,12 +115,13 @@ export default {
                   class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                 >
                   <p class="text-center text-xl text-teal-400 font-semibold">
-                    J-10
+                    <!-- J-{{ ((new Date()) - new Date(user.created_at)) * user.progression_now /100/60*60*24*1000 }} -->
+                    {{ user.progression_now }} %
                   </p>
                   <div class="flex justify-between">
                     <div class="justify-start">
                       <p class="text-teal-400 text-xl font-semibold ml-2.5">
-                        0€
+                        {{user.price_goal * user.progression_now / 100 }}€
                       </p>
                       <p class="text-teal-400 text-lg ml-2.5">cagnotté</p>
                     </div>
@@ -133,7 +135,7 @@ export default {
                   <div class="progression bg-stone-100 h-2.5 w-96 rounded-lg">
                     <div
                       class="progression2 text-transparent bg-teal-400 h-2.5 rounded-lg"
-                      :style="'width: ' + pourcentage + '%'"
+                      :style="'width: ' + user.progression_now + '%'"
                     ></div>
                   </div>
                 </td>

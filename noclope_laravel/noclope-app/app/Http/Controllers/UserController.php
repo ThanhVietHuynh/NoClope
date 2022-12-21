@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,8 +25,31 @@ class UserController extends Controller
             ->select('users.*', 'projects.*')
             ->get();
 
+        $getuser = User::all();
+        foreach($getuser as $item){
+            $getproject = Project::where('user_id',$item['id'])->first();
 
-        // $cigarettes_per_day = $users->consumption;
+            $price_cig = $getproject['price_pack']/20;
+            $price_day = $getproject['consumption'] * $price_cig;
+            $date_start = $getproject['created_at'];
+
+            // Date du jour
+            $current_date = Date::now();
+            $elapse_days =  $current_date->diff(new DateTime($date_start));
+
+            // Les craquages de l'utilisateur
+            $number_cig_smoked=Cracking::where('user_id',$item['id'])->sum('number_smoked_cigarette_max');
+
+            $saving_now = $price_day  * $elapse_days->days - $number_cig_smoked * $price_cig;
+            $pourcentage = $saving_now / $getproject['price_goal'] * 100 ;
+            $getproject->progression_now = $pourcentage;
+            $getproject->save();
+
+        }
+
+
+        
+        // $cigarettes_per_day = $getproject['consumption'];
         // $pack_price = $users->price_pack;
         // $date_created = $users->created_at;
         // $price_project = $users->price_goal;
@@ -59,10 +83,10 @@ class UserController extends Controller
         // }
         // $final = ($price_project - $saved);
         // $pourcentage = $saved  / $price_project * 100;
-        // return response()->json(['pourcentage' => $pourcentage, 'final' => $final, 'saved' => $saved, 'price_project' => $price_project, 'project' => $project, "cigarettes_per_day" => $cigarettes_per_day, 'date_created' => $date_created, 'crakings' => $crakings, 'current_date' => $current_date, 'not_smoked_cigarettes_expectation' => $not_smoked_cigarettes_expectation, 'smoked_cigarettes' => $smoked_cigarettes, 'elapse_days' => $elapse_days]);
+        // // return response()->json(['pourcentage' => $pourcentage, 'final' => $final, 'saved' => $saved, 'price_project' => $price_project, 'project' => $project, "cigarettes_per_day" => $cigarettes_per_day, 'date_created' => $date_created, 'crakings' => $crakings, 'current_date' => $current_date, 'not_smoked_cigarettes_expectation' => $not_smoked_cigarettes_expectation, 'smoked_cigarettes' => $smoked_cigarettes, 'elapse_days' => $elapse_days]);
 
 
-        return response()->json(['users' => $users, 'pourcentage' => 40]);
+        return response()->json(['users' => $users]);
     }
 
 
