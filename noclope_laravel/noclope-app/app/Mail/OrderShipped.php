@@ -42,9 +42,7 @@ class OrderShipped extends Mailable
      */
     public function content()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->from('nabil-13130@hotmail.fr')->subject('Mon Objet perso')->view('');
     }
 
     /**
