@@ -66,6 +66,11 @@ const router = createRouter({
       name: "confirm",
       component: () => import("../views/ConfirmPasswordView.vue"),
     },
+    {
+      path: "/agreed/",
+      name: "agreed",
+      component: () => import("../views/AgreedContactView.vue"),
+    },
 
     // router.beforeEach((to, from, next) => {
     //   const user = useUserStore();

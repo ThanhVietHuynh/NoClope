@@ -9,6 +9,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Mail\OrderShipped;
+use App\Models\Contact;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ use Illuminate\Validation\Rules\Password as RulesPassword;
 /*
 |--------------------------------------------------------------------------
 | API Routes
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------- 
 |
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -62,6 +63,8 @@ Route::post('/forgot-password', function (Request $request) {
     // return $status === Password::RESET_LINK_SENT
                 return response()->json(['message'=>$status]);
 })->name('password.email');
+
+Route::get('/send-mail', [ContactController::class, 'sendMail']);
 
 
 Route::post('/reset-password', function (Request $request) {

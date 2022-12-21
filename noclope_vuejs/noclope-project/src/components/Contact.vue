@@ -6,7 +6,7 @@ export default{
       contacts:[],
       firstname:"",
       lastname:"",
-      number_phone:"",
+      email:"",
       feedbackMessage:"",
     };
   },
@@ -29,7 +29,7 @@ export default{
 
     async createContact(){
         const body = {
-            number_phone: this.number_phone,    
+            email: this.email,    
             firstname: this.firstname,
             lastname: this.lastname,
         }
@@ -100,8 +100,8 @@ export default{
         placeholder="Prénom">
     </div>
     <div class="form-group mb-6">
-      <label for="exampleInputPassword2" class="form-label inline-block mb-2 text-gray-700">Numéro de téléphone</label>
-      <input v-model="number_phone"  type="tel" class="form-control block
+      <label for="exampleInputPassword2" class="form-label inline-block mb-2 text-gray-700">Email</label>
+      <input v-model="email"  type="email" class="form-control block
         w-full
         px-3
         py-1.5
@@ -115,7 +115,7 @@ export default{
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInputPassword2"
-        placeholder="Numéro de téléphone">
+        placeholder="Votre adresse email">
     </div>
   
     <button type="submit" class="
@@ -145,12 +145,12 @@ export default{
 
     <section class="flex items-center justify-center" >
         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2>Listes des contacts</h2>
+          <h2>Listes des contacts</h2> <br>
           <ul>
-            <li v-for = "contact in contacts" :key="contacts.user_id">
-              <p>Prénom: {{contact.firstname}}</p>
-              <p>Nom: {{contact.lastname}}</p>
-              <p>Numéro de téléphone: {{contact.number_phone}}</p>
+            <li style="border-bottom: 1px solid black;" v-for = "contact in contacts" :key="contacts.user_id">
+              <p>Prénom : {{contact.firstname}}</p> 
+              <p>Nom : {{contact.lastname}}</p>
+              <p>Votre adresse email : {{contact.email}}</p> <br>
             </li>
           </ul>
         </div>
