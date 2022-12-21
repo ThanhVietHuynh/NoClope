@@ -9,6 +9,7 @@ export default {
     data() {
         return {
             transactions: [],
+            sum:0,
 
 
         };
@@ -27,6 +28,7 @@ export default {
             });
             const data = await response.json();
             this.transactions = data.transactions
+            this.sum=data.sum
             this.transactions.forEach(element => {
                 element.date_transaction = dayjs(element.date_transaction).locale('fr').format('DD/MM/YYYY')
             });
@@ -71,6 +73,33 @@ export default {
             <h1>Montant débité : {{ item.amount }} €</h1>
             <p>Le {{ item.date_transaction }} </p>
         </div>
+
+        <div>
+            <h1>Total des économies réalisées : {{sum}} €</h1>
+           
+        </div>
+
+     <form >
+        <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-teal-500
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-teal-400 hover:shadow-lg
+      focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-teal-400 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Demander le déblocage anticipé des fonds</button>
+    
+  </form>
 
 
     </div>
