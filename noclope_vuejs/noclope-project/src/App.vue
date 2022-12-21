@@ -1,9 +1,10 @@
- <script setup>
+<script setup>
 import { RouterLink, RouterView } from "vue-router";
 import loginUser from "./views/LoginView.vue";
 import NavBar from "./components/NavBar.vue";
 import Footer from "./components/Footer.vue";
 import ToolBar from "./components/ToolBar.vue"
+
 
 </script>
 
