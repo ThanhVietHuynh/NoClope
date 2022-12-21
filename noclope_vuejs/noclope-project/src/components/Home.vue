@@ -1,30 +1,27 @@
-<script>
-
-</script>
+<script></script>
 
 <template>
+  <section class="flex justify-around mt-20 mb-20">
+    <div class="flex align-center w-fit flex-wrap">
 
-<div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
-  
-  <div class="carousel-inner relative w-full overflow-hidden">
-    <div class="carousel-item active relative float-left w-full">
-      <div class="relative overflow-hidden bg-no-repeat bg-cover" style="background-position: 50%;">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(123).jpg" class="block w-full" />
-        <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed bg-black opacity-50"></div>
+      <div class="flex flex-col max-w-sm mb-5 ml-10">
+        <h1 class="text-sky-900 text-4xl justify-start font-semibold">
+          L’application qui
+          transforme tes cigarettes
+          en argent
+        </h1>
+        <h2 class="text-sky-900 text-xl justify-start mt-5">
+          Noclope épargne automatiquement l’argent de
+          tes cigarettes non-fumées pour financer un projet
+          qui te tient à coeur.
+        </h2>
       </div>
-      <div class="carousel-caption hidden md:block absolute text-center">
-        <h5 class="text-xl">First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+
+      <div class="flex justify-center max-w-sm">
+        <img src="@/assets/mockup-noclope.png" class="h-96 w-64 drop-shadow-2xl" alt="" />
       </div>
     </div>
-    
-  
-  </div>
-
-</div>
-
+  </section>
 </template>
 
-<style>
-
-</style>
+<style></style>

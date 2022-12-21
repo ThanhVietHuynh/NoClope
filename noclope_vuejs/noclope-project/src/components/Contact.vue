@@ -48,15 +48,38 @@ export default{
 
         this.feedbackMessage = data.message;
         this.getContacts();
-    }
+    },
+
+    showContact: function () {
+      
+      if (this.contacts==null || this.contacts==0|| this.contacts==""){
+        return false
+      }else{
+        return true;
+      }
+    },
   },
   mounted(){
-    this.getContacts();
+  this.getContacts();
+    
   }
 };
 </script>
 
 <template>
+
+  <section class="flex items-center justify-center" v-if="showContact()" >
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
+          <h2>Listes des contacts</h2>
+          <ul>
+            <li v-for = "contact in contacts" :key="contacts.user_id">
+              <p>Prénom: {{contact.firstname}}</p>
+              <p>Nom: {{contact.lastname}}</p>
+              <p>Numéro de téléphone: {{contact.number_phone}}</p>
+            </li>
+          </ul>
+        </div>
+    </section>
     
     <section class="flex items-center justify-center" >
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 teal">
@@ -143,18 +166,7 @@ export default{
 
     <p>{{feedbackMessage}}</p>
 
-    <section class="flex items-center justify-center" >
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2>Listes des contacts</h2>
-          <ul>
-            <li v-for = "contact in contacts" :key="contacts.user_id">
-              <p>Prénom: {{contact.firstname}}</p>
-              <p>Nom: {{contact.lastname}}</p>
-              <p>Numéro de téléphone: {{contact.number_phone}}</p>
-            </li>
-          </ul>
-        </div>
-    </section>
+    
 
     
     

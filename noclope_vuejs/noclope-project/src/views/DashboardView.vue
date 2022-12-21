@@ -218,6 +218,7 @@ export default {
 
   <section v-if="!fireworks" class="flex justify-around flex-wrap">
   <div class="flex align-center justify-center w-fit">
+    
     <div class="block p-6 rounded-lg shadow-lg bg-teal-400 max-w-sm  my-8">
       <div>
         <h2 class="text-sky-900 text-2xl font-semibold">Mon parcours</h2>
