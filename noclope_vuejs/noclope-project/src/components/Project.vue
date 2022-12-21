@@ -57,6 +57,7 @@ export default {
 
 <template>
  <section class="flex items-center justify-center" >
+  <img src="@/assets/objectif1.png" class="" alt="">
   <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm my-8">
   <form @submit.prevent="getProjects()">
     <div class="form-group mb-6">
