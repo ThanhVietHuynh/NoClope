@@ -52,7 +52,6 @@ export default {
 </script>
 
 <template>
-    <p>{{feedbackMessage}}</p>
 
     <section class="flex items-center justify-center" >
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
@@ -122,6 +121,9 @@ export default {
       transition
       duration-150
       ease-in-out" @click.prevent="login">Se connecter</button>
+      <p class="text-red-500 mt-2 text-m font-semibold">
+      {{feedbackMessage}}
+    </p>
     <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="#!"
         class="text-teal-600 hover:text-teal-700 focus:text-teal-700 transition duration-200 ease-in-out">S'inscrire</a>
     </p>

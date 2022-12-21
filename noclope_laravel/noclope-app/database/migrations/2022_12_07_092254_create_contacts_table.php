@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('number_phone');
+            $table->string('email');
             $table->string('lastname');
             $table->string('firstname');
+            $table->rememberToken();
+            $table->boolean('is_agreed')->default(false);
+
         });
     }
 

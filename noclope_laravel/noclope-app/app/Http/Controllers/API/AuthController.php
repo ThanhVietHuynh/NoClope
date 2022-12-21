@@ -55,7 +55,7 @@ class AuthController extends Controller
         ]);
         
         $token = $user->createToken('auth_token')->plainTextToken;
-
+      
         $user->remember_token = $token;
         $user->save();
 
@@ -91,7 +91,7 @@ class AuthController extends Controller
                                 'mode' => 'setup',
                                 'customer' => $customer['id'], 
                                'success_url' => 'http://127.0.0.1:5173/', 
-                                'cancel_url' => 'http://127.0.0.1:8000/stripe/cancel',//A voir si lurl est bonne
+                                'cancel_url' => 'http://127.0.0.1:5173/cancelstripe',//A voir si lurl est bonne
                               ]);
     
                             $stripe = new \Stripe\StripeClient(
