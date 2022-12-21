@@ -267,14 +267,14 @@ export default {
   </section>
 
   <!-- Si le projet est fini (progression=100) affiche cette div avec le récap -->
-<div v-if="fireworks">
-  <Vue3Lottie :animationData="FireworksJSON" :height="800" :width="800" />
+<div v-if="fireworks" class="w-auto">
+  <Vue3Lottie :animationData="FireworksJSON"  class="w-auto" />
   <button type="submit" class="
       absolute 
       overflow-hidden 
-      bottom-2/4
-      left-1/3
+      inset-1/3
       w-auto
+      h-min
       px-6
       py-2.5
       bg-teal-500
