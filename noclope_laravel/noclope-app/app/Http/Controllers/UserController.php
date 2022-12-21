@@ -20,49 +20,53 @@ class UserController extends Controller
     public function index()
     {
         $users = DB::table('users')
-            ->join('projects','users.id','=','projects.user_id')
-            ->select('users.*','projects.*')
+            ->join('projects', 'users.id', '=', 'projects.user_id')
+            ->select('users.*', 'projects.*')
             ->get();
 
-            // $project = Project::where("user_id")->firstOrFail();
-            // $cigarettes_per_day = $project->consumption;
-            // $pack_price = $project->price_pack;
-            // $date_created = $project->created_at;
-            // $price_project = $project->price_goal;
-    
-            // // Les craquages de l'utilisateur
-            // $crakings = Cracking::where("project_id", $project->id)->get();
-    
-            // // Date du jour
-            // $current_date = Date::now();
-    
-    
-    
-            // // Calculs
-            // $elapse_days =  $current_date->diff(new DateTime($date_created));
-            // $not_smoked_cigarettes_expectation = $cigarettes_per_day * $elapse_days->days;
-            // $smoked_cigarettes = 0;
-    
-            // if (count($crakings) > 0) {
-            //     foreach ($crakings as $craking) {
-            //         $smoked_cigarettes += $craking->number_smoked_cigarette;
-            //     }
-            // }
-    
-            // $saved = ($pack_price / 20) * ($not_smoked_cigarettes_expectation - $smoked_cigarettes);
-            // if ($saved < 0) {
-            //     $saved = 0;
-            // }
-            // $final = ($price_project - $saved);
-            // $pourcentage = $saved  / $price_project * 100;
-            // return response()->json(['pourcentage' => $pourcentage, 'final' => $final, 'saved' => $saved, 'price_project' => $price_project, 'project' => $project, "cigarettes_per_day" => $cigarettes_per_day, 'date_created' => $date_created, 'crakings' => $crakings, 'current_date' => $current_date, 'not_smoked_cigarettes_expectation' => $not_smoked_cigarettes_expectation, 'smoked_cigarettes' => $smoked_cigarettes, 'elapse_days' => $elapse_days]);
-        
-        
-        return response()->json(['users' => $users]);
+
+        // $cigarettes_per_day = $users->consumption;
+        // $pack_price = $users->price_pack;
+        // $date_created = $users->created_at;
+        // $price_project = $users->price_goal;
+
+        // // Les craquages de l'utilisateur
+        // $crakings = Cracking::where("project_id", $users->project_id)->get();
+
+        // $cracking = Cracking::where('user_id',$users->id)->get();
+
+        // $number_cig_smoked=Cracking::where('user_id',$users->id)->sum('number_smoked_cigarette');
+
+        // // Date du jour
+        // $current_date = Date::now();
+
+
+
+        // // Calculs
+        // $elapse_days =  $current_date->diff(new DateTime($date_created));
+        // $not_smoked_cigarettes_expectation = $cigarettes_per_day * $elapse_days->days;
+        // $smoked_cigarettes = 0;
+
+        // if (count($crakings) > 0) {
+        //     foreach ($crakings as $craking) {
+        //         $smoked_cigarettes += $craking->number_smoked_cigarette;
+        //     }
+        // }
+
+        // $saved = ($pack_price / 20) * ($not_smoked_cigarettes_expectation - $smoked_cigarettes);
+        // if ($saved < 0) {
+        //     $saved = 0;
+        // }
+        // $final = ($price_project - $saved);
+        // $pourcentage = $saved  / $price_project * 100;
+        // return response()->json(['pourcentage' => $pourcentage, 'final' => $final, 'saved' => $saved, 'price_project' => $price_project, 'project' => $project, "cigarettes_per_day" => $cigarettes_per_day, 'date_created' => $date_created, 'crakings' => $crakings, 'current_date' => $current_date, 'not_smoked_cigarettes_expectation' => $not_smoked_cigarettes_expectation, 'smoked_cigarettes' => $smoked_cigarettes, 'elapse_days' => $elapse_days]);
+
+
+        return response()->json(['users' => $users, 'pourcentage' => 40]);
     }
 
 
-      
+
 
 
     /**
@@ -83,7 +87,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**

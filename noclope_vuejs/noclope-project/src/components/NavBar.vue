@@ -27,28 +27,28 @@
                     >Créer mon objectif</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/dashboard"
                     class="text-xl text-slate-100 hover:text-teal-300"
                     >Dashboard</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/transactions"
                     class="text-xl text-slate-100 hover:text-teal-300"
                     >Mes économies</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/contact"
                     class="text-slate-100 text-xl hover:text-teal-300"
                     >Mes Contacts</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/cracking"
                     class="text-slate-100 text-xl hover:text-teal-300"
@@ -138,28 +138,34 @@
                     >Créer mon objectif</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/dashboard"
                     >Dashboard</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/transactions"
                     >Mes économies</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/contact"
                     >Mes Contacts</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/cracking"
                     >J'ai craqué</RouterLink
+                  >
+                </li>
+                <li v-if="isLoggedIn() && isAdmin()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                  <RouterLink
+                    to="/admin"
+                    >ADMIN</RouterLink
                   >
                 </li>
                 <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
