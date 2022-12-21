@@ -162,7 +162,7 @@
                     >J'ai craqué</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn() && isAdmin()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/admin"
                     >ADMIN</RouterLink
