@@ -27,28 +27,28 @@
                     >Créer mon objectif</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/dashboard"
                     class="text-xl text-slate-100 hover:text-teal-300"
                     >Dashboard</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/transactions"
                     class="text-xl text-slate-100 hover:text-teal-300"
                     >Mes économies</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/contact"
                     class="text-slate-100 text-xl hover:text-teal-300"
                     >Mes Contacts</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="py-5 px-2">
+                <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
                   <RouterLink
                     to="/cracking"
                     class="text-slate-100 text-xl hover:text-teal-300"
@@ -126,43 +126,49 @@
       </div>
       <!--Mobile menu-->
           <ul class="md:hidden bg-teal-500" :class="{hidden: showMobileMenu}">
-                <li class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/"
                     >Accueil</RouterLink
                   >
                 </li>
-                <li v-if="!isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="!isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/project"
                     >Créer mon objectif</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/dashboard"
                     >Dashboard</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/transactions"
                     >Mes économies</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/contact"
                     >Mes Contacts</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && !isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/cracking"
                     >J'ai craqué</RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn() && isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                  <RouterLink
+                    to="/admin"
+                    >ADMIN</RouterLink
+                  >
+                </li>
+                <li v-if="isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/edit"
                     ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -170,7 +176,7 @@
                   </svg></RouterLink
                   >
                 </li>
-                <li v-if="isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/"
                     @click="logoutUser"
@@ -179,13 +185,13 @@
                    </svg></RouterLink
                   >
                 </li>
-                <li v-if="!isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+                <li v-if="!isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                 <RouterLink
                   to="/login"
                   >Se connecter</RouterLink
                 >
               </li>
-              <li v-if="!isLoggedIn()" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+              <li v-if="!isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                 <RouterLink
                   to="/register"
                   >S'inscrire</RouterLink

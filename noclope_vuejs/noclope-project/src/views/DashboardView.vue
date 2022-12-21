@@ -3,10 +3,20 @@ import { def } from "@vue/shared";
 import Register from "../components/Register.vue";
 import * as dayjs from "dayjs";
 import "dayjs/locale/fr"; // import locale
+import { Vue3Lottie } from 'vue3-lottie'
+import 'vue3-lottie/dist/style.css'
+import FireworksJSON from '../assets/7393-fireworks.json'
+
+
+
 </script>
 
 <script>
+
 export default {
+  components: {
+    Vue3Lottie,
+  },
   data() {
     return {
       project: {},
@@ -21,6 +31,9 @@ export default {
       price_cigarette: 0,
       date: "",
       number_cig_smoked_today: 0,
+      FireworksJSON,
+      fireworks:false,
+      
     };
   },
   methods: {
@@ -149,19 +162,28 @@ export default {
       //Objectif journalier
       this.number_cig_non_smoked =
         this.project.consumption - this.number_cig_smoked_today;
-      this.saving_now = this.number_cig_non_smoked * this.price_cigarette;
+      this.saving_now = (this.number_cig_non_smoked * this.price_cigarette).toFixed(0);
+      //Permet de savoir si l'objectif est réalisé
+      if(this.progression>=100){
+        this.fireworks=true;
+      } else {
+        this.fireworks=false;
+      }
     },
+
+
   },
 
   mounted() {
     this.getProject();
     this.getCrakings();
+    // src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
   },
 };
 </script>
 
 <template>
-  <section class="flex align-center justify-center">
+  <section v-if="!fireworks" class="flex align-center justify-center">
     <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
       <div class="flex align-center justify-center ">
         <div class="flex-col">
@@ -194,8 +216,9 @@ export default {
     </div>
   </section>
 
-  <section class="flex justify-around flex-wrap">
+  <section v-if="!fireworks" class="flex justify-around flex-wrap">
   <div class="flex align-center justify-center w-fit">
+    
     <div class="block p-6 rounded-lg shadow-lg bg-teal-400 max-w-sm  my-8">
       <div>
         <h2 class="text-sky-900 text-2xl font-semibold">Mon parcours</h2>
@@ -243,8 +266,43 @@ export default {
       </div>
     </div>
   </section>
-  
+
+  <!-- Si le projet est fini (progression=100) affiche cette div avec le récap -->
+<div v-if="fireworks" class="w-auto">
+  <Vue3Lottie :animationData="FireworksJSON"  class="w-auto" />
+  <button type="submit" class="
+      absolute 
+      overflow-hidden 
+      inset-1/3
+      w-auto
+      h-min
+      px-6
+      py-2.5
+      bg-teal-500
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-teal-400 hover:shadow-lg
+      focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-teal-400 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">BRAVO! Vous avez fini votre projet et allez pouvoir vous offrir : {{ project.goal }} </button>
+
+</div>
+
+
+
+
 </template>
+
+
+
+
 
 <style>
 *{
