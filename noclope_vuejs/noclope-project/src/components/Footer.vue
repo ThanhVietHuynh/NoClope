@@ -1,8 +1,8 @@
 <template>
     <footer class="text-center text-white hidden md:block items-center space-x-1" style="background-color: #f1f1f1;">
   <div class="container pt-9">
-    <div class="flex justify-center mb-9">
-      <a href="#!" class="mr-9 text-gray-800">
+    <div class="flex justify-center mb-5">
+      <a href="#!" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -19,7 +19,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-9 text-gray-800">
+      <a href="#!" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -36,7 +36,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-9 text-gray-800">
+      <a href="#!" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -53,7 +53,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-9 text-gray-800">
+      <a href="#!" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -70,7 +70,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-9 text-gray-800">
+      <a href="#!" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -87,6 +87,10 @@
           ></path>
         </svg>
       </a>
+    </div>
+    <div class="text-black flex flex-row justify-center  mb-5 ">
+      <a href="" class="mr-4">Mentions Légales</a>
+      <a href="https://noclope.com/cgu" class="mr-4">CGU</a>
     </div>
   </div>
 
