@@ -123,7 +123,7 @@ export default {
   <form @submit.prevent="updateProfil">
     <div class="form-group mb-6">
       <h2>Modifier le profil</h2>
-      <input v-model="profil.lastname" type="text" class="form-control
+      <input v-model="lastname" type="text" class="form-control
         block
         w-full
         px-3
@@ -137,42 +137,59 @@ export default {
         transition
         ease-in-out
         m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
+        placeholder="Nouveau Nom">
+    </div>
+    <div class="form-group mb-6">
+      <input v-model="firstname" type="text" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
+        placeholder="Nouveau Prénom">
+    </div>
+    <div class="form-group mb-6">
+      <input v-model="email" type="email" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
+        aria-describedby="emailHelp" placeholder="Nouvel email">
+    </div>
+    <div class="form-group mb-6">
+      <input v-model="password" type="password" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputEmail2"
-        aria-describedby="emailHelp" placeholder="Nouveau Nom">
-    </div>
-    <div class="form-group mb-6">
-      <input v-model="profil.firstname" type="text" class="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
-        placeholder="Prénom">
-    </div>
-    <div class="form-group mb-6">
-      <input v-model="profil.email" type="email" class="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
-        placeholder="Nouvel email">
+        placeholder="Nouveau mot de passe">
     </div>
   
     <button type="submit" class="

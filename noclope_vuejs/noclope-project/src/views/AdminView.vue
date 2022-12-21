@@ -7,7 +7,6 @@ export default {
   data() {
     return {
       users: {},
-      
     };
   },
 
@@ -27,7 +26,6 @@ export default {
       this.pourcentage = data.pourcentage;
       console.log(data);
     },
-    
   },
   mounted() {
     this.getUsers();
@@ -121,13 +119,13 @@ export default {
                   <div class="flex justify-between">
                     <div class="justify-start">
                       <p class="text-teal-400 text-xl font-semibold ml-2.5">
-                        {{user.price_goal * user.progression_now / 100 }}€
+                        {{(user.price_goal * user.progression_now) / 100}} €
                       </p>
                       <p class="text-teal-400 text-lg ml-2.5">cagnotté</p>
                     </div>
                     <div class="justify-end mr-2.5">
                       <p class="text-xl font-semibold text-right text-sky-900">
-                        {{user.price_goal}}€
+                        {{ user.price_goal }}€
                       </p>
                       <p class="text-lg text-sky-900">montant final</p>
                     </div>
