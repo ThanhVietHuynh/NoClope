@@ -70,6 +70,8 @@ const router = createRouter({
       path: "/agreed/",
       name: "agreed",
       component: () => import("../views/AgreedContactView.vue"),
+    },
+    {
       path: "/cancelstripe",
       name: "cancelstripe",
       component: () => import("../views/CancelstripeView.vue"),
