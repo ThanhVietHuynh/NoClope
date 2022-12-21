@@ -193,7 +193,7 @@ class AuthController extends Controller
             'lastname' => 'required|string',
             'firstname' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required', //Mettre après coup des conditions plus sévères pour le mot de passe
+            'password' => ['required','string','max:255', RulesPassword::min(8)->numbers(), RulesPassword::min(8)->mixedCase(),RulesPassword::min(8)->letters()],
         ]);
 
         $profil = User::findOrFail(Auth::user()->id);
