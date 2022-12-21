@@ -19,9 +19,11 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = Transaction::where('user_id',Auth::user()->id)->get();
+        $sum=Transaction::where('user_id',Auth::user()->id)->sum('amount');
  
         return response()->json([
-             'transactions' => $transaction,           
+             'transactions' => $transaction, 
+             'sum' => $sum,          
         ],200);
     }
 
