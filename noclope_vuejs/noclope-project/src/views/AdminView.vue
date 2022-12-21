@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       users: [],
+      pourcentage: 0,
     };
   },
 
@@ -23,6 +24,7 @@ export default {
 
       const data = await response.json();
       this.users = data.users;
+      this.pourcentage = data.pourcentage;
       console.log(data);
     },
   },
@@ -131,7 +133,7 @@ export default {
                   <div class="progression bg-stone-100 h-2.5 w-96 rounded-lg">
                     <div
                       class="progression2 text-transparent bg-teal-400 h-2.5 rounded-lg"
-                      :style="'width: ' + + '%'"
+                      :style="'width: ' + pourcentage + '%'"
                     ></div>
                   </div>
                 </td>
