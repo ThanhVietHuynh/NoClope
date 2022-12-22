@@ -24,6 +24,7 @@ import Register from '../components/Register.vue';
             this.isprojet=true;
         }
         this.infoproject=infoproject;
+        console.log("local storage", this.infoproject)
 
     },
 
@@ -36,7 +37,8 @@ import Register from '../components/Register.vue';
         goal: this.infoproject.goal,
         price_goal: this.infoproject.price_goal,
         price_pack: this.infoproject.price_pack,
-        consumption: this.infoproject.consumption
+        consumption: this.infoproject.consumption,
+        number_day: this.infoproject.number_day
       }
 
 
@@ -72,25 +74,45 @@ import Register from '../components/Register.vue';
 
 <template>
   <section class="flex items-center justify-center" >
-  
-  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md my-8">
-  <h1>Récapitulatif du projet</h1>
-  <ul>
-    <!-- <li v-for = "item in infoproject" > -->
-    <p>Objectif: {{ infoproject.goal }} pour un montant de {{ infoproject.price_goal }}€</p>
-    <p>Informations saisies :</p>
-    <p>Consommation journalière: {{ infoproject.consumption }}cigarettes/jour</p>
-    <p>Prix d'un paquet de cigarette: {{ infoproject.price_pack }}€</p>
-    <!-- <p>Nom: {{contact.lastname}}</p>
-          <p>Numéro de téléphone: {{contact.number_phone}}</p> -->
-    <!-- </li> -->
-  </ul>
-</div>
+  <p>{{feedbackMessage}}</p>
+
+  <div class="flex align-center justify-center w-fit">
+    
+    <div class="block p-6 rounded-lg shadow-lg bg-teal-400 max-w-sm  my-8">
+      <div>
+        <h2 class="text-sky-900 text-2xl font-semibold text-center mb-3">Vous aimeriez :</h2>
+        <p class="text-sky-900 text-xl mb-4 font-semibold text-center">{{ infoproject.goal }} pour {{ infoproject.price_goal }}€</p>
+      </div>
+      <h3 class="text-sky-900 text-xl mb-4 font-semibold">Votre consommation étant de</h3>
+      <div class="flex justify-around mt-2.5">
+        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
+          <!-- <p class="text-sky-900">Votre conso</p> -->
+          <p class="text-xl text-sky-900 ">{{ infoproject.consumption }} clope <br> par jour</p>
+        </div>
+        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
+          <!-- <p class="text-sky-900">Vous achetez</p> -->
+          <p class="text-xl text-sky-900">
+            à {{ infoproject.price_pack }}€ <br> 
+            le paquet
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col ">
+      <h3 class="text-sky-900 text-xl mt-4 mb-2 font-semibold"> vous pourriez atteindre votre objectif en</h3>
+      <div class="bg-white shadow-lg text-center flex justify-center self-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
+        <p class="text-xl text-sky-900 flex justify-center">{{ infoproject.number_day }} <br> jours </p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
   </section>
 
 <section class="flex items-center justify-center" >
-  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md mb-10">
   <form @submit.prevent="createUser">
+    <h1 class="text-sky-900 text-xl mb-4 text-center font-semibold">Créer un compte</h1>
     <p v-if="isprojet" class="text-red-500 mt-2 text-m font-semibold text-center mb-3">
       Vous devez créer un projet pour vous inscrire</p>
     <div class="grid grid-cols-2 gap-4">
@@ -191,10 +213,4 @@ import Register from '../components/Register.vue';
 </section>
 </template>
 
-<style scoped>
-h1 {
-  text-align: center;
-  border-bottom: 4px solid gray;
-}
 
-</style>

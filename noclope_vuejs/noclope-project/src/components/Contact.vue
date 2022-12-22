@@ -1,209 +1,180 @@
+<script setup>
+import { ref } from "vue";
+const showCreateContact = ref(true);
+// const showButtonCreateContact = ref(true);
+</script>
 <script>
-export default{
-  
-  data(){
-    return{
-      contacts:[],
-      firstname:"",
-      lastname:"",
-      email:"",
-      feedbackMessage:"",
+export default {
+  data() {
+    return {
+      contacts: [],
+      firstname: "",
+      lastname: "",
+      email: "",
+      feedbackMessage: "",
     };
   },
 
   methods: {
-    async getContacts(){
+    async getContacts() {
       let tokens = localStorage.getItem("token");
       const response = await fetch("http://127.0.0.1:8000/api/contact", {
-        method:"GET",
-        headers:{
-          "Accept":"application/json",
+        method: "GET",
+        headers: {
+          Accept: "application/json",
           Authorization: `Bearer ${tokens}`,
-        }
+        },
       });
 
       const data = await response.json();
-     
+
       this.contacts = data.contacts;
+      console.log(this.contacts)
     },
 
-    async createContact(){
-        const body = {
-            email: this.email,    
-            firstname: this.firstname,
-            lastname: this.lastname,
-        }
-        let tokens = localStorage.getItem("token");
-        const response = await fetch("http://127.0.0.1:8000/api/contact",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                Authorization: `Bearer ${tokens}`,
-            },
-            body: JSON.stringify(body)
-        });
+    async createContact() {
+      const body = {
+        email: this.email,
+        firstname: this.firstname,
+        lastname: this.lastname,
+      };
+      let tokens = localStorage.getItem("token");
+      const response = await fetch("http://127.0.0.1:8000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${tokens}`,
+        },
+        body: JSON.stringify(body),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        this.feedbackMessage = data.message;
-        this.getContacts();
+      this.feedbackMessage = data.message;
+      this.getContacts();
     },
 
     showContact: function () {
-      
-      if (this.contacts==null || this.contacts==0|| this.contacts==""){
-        return false
-      }else{
+      if (this.contacts == null || this.contacts == 0 || this.contacts == "") {
+        return false;
+      } else {
         return true;
       }
     },
+
+    showButtonCreateContact: function(){
+      if (this.contacts.length < 2) {
+
+        return false;
+      } else {
+        return true;
+      }
+    }
   },
-  mounted(){
-  this.getContacts();
+  mounted() {
+    this.getContacts();
+    this.showButtonCreateContact();
     
-  }
+  },
 };
 </script>
 
 <template>
 
-  <section class="flex items-center justify-center" v-if="showContact()" >
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2>Listes des contacts</h2>
-          <ul>
-            <li v-for = "contact in contacts" :key="contacts.user_id">
-              <p>Prénom: {{contact.firstname}}</p>
-              <p>Nom: {{contact.lastname}}</p>
-              <p>Numéro de téléphone: {{contact.number_phone}}</p>
-            </li>
-          </ul>
+  <section class="flex items-center justify-center mb-10 mt-10">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+      <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">
+        Mes contacts
+      </h2>
+      <div class="flex justify-around mb-2">
+        <button  @click="showCreateContact = !showCreateContact" v-if="showButtonCreateContact" 
+          class="w-50 px-6 py-2.5 bg-teal-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-400 active:shadow-lg transition duration-150 ease-in-out"
+        >
+          Créer <br />
+          un contact
+        </button>
+        <button
+          class="w-50 px-6 py-2.5 bg-teal-500  text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-400 active:shadow-lg transition duration-150 ease-in-out"
+        >
+          Modifier <br> un contact
+        </button>
+      </div>
+      <div
+        class="block mb-2 p-6 rounded-lg shadow-lg bg-white max-w-md"
+        v-if="showContact()"
+        v-for="contact in contacts"
+        :key="contacts.user_id"
+      >
+        <p class="text-sky-900 text-l font-semibold">
+          {{ contact.firstname }} {{ contact.lastname }}
+        </p>
+        <p class="text-sky-900 text-l font-semibold">{{ contact.email }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex items-center justify-center mb-10" :class="{ hidden: showCreateContact }">
+    <div
+      class="flex flex-col p-6 rounded-lg shadow-lg bg-white max-w-sm w-3/4 teal"
+    >
+      <form @submit.prevent="createContact">
+        <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">
+          Ajouter un contact
+        </h2>
+        <div class="form-group mb-6">
+          <label
+            for="exampleInputEmail2"
+            class="form-label inline-block mb-2 text-gray-700"
+            >Nom</label
+          >
+          <input
+            v-model="lastname"
+            type="text"
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none"
+            id="exampleInputEmail2"
+            aria-describedby="emailHelp"
+            placeholder="Nom"
+          />
         </div>
-    </section>
-    
-    <section class="flex items-center justify-center" >
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 teal">
-  <form @submit.prevent="createContact">
-    <h2>Ajouter un contact</h2>
-    <div class="form-group mb-6">
-      <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Nom</label>
-      <input v-model="lastname" type="text" class="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInputEmail2"
-        aria-describedby="emailHelp" placeholder="Nom">
-    </div>
-    <div class="form-group mb-6">
-      <label for="exampleInputPassword2" class="form-label inline-block mb-2 text-gray-700">Prénom</label>
-      <input v-model="firstname" type="text" class="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInputPassword2"
-        placeholder="Prénom">
-    </div>
-    <div class="form-group mb-6">
-      <label for="exampleInputPassword2" class="form-label inline-block mb-2 text-gray-700">Email</label>
-      <input v-model="email"  type="email" class="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInputPassword2"
-        placeholder="Votre adresse email">
-    </div>
-  
-    <button type="submit" class="
-      w-full
-      px-6
-      py-2.5
-      bg-teal-500
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-teal-400 hover:shadow-lg
-      focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-teal-400 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out">Valider</button>
-    
-  </form>
-</div>
-    </section>
-
-    <p>{{feedbackMessage}}</p>
-
-    <section class="flex items-center justify-center" >
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2>Listes des contacts</h2> <br>
-          <ul>
-            <li style="border-bottom: 1px solid black;" v-for = "contact in contacts" :key="contacts.user_id">
-              <p>Prénom : {{contact.firstname}}</p> 
-              <p>Nom : {{contact.lastname}}</p>
-              <p>Votre adresse email : {{contact.email}}</p> <br>
-            </li>
-          </ul>
+        <div class="form-group mb-6">
+          <label
+            for="exampleInputPassword2"
+            class="form-label inline-block mb-2 text-gray-700"
+            >Prénom</label
+          >
+          <input
+            v-model="firstname"
+            type="text"
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none"
+            id="exampleInputPassword2"
+            placeholder="Prénom"
+          />
         </div>
-    </section>
+        <div class="form-group mb-6">
+          <label
+            for="exampleInputPassword2"
+            class="form-label inline-block mb-2 text-gray-700"
+            >Email</label
+          >
+          <input
+            v-model="email"
+            type="email"
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none"
+            id="exampleInputPassword2"
+            placeholder="Votre adresse email"
+          />
+        </div>
 
-    
-    
+        <button
+          type="submit"
+          class="w-full px-6 py-2.5 bg-teal-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-400 active:shadow-lg transition duration-150 ease-in-out"
+        >
+          Valider
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <p>{{ feedbackMessage }}</p>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-
-  body{background:#59ABE3;margin:0}
-
-h2{
-    margin:10px 0;
-    padding-bottom:10px;
-    width:180px;
-    color:#78788c;border-bottom:3px solid #78788c
-}
-
-}
-</style>

@@ -72,7 +72,7 @@ const router = createRouter({
       component: () => import("../views/ConfirmPasswordView.vue"),
     },
     {
-      path: "/agreed/",
+      path: "/agreed/:token",
       name: "agreed",
       component: () => import("../views/AgreedContactView.vue"),
     },

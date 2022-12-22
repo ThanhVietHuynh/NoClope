@@ -8,13 +8,13 @@ import ToolBar from "./components/ToolBar.vue"
 
 </script>
 
-<template>
+<template class="">
  <header>
     <NavBar/>
    
  </header>
 
-  <body class="bg-white pb-20">
+  <body class="bg-white pb-20 ">
      <RouterView />
      <ToolBar/>
      <Footer/>
