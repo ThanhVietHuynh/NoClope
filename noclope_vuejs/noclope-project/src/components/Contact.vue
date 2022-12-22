@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 const showCreateContact = ref(true);
-const showButtonCreateContact = ref(true);
+// const showButtonCreateContact = ref(true);
 </script>
 <script>
 export default {
@@ -29,6 +29,7 @@ export default {
       const data = await response.json();
 
       this.contacts = data.contacts;
+      console.log(this.contacts)
     },
 
     async createContact() {
@@ -63,7 +64,8 @@ export default {
     },
 
     showButtonCreateContact: function(){
-      if (this.contacts.length === 2) {
+      if (this.contacts.length < 2) {
+
         return false;
       } else {
         return true;
@@ -72,6 +74,8 @@ export default {
   },
   mounted() {
     this.getContacts();
+    this.showButtonCreateContact();
+    
   },
 };
 </script>
@@ -84,7 +88,7 @@ export default {
         Mes contacts
       </h2>
       <div class="flex justify-around mb-2">
-        <button  @click="showCreateContact = !showCreateContact" v-if="showButtonCreateContact()" 
+        <button  @click="showCreateContact = !showCreateContact" v-if="showButtonCreateContact" 
           class="w-50 px-6 py-2.5 bg-teal-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-400 active:shadow-lg transition duration-150 ease-in-out"
         >
           Créer <br />
