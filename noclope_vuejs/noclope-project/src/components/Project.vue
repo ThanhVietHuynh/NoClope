@@ -56,10 +56,11 @@ export default {
 </script>
 
 <template>
- <section class="flex items-center justify-center" >
+ <section class="flex items-center justify-center flex-wrap" >
   <img src="@/assets/objectif1.png" class="" alt="">
   <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm my-8">
   <form @submit.prevent="getProjects()">
+    <h1 class="text-sky-900 text-xl mb-4 text-center font-semibold">Simulons votre projet !</h1>
     <div class="form-group mb-6">
       <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Quel est votre objectif ?</label>
       <input v-model="goal" type="text" class="form-control
