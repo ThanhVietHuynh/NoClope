@@ -98,7 +98,7 @@ class Kernel extends ConsoleKernel
                         'payment_method' => $payment_method,
                     ]);
 
-                    //Demande la confirmation du paiment, à voir avec Timotée si la validation doit venir du client ou si automatique
+                    //Demande la confirmation du paiment
                     $stripe->paymentIntents->confirm($transac->id, ['payment_method' => $payment_method]);
 
                 }
@@ -122,8 +122,8 @@ class Kernel extends ConsoleKernel
             //         'error' => "Erreur lors de la création de la transaction"
             //     ], 404);
             // }
-        // })->weekly();
-            })->everyMinute();
+        })->weekly();
+            // })->everyMinute();
         // })->daily();
 
     }

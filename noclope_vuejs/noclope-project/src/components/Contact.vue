@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 const showCreateContact = ref(true);
-const showButtonCreateContact = ref(true);
+// const showButtonCreateContact = ref(true);
 </script>
 <script>
 export default {
