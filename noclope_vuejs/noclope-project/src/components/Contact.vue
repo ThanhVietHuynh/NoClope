@@ -1,3 +1,8 @@
+<script setup>
+import { ref } from "vue";
+const showCreateContact = ref(true);
+const showButtonCreateContact = ref(true);
+</script>
 <script>
 export default {
   data() {
@@ -56,6 +61,14 @@ export default {
         return true;
       }
     },
+
+    showButtonCreateContact: function(){
+      if (this.contacts.length === 2) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   },
   mounted() {
     this.getContacts();
@@ -71,7 +84,7 @@ export default {
         Mes contacts
       </h2>
       <div class="flex justify-around mb-2">
-        <button
+        <button  @click="showCreateContact = !showCreateContact" v-if="showButtonCreateContact()" 
           class="w-50 px-6 py-2.5 bg-teal-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-400 active:shadow-lg transition duration-150 ease-in-out"
         >
           Créer <br />
@@ -97,7 +110,7 @@ export default {
     </div>
   </section>
 
-  <section class="flex items-center justify-center mb-10">
+  <section class="flex items-center justify-center mb-10" :class="{ hidden: showCreateContact }">
     <div
       class="flex flex-col p-6 rounded-lg shadow-lg bg-white max-w-sm w-3/4 teal"
     >
