@@ -138,17 +138,6 @@ class AuthController extends Controller
             
     ]);
 
-    // $user = User::findOrFail(Auth::user()->id);
-    
-    // if($user->isadmin == 1)
-    // {
-
-    //     return response()->json([
-    //         'message' => "Vous êtes connecté Admin.",
-    //     ],201);
-       
-    // }else{
-        
          $user = User::where('email', $request->email)->first();
         
          if(!Hash::check($request->password, $user['password'])===false){
