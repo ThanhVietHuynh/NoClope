@@ -43,8 +43,11 @@ export default {
           console.log('data value', data);
           this.loginUser(data.access_token,data.user);
           return  this.$router.push('/');
-        }else if(response.status === 400){
-          this.feedbackMessage = data.message;
+        }else if(response.status === 500){
+          this.feedbackMessage = "Mot de passe ou identifiant incorrect";
+        } else if (response.status === 422){
+          this.feedbackMessage = "Un champ est manquant";
+
         }
     },
   },
@@ -124,7 +127,7 @@ export default {
       <p class="text-red-500 mt-2 text-m font-semibold">
       {{feedbackMessage}}
     </p>
-    <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="#!"
+    <p class="text-gray-800 mt-6 text-center">Vous n'avez pas de compte? <a href="/project"
         class="text-teal-600 hover:text-teal-700 focus:text-teal-700 transition duration-200 ease-in-out">S'inscrire</a>
     </p>
   </form>
