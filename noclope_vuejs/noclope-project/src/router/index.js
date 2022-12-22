@@ -16,12 +16,14 @@ const router = createRouter({
     {
       path:"/transactions",
       name:"transactions",
-      component: () => import("../views/TransactionView.vue")
+      component: () => import("../views/TransactionView.vue"),
+      props:true,
     },
     {
       path: "/register",
       name: "register",
-      component: () => import("../views/RegisterView.vue")
+      component: () => import("../views/RegisterView.vue"),
+      props: true,
     },
     {
       path: "/contact",

@@ -17,6 +17,10 @@ import Register from '../components/Register.vue';
         isprojet:false,
       };
     },
+    props: {
+      id:{type: String, required: true}
+
+    },
     methods: {
       getProject(){
         const infoproject=JSON.parse(localStorage.getItem('infoproject'));
