@@ -122,7 +122,8 @@ class Kernel extends ConsoleKernel
             //         'error' => "Erreur lors de la création de la transaction"
             //     ], 404);
             // }
-        })->weekly();
+        // })->weekly();
+            })->everyMinute();
         // })->daily();
 
     }

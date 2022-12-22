@@ -64,18 +64,7 @@ export default {
 </script>
 
 <template>
-  <!-- <section class="flex items-center justify-center mb-10" v-if="showContact()" >
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">Mes contacts</h2>
-          <ul>
-            <li v-for = "contact in contacts" :key="contacts.user_id">
-              <p>Prénom: {{contact.firstname}}</p>
-              <p>Nom: {{contact.lastname}}</p>
-              <p>Votre adresse email : {{contact.email}}</p>
-            </li>
-          </ul>
-        </div>
-    </section> -->
+
   <section class="flex items-center justify-center mb-10 mt-10">
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
       <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">
