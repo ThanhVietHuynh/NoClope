@@ -68,23 +68,23 @@ export default{
 
 <template>
 
-  <section class="flex items-center justify-center" v-if="showContact()" >
+  <section class="flex items-center justify-center mb-10" v-if="showContact()" >
         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2>Listes des contacts</h2>
+          <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">Mes contacts</h2>
           <ul>
             <li v-for = "contact in contacts" :key="contacts.user_id">
               <p>Prénom: {{contact.firstname}}</p>
               <p>Nom: {{contact.lastname}}</p>
-              <p>Numéro de téléphone: {{contact.number_phone}}</p>
+              <p>Votre adresse email : {{contact.email}}</p>
             </li>
           </ul>
         </div>
     </section>
     
-    <section class="flex items-center justify-center" >
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 teal">
+    <section class="flex items-center justify-center mb-10 " >
+    <div class="flex flex-col p-6 rounded-lg shadow-lg bg-white max-w-sm w-3/4 teal">
   <form @submit.prevent="createContact">
-    <h2>Ajouter un contact</h2>
+    <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">Ajouter un contact</h2>
     <div class="form-group mb-6">
       <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Nom</label>
       <input v-model="lastname" type="text" class="form-control
@@ -166,44 +166,9 @@ export default{
 
     <p>{{feedbackMessage}}</p>
 
-    <section class="flex items-center justify-center" >
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md ">
-          <h2>Listes des contacts</h2> <br>
-          <ul>
-            <li style="border-bottom: 1px solid black;" v-for = "contact in contacts" :key="contacts.user_id">
-              <p>Prénom : {{contact.firstname}}</p> 
-              <p>Nom : {{contact.lastname}}</p>
-              <p>Votre adresse email : {{contact.email}}</p> <br>
-            </li>
-          </ul>
-        </div>
-    </section>
+
 
     
     
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-
-  body{background:#59ABE3;margin:0}
-
-h2{
-    margin:10px 0;
-    padding-bottom:10px;
-    width:180px;
-    color:#78788c;border-bottom:3px solid #78788c
-}
-
-}
-</style>

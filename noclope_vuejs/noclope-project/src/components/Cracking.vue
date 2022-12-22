@@ -55,9 +55,9 @@ export default{
     
   <section class="flex align-center justify-center">
 
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-2/4 my-8">
+    <div class="flex flex-col p-6 rounded-lg shadow-lg bg-white max-w-sm w-3/4 my-8">
       <form @submit.prevent="createCracking">
-    <h2>Vous avez craqué ?</h2>
+    <h2 class="text-sky-900 text-xl mb-4 text-center font-semibold">Vous avez craqué ?</h2>
     <div class="form-group mb-6">
       <label for="exampleInputEmail2" class="form-label inline-block mb-2 text-gray-700">Combien de cigarettes ?</label>
       <input v-model="number_smoked_cigarette" type="number" class="form-control
@@ -122,30 +122,3 @@ export default{
     
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-
-  body{background:#59ABE3;margin:0}
-
-h2{
-    margin:10px 0;
-    padding-bottom:10px;
-    width:180px;
-    color:#78788c;border-bottom:3px solid #78788c
-}
-
-
-
-
-}
-</style>
