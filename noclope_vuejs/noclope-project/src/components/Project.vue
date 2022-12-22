@@ -4,10 +4,10 @@ export default {
   data() {
     return {
       goal: "",
-      price_goal: "",
-      price_pack: "",
-      consumption: "",
-      number_day:"",
+      price_goal: 500,
+      price_pack: 10,
+      consumption: 20,
+      // number_day: 0,
       result: null,
       token: "",
     };
@@ -17,18 +17,21 @@ export default {
   methods: {
     
     getProjects: function () {
-      const number_day= this.goal*20/(this.price_pack*this.consumption).toFixed(0)
+      // const number_day= (this.price_goal*20/(this.price_pack*this.consumption).toFixed(0));
+      // console.log(this.number_day);
+
       const infoproject = {
         goal: this.goal,
         price_goal: this.price_goal,
         price_pack: this.price_pack,
         consumption: this.consumption,
-        number_day:number_day,
+        number_day: (this.price_goal*20/(this.price_pack*this.consumption)).toFixed(0),
+
       };
       
       // Condition regex string pour goal
-      console.log(infoproject);
       localStorage.setItem("infoproject", JSON.stringify(infoproject));
+      // console.log(infoproject);
     },
     showButton: function () {
       
