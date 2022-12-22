@@ -59,7 +59,14 @@
                   <RouterLink
                     to="/admin"
                     class="text-slate-100 text-xl hover:text-teal-300"
-                    >ADMIN</RouterLink
+                    >Liste des utilisateurs</RouterLink
+                  >
+                </li>
+                <li v-if="isLoggedIn() && isAdmin()" class="py-5 px-2">
+                  <RouterLink
+                    to="/graphusers"
+                    class="text-slate-100 text-xl hover:text-teal-300"
+                    >Graphique utilisateurs</RouterLink
                   >
                 </li>
               </ul>

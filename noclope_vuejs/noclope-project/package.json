@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "chart.js": "^4.1.1",
     "dayjs": "^1.11.7",
     "flowbite": "^1.5.5",
     "lottie-vuejs": "^0.1.0",
