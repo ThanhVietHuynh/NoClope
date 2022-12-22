@@ -24,6 +24,7 @@ import Register from '../components/Register.vue';
             this.isprojet=true;
         }
         this.infoproject=infoproject;
+        console.log("local storage", this.infoproject)
 
     },
 
