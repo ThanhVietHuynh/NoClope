@@ -58,11 +58,11 @@
 
 <template>
     <p>
-        Etes vous d'accord pour rejoindre votre ami(e) dans ce combat ? 
+        Souhaitez-vous aider votre ami(e) à arreter de fumer ? 
     </p>
-<form action="" @submit.prevent="deleteContact">
-    <button type="submit">Oui, je veux aider mon ami(e) à se battre !</button>
-    <button type="submit">Non, j'attend qu'il crève...</button>
+<form action="" @submit.prevent="">
+    <button @click="addContact" type="submit">Oui, je veux aider mon ami(e) à arreter de fumer !</button>
+    <button @click="deleteContact" type="submit">Non, je ne désire pas le soutenir.</button>
 
 
 </form>
