@@ -80,25 +80,28 @@ import Register from '../components/Register.vue';
     
     <div class="block p-6 rounded-lg shadow-lg bg-teal-400 max-w-sm  my-8">
       <div>
-        <h2 class="text-sky-900 text-2xl font-semibold">Votre projet</h2>
-        <p class="text-sky-900 text-l mb-4 font-semibold">{{ infoproject.goal }} <br> pour {{ infoproject.price_goal }}€</p>
+        <h2 class="text-sky-900 text-2xl font-semibold text-center mb-3">Vous aimeriez :</h2>
+        <p class="text-sky-900 text-xl mb-4 font-semibold text-center">{{ infoproject.goal }} pour {{ infoproject.price_goal }}€</p>
       </div>
+      <h3 class="text-sky-900 text-xl mb-4 font-semibold">Votre consommation étant de</h3>
       <div class="flex justify-around mt-2.5">
         <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
           <!-- <p class="text-sky-900">Votre conso</p> -->
-          <p class="text-xl text-sky-900 ">{{ infoproject.consumption }} clop <br> par jour</p>
+          <p class="text-xl text-sky-900 ">{{ infoproject.consumption }} clope <br> par jour</p>
         </div>
         <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
           <!-- <p class="text-sky-900">Vous achetez</p> -->
           <p class="text-xl text-sky-900">
-            {{ infoproject.price_pack }}€ <br> 
+            à {{ infoproject.price_pack }}€ <br> 
             le paquet
           </p>
         </div>
-        <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
-          <p class="text-xl text-sky-900">{{ infoproject.number_day }} jours </p>
-          <p class="text-sky-900"></p>
-        </div>
+      </div>
+      <div class="flex flex-col ">
+      <h3 class="text-sky-900 text-xl mt-4 mb-2 font-semibold"> vous pourriez atteindre votre objectif en</h3>
+      <div class="bg-white shadow-lg text-center flex justify-center self-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
+        <p class="text-xl text-sky-900 flex justify-center">{{ infoproject.number_day }} <br> jours </p>
+      </div>
       </div>
     </div>
   </div>
