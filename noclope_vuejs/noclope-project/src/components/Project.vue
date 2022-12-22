@@ -1,6 +1,5 @@
 <script>
 
-
 export default {
   data() {
     return {
@@ -8,6 +7,7 @@ export default {
       price_goal: "",
       price_pack: "",
       consumption: "",
+      number_day:"",
       result: null,
       token: "",
     };
@@ -17,11 +17,13 @@ export default {
   methods: {
     
     getProjects: function () {
+      const number_day= this.goal*20/(this.price_pack*this.consumption).toFixed(0)
       const infoproject = {
         goal: this.goal,
         price_goal: this.price_goal,
         price_pack: this.price_pack,
         consumption: this.consumption,
+        number_day:number_day,
       };
       
       // Condition regex string pour goal
@@ -48,6 +50,7 @@ export default {
       this.price_goal= parsed.price_goal;
       this.price_pack= parsed.price_pack;
       this.consumption= parsed.consumption;
+      this.number_day= parsed.number_day;
 }else{}
 },
 

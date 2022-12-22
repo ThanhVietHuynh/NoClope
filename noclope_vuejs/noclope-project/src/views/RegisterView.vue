@@ -14,15 +14,16 @@ import Register from '../components/Register.vue';
         email: "",
         password: "",
         feedbackMessage:"",
+        isprojet:false,
       };
     },
     methods: {
       getProject(){
-        console.log("coucou")
         const infoproject=JSON.parse(localStorage.getItem('infoproject'));
-        console.log(infoproject);
+        if(infoproject==null){
+            this.isprojet=true;
+        }
         this.infoproject=infoproject;
-        console.log(this.infoproject);
 
     },
 
@@ -49,7 +50,6 @@ import Register from '../components/Register.vue';
 
           body: JSON.stringify(body)
         });
-
       
 
       const data = await response.json();
@@ -58,9 +58,7 @@ import Register from '../components/Register.vue';
         this.feedbackMessage = data.message;
         return;
       }
-
-      console.log(data.url);
-      localStorage.setItem("token", data.access_token);
+      
       window.location.assign(data.url);
 
     }
@@ -110,6 +108,8 @@ import Register from '../components/Register.vue';
   <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
   <form @submit.prevent="createUser">
     <h1 class="text-sky-900 text-xl mb-4 text-center font-semibold">Créer un compte</h1>
+    <p v-if="isprojet" class="text-red-500 mt-2 text-m font-semibold text-center mb-3">
+      Vous devez créer un projet pour vous inscrire</p>
     <div class="grid grid-cols-2 gap-4">
       <div class="form-group mb-6">
         <input v-model="lastname" type="text" class="form-control
@@ -182,6 +182,9 @@ import Register from '../components/Register.vue';
         focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInput126"
         placeholder="Mot de passe">
     </div>
+    <p class="text-red-500 mt-2 text-m font-semibold text-center mb-3">
+      {{feedbackMessage}}
+    </p>
     <button type="submit" class="
       w-full
       px-6
