@@ -57,17 +57,21 @@ class ContactController extends Controller
 
     Mail::send('mail', $data, function ($message) use ($contact,) {
         $message->to($contact->email)->subject('Équipe-Noclope:Ange gardien');
-        $message->from('nabil-13130@hotmail.fr', 'No clope');
+        $message->from('noclopeteam@contact.fr', 'No clope');
   });
 
         return response()->json(['message' => "Contact créer.",'contact' => $contact],201);
     }
 
-    public function sendMail(Request $request){
-        $request->validate(['email' => 'required|email']);
+    public function addContact(Request $request, $remember_token){
+        $contact = Contact::where('remember_token', '=', $remember_token)->first();
 
-        Mail::to('pedro@pedro.fr')->send(new OrderShipped);
+        $contact->is_agreed = 1;
+        $contact->save();
+    }
+    public function deleteContact(Request $request, $remember_token){
+        $contact = Contact::where('remember_token', '=', $remember_token)->first();
 
-        return view();
+        $contact->delete();
     }
 }
