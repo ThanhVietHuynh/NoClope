@@ -36,7 +36,8 @@ import Register from '../components/Register.vue';
         goal: this.infoproject.goal,
         price_goal: this.infoproject.price_goal,
         price_pack: this.infoproject.price_pack,
-        consumption: this.infoproject.consumption
+        consumption: this.infoproject.consumption,
+        number_day: this.infoproject.number_day
       }
 
 
@@ -94,8 +95,8 @@ import Register from '../components/Register.vue';
           </p>
         </div>
         <div class="bg-white shadow-lg text-center w-24 rounded-lg m-1 transition-transform hover:scale-105">
-          <p class="text-xl text-sky-900">{{ savings }} €</p>
-          <p class="text-sky-900">Economisés</p>
+          <p class="text-xl text-sky-900">{{ infoproject.number_day }} jours </p>
+          <p class="text-sky-900"></p>
         </div>
       </div>
     </div>
@@ -105,7 +106,7 @@ import Register from '../components/Register.vue';
   </section>
 
 <section class="flex items-center justify-center" >
-  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md mb-10">
   <form @submit.prevent="createUser">
     <h1 class="text-sky-900 text-xl mb-4 text-center font-semibold">Créer un compte</h1>
     <p v-if="isprojet" class="text-red-500 mt-2 text-m font-semibold text-center mb-3">
