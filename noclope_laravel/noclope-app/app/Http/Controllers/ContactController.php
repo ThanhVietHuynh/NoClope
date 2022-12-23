@@ -16,8 +16,10 @@ class ContactController extends Controller
 {
     use HasApiTokens, Notifiable;
 
+
+
     public function index(){
-        $contacts = Contact::where('user_id',Auth::user()->id)->get();
+        $contacts = Contact::where('user_id',Auth::user()->id)->where('is_agreed', "=", 1)->get();
 
         return response()->json(['contacts' => $contacts]);
     }
