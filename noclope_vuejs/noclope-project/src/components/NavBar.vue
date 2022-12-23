@@ -24,7 +24,7 @@
                   <RouterLink
                     to="/project"
                     class="text-xl text-slate-100 hover:text-teal-300"
-                    >Créer mon objectif</RouterLink
+                    >Se lancer</RouterLink
                   >
                 </li>
                 <li v-if="isLoggedIn() && !isAdmin()" class="py-5 px-2">
@@ -101,13 +101,13 @@
                   >Se connecter</RouterLink
                 >
               </li>
-              <li v-if="!isLoggedIn()" class="py-5 px-2">
+              <!-- <li v-if="!isLoggedIn()" class="py-5 px-2">
                 <RouterLink
                   to="/register"
                   class="text-slate-100 text-xl hover:text-teal-300"
                   >S'inscrire</RouterLink
                 >
-              </li>
+              </li> -->
             </ul>
             <!-- button show mobile munu -->
             <div class="md:hidden flex items-center">
@@ -142,7 +142,7 @@
                 <li v-if="!isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                   <RouterLink
                     to="/project"
-                    >Créer mon objectif</RouterLink
+                    >Se lancer</RouterLink
                   >
                 </li>
                 <li v-if="isLoggedIn() && !isAdmin()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
@@ -204,12 +204,12 @@
                   >Se connecter</RouterLink
                 >
               </li>
-              <li v-if="!isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
+              <!-- <li v-if="!isLoggedIn()" @click="showMobileMenu =! showMobileMenu" class="block py-2 px-4 text-slate-100 text-xl hover:bg-teal-300">
                 <RouterLink
                   to="/register"
                   >S'inscrire</RouterLink
                 >
-              </li>
+              </li> -->
               </ul>
       
     </nav>

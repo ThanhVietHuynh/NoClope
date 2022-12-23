@@ -36,8 +36,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::put('/invitation/{remember_token}', [ContactController::class, 'addContact'])->name('contacts.update');
 Route::delete('/delete/{remember_token}', [ContactController::class, 'deleteContact'])->name('contacts.delete');
+Route::get('/mailcracking', [ContactController::class, 'mailCracking'])->name('contacts.mailCrack')->middleware('auth:sanctum');
 
-Route::get('getRole', [AuthController::class, 'getRole'])->name('getRole.index')->middleware('auth:santum');
+Route::get('getRole', [AuthController::class, 'getRole'])->name('getRole.index')->middleware('auth:sanctum');
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/profil', [AuthController::class, 'edit'])->name('profil.edit')->middleware("auth:sanctum");
