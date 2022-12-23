@@ -78,7 +78,6 @@ import Register from '../components/Register.vue';
 
 <template>
   <section class="flex items-center justify-center" >
-  <p>{{feedbackMessage}}</p>
 
   <div class="flex align-center justify-center w-fit">
     

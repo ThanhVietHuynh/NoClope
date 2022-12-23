@@ -95,6 +95,7 @@ export default{
         focus:text-gray-700 focus:bg-white focus:border-teal-600 focus:outline-none" id="exampleInputPassword2"
         placeholder="Son prix">
       </div>
+      <p class="text-center text-red-600">{{feedbackMessage}}</p>
       <button type="submit" class="
       w-full
       px-6
@@ -117,8 +118,6 @@ export default{
     </form>
   </div>
 </section>
-
-    <p>{{feedbackMessage}}</p>
     
 </template>
 

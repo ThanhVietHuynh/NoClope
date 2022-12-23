@@ -207,10 +207,6 @@ export default {
             <div class="progression2 text-transparent bg-teal-400 h-2.5 rounded-lg" :style="'width: ' + progression + '%'">
             </div>
           </div>
-          <!-- <div class="flex justify-between">
-            <div class="justify-start ml-2.5">{{ project.created_at }}</div>
-            <div class="justify-end mr-2.5">{{ finished_at }}</div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -291,7 +287,7 @@ export default {
       active:bg-teal-400 active:shadow-lg
       transition
       duration-150
-      ease-in-out">BRAVO! Vous avez fini votre projet et allez pouvoir vous offrir : {{ project.goal }} </button>
+      ease-in-out">BRAVO! Vous avez atteint votre objectif, <br> vous allez pouvoir : {{ project.goal }} </button>
 
 </div>
 

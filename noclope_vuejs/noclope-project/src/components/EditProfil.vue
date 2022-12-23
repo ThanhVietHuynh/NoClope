@@ -143,7 +143,7 @@ export default {
             placeholder="Nouveau mot de passe"
           />
         </div>
-
+        <p class="text-center text-red-600">{{feedbackMessage}}</p>
         <button
           type="submit"
           class="w-full px-6 py-2.5 bg-teal-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-600 active:shadow-lg transition duration-150 ease-in-out"
