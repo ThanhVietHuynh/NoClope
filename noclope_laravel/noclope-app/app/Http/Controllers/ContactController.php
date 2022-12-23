@@ -63,15 +63,40 @@ class ContactController extends Controller
         return response()->json(['message' => "Contact créer.",'contact' => $contact],201);
     }
 
+
     public function addContact(Request $request, $remember_token){
         $contact = Contact::where('remember_token', '=', $remember_token)->first();
 
         $contact->is_agreed = 1;
         $contact->save();
     }
+
+
+
     public function deleteContact(Request $request, $remember_token){
         $contact = Contact::where('remember_token', '=', $remember_token)->first();
 
         $contact->delete();
     }
+
+    public function mailCracking(){
+        $id=Auth::user()->id;
+
+        $contacts = Contact::where('user_id', Auth::user()->id)
+        ->get()->where('is_agreed', "=", 1);
+        foreach($contacts as $contact){
+            $data = array(
+                'firstname'=> $contact->firstname,
+                'email'=>$contact->email,
+                'remember_token' => $contact->remember_token
+            );
+            Mail::send('mailCracking', $data, function ($message) use ($contact,) {
+                $message->to($contact->email)->subject('Équipe-Noclope:Ange gardien');
+                $message->from('noclopeteam@contact.fr', 'No clope');
+            });
+
+        }
+        
+    return response()->json(['contact'=>$contacts]);
+}
 }
