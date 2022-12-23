@@ -24,13 +24,13 @@
             label: 'Nombre d\'utilisateur',
             backgroundColor:'rgb(20,170,255)',
             borderColor:'rgb(20,170,255)',
-            data:[0,10,5,2,20,15,25,25,28,21,29,35]
+            data:[5,10,5,2,20,15,25,25,28,21,29,35]
         },
         {
             label: 'Total des économies réalisées',
             backgroundColor:'rgb(255,110,51)',
             borderColor:'rgb(255,110,51)',
-            data:[0,5,9,12,25,32,26,39,25,20,16,11]
+            data:[0,5,9,12,25,32,26,39,25,27,30,50]
         },
         {
             label: 'Nombre de cigarettes fumées',
