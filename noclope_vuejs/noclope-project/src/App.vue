@@ -71,6 +71,17 @@ export default {
       this.isLoggedIn = false;
       this.user = null;
     },
+      async isAgreed(){
+        const response = await fetch("http://127.0.0.1:8000/api/mailCracking",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+        })
+      }
+
   },
 
   mounted() {
@@ -79,6 +90,7 @@ export default {
 
   provide() {
     return {
+      isAgreed: () => this.isAgreed,
       isLoggedIn: () => this.isLoggedIn,
       isAdmin: () => this.isAdmin,
       getUser: () => this.user,
