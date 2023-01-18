@@ -8,7 +8,7 @@
 </head>
 <body>
     <p>
-        Bonjour {{ $firstname }} ! Votre ami(e) est sur le point de craquer ! Vite, contacté le pour l'aider à ne pas craqué !
+        Bonjour {{ $firstname }} ! Votre ami(e) est sur le point de craquer ! Vite, contactez-le pour l'aider à ne pas craquer !
         Nous comptons sur vous ! 
     </p>
 </body>

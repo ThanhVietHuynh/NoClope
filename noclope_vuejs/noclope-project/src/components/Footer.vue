@@ -2,7 +2,7 @@
     <footer class="text-center text-white hidden md:block items-center space-x-1" style="background-color: #f1f1f1;">
   <div class="container pt-9">
     <div class="flex justify-center mb-5">
-      <a href="#!" class="mr-6 text-gray-800">
+      <a href="https://www.facebook.com/Noclope/" target="_blank" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -53,7 +53,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-6 text-gray-800">
+      <a href="https://www.instagram.com/noclope_app/" target="_blank" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -70,7 +70,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-6 text-gray-800">
+      <a href="https://www.linkedin.com/company/noclope-la-cagnotte-non-fumeur/about/" target="_blank" class="mr-6 text-gray-800">
         <svg
           aria-hidden="true"
           focusable="false"

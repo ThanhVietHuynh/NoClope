@@ -17,7 +17,7 @@ import ToolBar from "./components/ToolBar.vue"
   <body class="bg-white pb-20 ">
      <RouterView />
      <ToolBar/>
-     <Footer/>
+     <Footer />
  
   </body>
 </template>
